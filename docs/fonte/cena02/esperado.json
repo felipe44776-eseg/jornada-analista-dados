@@ -1,0 +1,59 @@
+{
+  "cena": "02",
+  "passos": 6,
+  "obs": "O que o roteiro manda para a cena 02. Lido por verificacao/conferir.mjs. Mudou o roteiro, mude aqui. O quadro de partida (tela Continuar? do mundo 1) sai do DOM ao fim do passo 0, por isso não aparece nos textos, que são lidos no último passo.",
+  "textos": [
+    { "seletor": ".jg-cab-e", "texto": "Mundo 2" },
+    { "seletor": ".jg-cab-t", "texto": "O aliado: a IA entra no jogo" },
+    { "seletor": ".jg-jog", "texto": "2 jogadores: Analista · IA" },
+    { "seletor": ".jg-g .jg-r", "textos": ["Vidas", "Fase", "Prazo"] },
+    { "seletor": ".tp-fase", "textos": ["Entendimento do negócio", "Entendimento dos dados", "Preparação dos dados", "Modelagem", "Avaliação", "Implantação"] },
+    { "seletor": ".jg-ap-q", "texto": "Com IA, quanto mais rápido?" },
+    { "seletor": ".jg-ap-o span", "textos": ["10%", "25%", "50%"] },
+    { "seletor": ".c02-num", "textos": ["25% mais rápido", "12% mais tarefas", "mais de 40% de qualidade"], "obs": "roteiro: 25% mais rápido · 12% mais tarefas · mais de 40% de qualidade" },
+    { "seletor": ".jg-ct-cab", "texto": "Estudos sobre IA no ciclo de dados", "obs": "no roteiro, o trecho antes dos dois-pontos" },
+    { "seletor": ".c02-est-l", "textos": ["41 tratam de análise exploratória", "3 de definir o problema", "1 de implantação"] },
+    { "seletor": ".jg-ct-rod", "textos": ["758 consultores do BCG, em tarefas que a IA faz bem (Dell'Acqua et al., 2023)", "mapeamento sistemático de Chintakunta et al., 2025"] },
+    { "seletor": ".jg-pedra span", "texto": "Os dados estavam incompletos." },
+    { "seletor": ".jg-lasca", "texto": "Os dados estavam incompletos." },
+    { "seletor": ".jg-frase", "textos": ["Voltar ainda acontece. Só ficou barato.", "O primeiro e o último degrau continuam seus.", "Você entregaria isso ao seu chefe agora?"] },
+    { "seletor": ".jg-go", "texto": "Fase concluída" },
+    { "seletor": ".c02-rotulo", "texto": "Resultado" }
+  ],
+  "contagens": [
+    { "seletor": ".jg-cor svg", "n": 5 },
+    { "seletor": ".tp-fase", "n": 6 },
+    { "seletor": ".tp-tarefa", "n": 24 },
+    { "seletor": ".tp-tarefa.c02-acesa", "n": 16, "obs": "degraus 2, 3, 4 e 5: 4 + 5 + 4 + 3" },
+    { "seletor": ".tp-tab.c02-escrita", "n": 25, "obs": "saídas dos degraus 2, 3, 4 e 5: 4 + 8 + 8 + 5" },
+    { "seletor": ".c02-seu", "n": 2 },
+    { "seletor": ".c02-q01", "n": 0, "obs": "o quadro de partida não sobra no DOM" }
+  ],
+  "hud": [
+    { "vidas": 5, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 1, "jogadores": true },
+    { "vidas": 5, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 1, "jogadores": true },
+    { "vidas": 5, "fase": "4/6", "nome": "Modelagem", "prazo": 0.96, "jogadores": true },
+    { "vidas": 4, "fase": "5/6", "nome": "Avaliação", "prazo": 0.92, "jogadores": true },
+    { "vidas": 4, "fase": "6/6", "nome": "Implantação", "prazo": 0.86, "jogadores": true },
+    { "vidas": 4, "fase": "6/6", "nome": "Implantação", "prazo": 0.86, "jogadores": true }
+  ],
+  "estado": [
+    { ".jg-cab": 1, ".jg-cab-t": "O aliado: a IA entra no jogo", ".jg-heroi": true, ".jg-aliado": true, ".jg-premio": false, ".jg-aposta": false, ".jg-cartao": 0, ".jg-lasca": 0, ".jg-pedra": 0, ".jg-frase": "", ".tp-fase": 6, ".tp-tarefa": 24, ".tp-tarefa.c02-acesa": 0, ".tp-tab": 0, ".c02-seu": 0, ".c02-fc": false, ".c02-rotulo": false },
+    { ".jg-aposta": true, ".jg-ap-o span": 3, ".jg-ap-o .certa": 0, ".jg-cartao": 0, ".tp-tarefa.c02-acesa": 0, ".tp-tab": 0, ".tp-fase": 6 },
+    { ".jg-aposta": false, ".jg-cartao": 1, ".c02-num": 3, ".jg-ct-rod": 1, ".tp-tarefa.c02-acesa": 13, ".tp-tab": 20, ".tp-tab.c02-escrita": 20, ".jg-lasca": 0, ".jg-pedra": 0, ".jg-frase": "", ".tp-fase": 6 },
+    { ".jg-cartao": 0, ".jg-lasca": 1, ".jg-pedra": 0, ".tp-tarefa.c02-acesa": 16, ".tp-tab": 25, ".jg-frase": "Voltar ainda acontece. Só ficou barato.", ".c02-seu": 0, ".tp-fase": 6 },
+    { ".jg-lasca": 0, ".jg-cartao": 1, ".c02-est-l": 3, ".jg-ct-rod": 1, ".c02-seu": 2, ".tp-tarefa.c02-acesa": 16, ".tp-tab": 25, ".jg-frase": "O primeiro e o último degrau continuam seus.", ".jg-premio": false, ".tp-fase": 6 },
+    { ".jg-cartao": 0, ".jg-premio": true, ".jg-heroi": true, ".jg-aliado": true, ".jg-go": "Fase concluída", ".c02-rotulo": "Resultado", ".jg-frase": "Você entregaria isso ao seu chefe agora?", ".c02-seu": 2, ".tp-tarefa.c02-acesa": 16, ".tp-tab": 25, ".jg-lasca": 0, ".jg-pedra": 0, ".tp-fase": 6 }
+  ],
+  "acento": [".jg-jog .ia"],
+  "quadros": {
+    "1": [500, 1500],
+    "2": [350, 950, 1350, 1750, 2150, 2600, 3400, 4400],
+    "3": [450, 900, 1800, 2900, 3150, 3500, 4100, 4600, 4850, 5700],
+    "4": [450, 800, 1200, 1900, 2300, 2700, 3500, 4300, 5200, 6300],
+    "5": [450, 700, 1100, 1500, 2100, 2850, 3100, 3700, 4500]
+  },
+  "leitura": [
+    { "passo": 3, "seletor": ".jg-pedra", "indice": 0, "minimoParadaMs": 1500 }
+  ]
+}

@@ -1,0 +1,88 @@
+/* ============ CAMADA DE JOGO (motor): HUD, telas, peças, oficina ============ */
+.jg-hud{position:absolute;left:40px;right:40px;top:14px;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-radius:12px;
+  background:rgba(0,1,15,.66);box-shadow:inset 0 0 0 2px rgba(227,226,253,.4),0 6px 18px rgba(0,1,15,.4);font-weight:800;color:#fff;white-space:nowrap;pointer-events:none}
+.jg-g{display:flex;align-items:center}
+.jg-r{font-size:20px;line-height:1;letter-spacing:.14em;text-transform:uppercase;color:var(--l-200);margin-right:13px}
+.jg-cor{display:inline-flex;gap:7px}
+.jg-cor svg{display:block;width:30px;height:28px;overflow:visible}
+.jg-cor .ch{fill:#fff;stroke:#fff;stroke-width:1.6;stroke-linejoin:round}
+.jg-cor .tr{fill:none;stroke:var(--l-300);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.jg-cor .vazio .ch{fill:none;stroke:var(--l-300);stroke-width:2.2}
+.jg-cor .vazio .tr{opacity:1}
+.jg-fase b{font-size:25px;line-height:1;font-weight:820;font-variant-numeric:tabular-nums;display:inline-block}
+.jg-nome{font-size:21px;line-height:1;font-weight:660;margin-left:13px;color:var(--lav-1)}
+.jg-barra{position:relative;display:block;width:210px;height:18px;border-radius:10px;box-shadow:inset 0 0 0 2px var(--l-200);overflow:hidden}
+.jg-barra i{position:absolute;left:4px;top:4px;bottom:4px;width:calc((100% - 8px) * var(--p,1));background:#fff;border-radius:6px}
+.jg-prazo.baixo .jg-barra i{animation:jg-pisca .46s steps(2,jump-none) infinite}
+@keyframes jg-pisca{from{opacity:1}to{opacity:.25}}
+/* campo "2 jogadores: Analista · IA": aba pendurada sob o HUD, à direita */
+.jg-jog{position:absolute;right:18px;top:44px;height:40px;display:flex;align-items:center;padding:2px 18px 0;border-radius:0 0 12px 12px;background:rgba(0,1,15,.66);box-shadow:inset 0 0 0 2px rgba(227,226,253,.4);font-size:21px;line-height:1;font-weight:760;color:#fff}
+.jg-jog .jg-r{letter-spacing:.1em}
+.jg-jog i{font-style:normal;margin:0 9px;color:var(--l-300)}
+.jg-jog .ia{color:var(--acento)}
+
+/* tela de título */
+.jg-titulo{position:absolute;color:#fff}
+.jg-t-mundo{font-size:24px;line-height:30px;font-weight:780;letter-spacing:.17em;text-transform:uppercase;color:var(--l-200)}
+.jg-t-nome{margin:10px 0 0;font-size:80px;line-height:.98;font-weight:860;letter-spacing:-.028em;color:#fff;text-shadow:0 5px 0 var(--n-400),0 14px 30px rgba(0,1,15,.6)}
+.jg-t-dica{margin-top:38px;font-size:27px;line-height:34px;font-weight:760;letter-spacing:.06em;color:var(--lav-1)}
+.jg-t-dica i{font-style:normal;animation:jg-pisca 1.05s steps(2,jump-none) infinite}
+/* GAME OVER e Continuar? */
+.jg-go{position:absolute;white-space:nowrap;font-size:88px;line-height:1;font-weight:880;letter-spacing:.05em;color:#fff;text-shadow:0 6px 0 var(--n-300),0 0 0 #000,0 16px 34px rgba(0,1,15,.7);-webkit-text-stroke:2px var(--n-900);paint-order:stroke fill}
+.jg-cont{position:absolute;display:flex;align-items:center;white-space:nowrap;font-size:36px;line-height:1;font-weight:840;color:#fff}
+.jg-cont-b{display:inline-flex;gap:7px;margin-left:18px}
+.jg-cont-b i{width:22px;height:12px;border-radius:3px;background:#fff}
+.jg-cont-b i.gasto{background:none;box-shadow:inset 0 0 0 2px var(--l-300)}
+.jg-cont.espera>span:first-child{animation:jg-pisca .9s steps(2,jump-none) infinite}
+.jg-logo{position:absolute;right:26px;bottom:14px;width:60px;height:auto;opacity:.82;filter:brightness(0) invert(1)}
+
+/* efeitos */
+.jg-po{transform-box:fill-box;transform-origin:50% 50%}
+/* pedra com motivo (lida antes do impacto) e lasca (o motivo que fica à vista) */
+.jg-pedra{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;line-height:1.13;font-weight:830;letter-spacing:-.005em;color:var(--marinho);filter:drop-shadow(0 12px 12px rgba(0,1,15,.6));transform-origin:50% 50%}
+.jg-pedra>svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.jg-pedra span{position:relative}
+.jg-lasca{position:absolute;transform-origin:8% 50%;filter:drop-shadow(0 6px 9px rgba(0,1,15,.6))}
+.jg-lasca div{padding:9px 17px 10px;font-size:21px;line-height:26px;font-weight:680;white-space:nowrap;color:var(--marinho);background:linear-gradient(172deg,#F3F3FF 0%,#E3E2FD 45%,#C9C9EE 100%);
+  clip-path:polygon(0 7px,8px 0,calc(100% - 11px) 0,100% 9px,100% calc(100% - 6px),calc(100% - 9px) 100%,10px 100%,0 calc(100% - 10px))}
+/* cartão de texto */
+.jg-cartao{position:absolute;padding:20px 26px 22px;background:linear-gradient(176deg,#F6F6FF,#E3E2FD);color:var(--marinho);border-radius:5px;box-shadow:0 22px 46px rgba(0,1,15,.7),inset 0 0 0 1px rgba(0,6,83,.2);transform-origin:50% 0}
+.jg-ct-cab{font-size:20px;line-height:24px;font-weight:840;letter-spacing:.14em;text-transform:uppercase;padding-bottom:11px;border-bottom:3px solid var(--marinho)}
+.jg-ct-l{display:flex;align-items:flex-start;margin-top:12px;font-size:23px;line-height:29px;font-weight:650}
+.jg-ct-l b{flex:none;width:36px;font-weight:860}
+.jg-ct-l span{text-wrap:balance}
+.jg-ct-l.destaque{margin:13px -12px 0;padding:9px 12px 10px;border-radius:5px;background:var(--marinho);color:var(--acento);font-weight:800;box-shadow:inset 6px 0 0 var(--acento);padding-left:22px}
+.jg-ct-rod{margin-top:14px;padding-top:10px;border-top:1.5px solid rgba(0,6,83,.28);font-size:20px;line-height:25px;font-weight:580;color:var(--n-400)}
+/* aposta: pergunta e três opções */
+.jg-aposta{position:absolute;padding:22px 26px 24px;border-radius:14px;background:rgba(0,1,15,.86);box-shadow:inset 0 0 0 2px rgba(227,226,253,.4),0 18px 40px rgba(0,1,15,.6);color:#fff}
+.jg-ap-q{font-size:30px;line-height:1.2;font-weight:780;text-wrap:balance}
+.jg-ap-o{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.jg-ap-o span{display:flex;align-items:center;justify-content:center;height:86px;border-radius:12px;box-shadow:inset 0 0 0 3px var(--l-200);font-size:42px;line-height:1;font-weight:860;font-variant-numeric:tabular-nums;white-space:nowrap}
+.jg-ap-o span.certa{background:#fff;color:var(--marinho);box-shadow:none;transform:scale(1.06)}
+.jg-ap-o span.errada{opacity:.3}
+/* cabeçalho da cena, frase de pé de tela, balão de fala */
+.jg-cab{position:absolute;left:56px;top:72px;text-shadow:0 2px 12px rgba(0,1,15,.75),0 0 2px rgba(0,1,15,.6)}
+.jg-cab-e{display:block;font-size:20px;line-height:24px;font-weight:750;letter-spacing:.17em;text-transform:uppercase;color:var(--l-200)}
+.jg-cab-t{margin:3px 0 0!important;font-size:40px;line-height:1.1;font-weight:800;letter-spacing:-.018em;color:#fff;white-space:nowrap}
+.jg-frase{position:absolute;left:0;width:1280px;margin:0;text-align:center;white-space:nowrap;font-size:33px;line-height:42px;font-weight:720;color:#fff;text-shadow:0 2px 12px rgba(0,1,15,.75),0 0 2px rgba(0,1,15,.6)}
+.jg-frase.acento{font-size:45px;line-height:54px;font-weight:840;letter-spacing:-.012em;color:var(--acento)}
+.jg-balao{position:absolute;width:0;height:0;transform-origin:0 0}
+.jg-balao>div{position:absolute;left:0;bottom:0;padding:11px 20px 12px;border-radius:16px 16px 16px 4px;background:rgba(0,1,15,.9);box-shadow:inset 0 0 0 3px var(--l-200),0 8px 20px rgba(0,1,15,.5);color:#fff;font-size:26px;line-height:1.15;font-weight:780;white-space:nowrap}
+.jg-balao.ia>div{box-shadow:inset 0 0 0 3px var(--acento),0 8px 20px rgba(0,1,15,.5)}
+/* palco em camadas para cena sem templo */
+.jg-cena{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#000653,#0B0F66 55%,#23277F)}
+.jg-mundo{position:absolute;inset:0}
+.jg-mundo>svg{position:absolute;left:0;top:0;width:1280px;height:720px;overflow:visible}
+.jg-z{position:absolute;inset:0}
+.jg-hudc{pointer-events:none}
+.jg-hudc p,.jg-hudc h1{margin:0}
+/* aliado: flutua parado (some no modo parado=1) */
+.jg-al-flutua{animation:jg-al-flutua 1.5s ease-in-out infinite alternate}
+@keyframes jg-al-flutua{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
+
+/* oficina (?oficina=1 e 2, ?heroi=1): folhas para julgar o desenho dos componentes */
+.jg-oficina{position:absolute;inset:0;background:linear-gradient(180deg,#000653,#0B0F66 55%,#23277F)}
+.jg-oficina>svg{position:absolute;left:0;top:0;width:1280px;height:720px;overflow:visible}
+.jg-oficina h1,.jg-of-h{position:absolute;left:40px;top:22px;margin:0;font-size:26px;font-weight:800;color:#fff}
+.jg-of-r{position:absolute;width:300px;margin-left:-150px;text-align:center;font-size:20px;line-height:24px;font-weight:700;color:var(--lav-1);white-space:nowrap}
+.jg-of-t{position:absolute;font-size:20px;line-height:24px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--l-300);white-space:nowrap}

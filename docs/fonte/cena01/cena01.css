@@ -1,0 +1,31 @@
+/* ============ CENA 01 · Mundo 1 — Incas e maias: o CRISP-DM ============
+   Só o que é desta cena. Templo e cenário: jogo-templo.css. HUD, pedra, lasca, cartão: jogo.css. */
+.c1-grito{position:absolute;width:420px;margin-left:-210px;text-align:center;white-space:nowrap;font-size:31px;line-height:1;font-weight:880;letter-spacing:.02em;color:#fff;-webkit-text-stroke:6px var(--marinho);paint-order:stroke fill;text-shadow:0 5px 10px rgba(0,1,15,.7)}
+.c1-sombra{text-shadow:0 2px 12px rgba(0,1,15,.75),0 0 2px rgba(0,1,15,.6)}
+.c1-cab{position:absolute;left:56px;top:72px}
+.c1-eyebrow{display:block;font-size:20px;line-height:24px;font-weight:750;letter-spacing:.17em;text-transform:uppercase;color:var(--l-200)}
+.c1-titulo{margin-top:3px!important;font-size:40px;line-height:1.1;font-weight:800;letter-spacing:-.018em;color:#fff;white-space:nowrap}
+.c1-museu{position:absolute;right:40px;top:74px;padding:9px 18px 10px;background:var(--lav-1);color:var(--marinho);font-size:20px;line-height:26px;font-weight:560;white-space:nowrap;border-radius:3px;box-shadow:0 8px 20px rgba(0,1,15,.5),inset 0 0 0 1px rgba(0,6,83,.18);transform-origin:50% -30px}
+.c1-museu b{display:block;font-weight:820;letter-spacing:.01em}
+.c1-cont{position:absolute;display:flex;flex-direction:column;align-items:flex-start}
+.c1-cont b{display:block;font-size:84px;line-height:.94;font-weight:820;letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums;transform-origin:0 80%}
+.c1-cont span{font-size:26px;line-height:32px;font-weight:660;color:var(--lav-2);white-space:nowrap}
+.c1-cont-t{left:56px;top:188px}
+.c1-cont-s{left:896px;top:346px}
+.c1-leg{position:absolute;left:0;width:1280px;text-align:center;white-space:nowrap}
+.c1-leg-volta{top:636px;font-size:33px;line-height:42px;font-weight:720;color:#fff}
+.c1-fimq{top:642px;font-size:45px;line-height:54px;font-weight:840;letter-spacing:-.012em;color:var(--acento)}
+
+/* tela de título: o herói sobre uma laje e o nome do jogo */
+.c1-abre{position:absolute;inset:0}
+.c1-abre>svg{position:absolute;left:0;top:0;width:1280px;height:720px;overflow:visible}
+.c1-abre .jg-titulo{left:480px;top:176px;width:770px}
+.c1-abre .jg-t-nome{font-size:76px}
+.c1-abre.entra{animation:c1-entra .7s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes c1-entra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* fim de jogo */
+.c1-go{position:absolute;left:0;width:1200px;top:176px;text-align:center}
+.c1-go .jg-go{position:static;display:inline-block;font-size:78px}
+.c1-continuar{left:252px;top:486px;padding:9px 18px 10px;border-radius:10px;background:rgba(0,1,15,.78);font-size:34px}
+.c1-p2{position:absolute;left:252px;top:546px;display:flex;align-items:center;gap:12px;padding:11px 20px 12px 16px;border-radius:10px;background:rgba(0,1,15,.82);box-shadow:inset 0 0 0 3px var(--acento),0 10px 24px rgba(0,1,15,.6);color:var(--acento);font-size:30px;line-height:1;font-weight:850;white-space:nowrap}
+.c1-p2 i{width:18px;height:18px;background:var(--acento);transform:rotate(45deg);border-radius:3px}

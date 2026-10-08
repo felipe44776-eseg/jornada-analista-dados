@@ -1,0 +1,21 @@
+/* ============ CAMADA DE JOGO · templo e cenário em camadas (mundos 1, 2 e 3) ============ */
+.tp{position:absolute;inset:0;overflow:hidden;background:var(--n-900)}
+.tp-mundo{position:absolute;inset:0}
+.tp-pl{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:640px 380px}
+.tp-vai{position:absolute;inset:0;animation:tp-vai 17s ease-in-out infinite alternate}
+@keyframes tp-vai{from{transform:translateX(calc(var(--prof,0)*-7px))}to{transform:translateX(calc(var(--prof,0)*7px))}}
+.tp-pl>svg,.tp-vai>svg{position:absolute;left:0;top:0;width:1280px;height:720px;overflow:visible}
+.tp-z{position:absolute;inset:0}
+.tp-ceu{position:absolute;inset:-60px;background:linear-gradient(180deg,#000653 0%,#0B0F66 22%,#23277F 42%,#4B4FA0 60%,#8E90D0 76%,#C9C8F4 90%)}
+.tp-halo{position:absolute;left:390px;top:260px;width:800px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(236,237,255,.55),rgba(227,226,253,.18) 55%,rgba(227,226,253,0) 100%)}
+.tp-disco{position:absolute;left:748px;top:163px;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 42% 40%,#fff,#ECEDFF 62%,#D9D8FA);box-shadow:0 0 0 14px rgba(236,237,255,.10),0 0 70px 26px rgba(227,226,253,.32)}
+.tp-veu{position:absolute;inset:-80px;background:var(--n-900);pointer-events:none}
+.tp-noite-fundo{position:absolute;inset:-80px;background:var(--n-900);pointer-events:none}
+.tp-est{position:absolute;inset:0}
+.tp-est circle{fill:#ECEDFF}
+.tp-pisca{animation:tp-pisca 3.4s ease-in-out infinite}
+@keyframes tp-pisca{0%,100%{opacity:1}50%{opacity:.25}}
+.tp-tarefa{transform-box:fill-box;transform-origin:50% 100%}
+.tp-fase{position:absolute;display:flex;align-items:center;justify-content:center;height:54px;font-size:22px;line-height:1;font-weight:720;letter-spacing:.012em;color:var(--lav-1);white-space:nowrap;text-shadow:0 -1px 0 rgba(0,1,15,.75),0 1px 0 rgba(169,170,220,.28);padding-top:3px}
+.tp-hud{position:absolute;inset:0;pointer-events:none}
+.tp-hud p,.tp-hud h1{margin:0}

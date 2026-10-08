@@ -1,0 +1,42 @@
+/* ============ MOTOR ============ */
+:root{
+  --w:1280px;--h:720px;
+  /* identidade ESEG (PERFIL-ESEG.md 2.1): o jogo é azul e branco */
+  --marinho:#000653;--lav-1:#ECEDFF;--lav-2:#E3E2FD;--acento:#00A1B8;
+  /* derivados do marinho e das lavandas: noite, pedra, mata */
+  --n-900:#00010F;--n-800:#020430;--n-700:#070B4A;--n-600:#0C1060;--n-500:#151A6E;
+  --n-400:#2A2F7C;--n-300:#3A3F8C;--n-200:#565A94;--l-500:#7477B6;--l-400:#8E90C8;--l-300:#A9AADC;--l-200:#C1C1E3;
+  --font:"Public Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--n-900);overflow:hidden}
+body{font-family:var(--font);color:var(--lav-1);-webkit-font-smoothing:antialiased;font-kerning:normal}
+#vp{position:fixed;inset:0;overflow:hidden;cursor:default}
+#quadro{position:absolute;left:0;top:0;width:var(--w);height:var(--h);transform-origin:0 0}
+.palco{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--n-900);font-family:var(--font);color:var(--lav-1);user-select:none}
+.palco.cortina{position:absolute;left:0;top:0;z-index:30;pointer-events:none}
+#ind{position:absolute;left:14px;bottom:8px;z-index:60;font-size:13px;line-height:16px;font-weight:600;letter-spacing:.04em;color:var(--lav-2);opacity:.55;font-variant-numeric:tabular-nums;pointer-events:none}
+#ind .mudo{margin-left:8px;padding:1px 7px;border:1px solid currentColor;border-radius:999px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+#notas{position:fixed;right:0;top:0;bottom:0;width:min(460px,42vw);z-index:80;overflow:auto;padding:22px 24px 28px;background:rgba(0,3,37,.96);border-left:1px solid var(--n-300);color:var(--lav-1);font-size:16px;line-height:1.5;display:none}
+#notas.aberto{display:block}
+#notas h2{margin:0 0 4px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--l-300)}
+#notas h3{margin:18px 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--l-300)}
+#notas .tit{font-size:20px;font-weight:750;margin:0 0 6px}
+#notas p{margin:0 0 10px}
+#notas ul{margin:0;padding-left:18px}
+#notas li{margin-bottom:6px}
+#notas .teclas{margin-top:20px;padding-top:12px;border-top:1px solid var(--n-300);font-size:13px;color:var(--l-300)}
+#imp{display:none}
+html.parado *,html.parado *::before,html.parado *::after{animation:none!important;transition:none!important}
+@page{size:1280px 720px;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff}
+  .no-print{display:none!important}
+  #vp{position:static;overflow:visible}
+  #quadro{position:static;transform:none!important}
+  html.imprimindo #vp{display:none}
+  html.imprimindo #imp{display:block}
+  .pagina{break-after:page;page-break-after:always;break-inside:avoid}
+  .pagina:last-child{break-after:auto;page-break-after:auto}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

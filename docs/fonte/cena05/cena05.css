@@ -1,0 +1,83 @@
+/* ============ CENA 05 · O final do jogo — As conquistas do analista ============
+   Só o que é desta cena. Templo e cenário: jogo-templo.css. Cabeçalho, frase, cartão: jogo.css. Nada abaixo de 20 px.
+   Azul e branco; nenhum ciano em HTML (o único ciano da cena está em SVG: a faísca e o marco do mundo 2). */
+
+/* dia claro: luz própria da cena, por cima do templo ao amanhecer. O alto do céu fica escuro, para o título em branco */
+.c05-ceu{position:absolute;inset:-60px;background:linear-gradient(180deg,#0B0F66 0%,#151A6E 14%,#2A2F7C 26%,#565A94 40%,#8E90D0 56%,#C9C8F4 72%,#ECEDFF 90%)}
+.c05-raios{position:absolute;left:414px;top:-189px;width:800px;height:800px;border-radius:50%;background:repeating-conic-gradient(from 4deg,rgba(236,237,255,.2) 0 7deg,rgba(236,237,255,0) 7deg 20deg);
+  -webkit-mask-image:radial-gradient(closest-side,transparent 14%,#000 22%,transparent 100%);mask-image:radial-gradient(closest-side,transparent 14%,#000 22%,transparent 100%);animation:c05-gira 120s linear infinite}
+.c05-clarao{position:absolute;left:514px;top:-89px;width:600px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(236,237,255,.22) 22%,rgba(236,237,255,.06) 50%,rgba(236,237,255,0) 100%)}
+.c05-nevoa{position:absolute;inset:-80px;pointer-events:none;background:linear-gradient(180deg,rgba(236,237,255,0) 28%,rgba(236,237,255,.2) 58%,rgba(236,237,255,.34) 84%)}
+@keyframes c05-gira{to{transform:rotate(360deg)}}
+
+/* contador de conquistas: fica no lugar do HUD de vidas, com a mesma caixa */
+.c05-placar{position:absolute;left:40px;right:40px;top:14px;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 22px 0 14px;border-radius:12px;
+  background:rgba(0,1,15,.66);box-shadow:inset 0 0 0 2px rgba(227,226,253,.4),0 6px 18px rgba(0,1,15,.4);color:#fff;white-space:nowrap}
+.c05-slots{display:flex;align-items:center;gap:10px}
+.c05-slot{position:relative;flex:none;width:38px;height:38px}
+.c05-slot>svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.c05-slot .c05-md{opacity:0}
+.c05-slot.cheia .c05-md{opacity:1}
+.c05-slot.cheia .c05-oco{opacity:0}
+.c05-slot .c05-oco circle{stroke:var(--l-300);stroke-width:8;stroke-dasharray:17.3 11.5}
+.c05-cont{font-size:20px;line-height:1;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--l-200)}
+.c05-cont b{display:inline-block;margin-right:11px;font-size:25px;line-height:1;font-weight:820;letter-spacing:0;color:#fff;font-variant-numeric:tabular-nums;transform-origin:100% 60%}
+
+/* quadro de partida: a faixa "Fase concluída" com que a cena 04 termina */
+.c05-partida{position:absolute;left:0;top:372px;width:1280px;text-align:center}
+.c05-partida .jg-go{position:static;display:inline-block;font-size:74px}
+
+/* aviso de conquista: sobe do pé da tela. Preso por baixo, cresce para cima: aguenta de 1 a 3 linhas de texto */
+.c05-aviso{position:absolute;left:74px;bottom:26px;width:1100px;min-height:216px;display:flex;align-items:center;gap:30px;padding:22px 34px 24px 28px;border-radius:16px;
+  background:#01021C;box-shadow:inset 0 0 0 2px rgba(227,226,253,.42),0 18px 40px rgba(0,1,15,.55);color:#fff}
+.c05-av-m{position:relative;flex:none;width:150px;height:150px}
+.c05-av-m>svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.c05-av-m>svg.c05-estouro{left:-36%;top:-36%;width:172%;height:172%;pointer-events:none}
+.c05-medalha{position:absolute;left:0;top:0;width:100%;height:100%}
+.c05-md{display:block;width:100%;height:100%;overflow:visible}
+.c05-av-t{flex:1;min-width:0}
+.c05-av-r{font-size:21px;line-height:26px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--l-200)}
+.c05-av-n{display:flex;flex-wrap:wrap;align-items:center;gap:2px 20px;margin-top:1px}
+.c05-av-nome{font-size:56px;line-height:1.1;font-weight:860;letter-spacing:-.02em;color:#fff;transform-origin:0 60%}
+.c05-etq{margin-top:8px;padding:5px 15px 6px;border-radius:999px;box-shadow:inset 0 0 0 2px var(--l-200);font-size:22px;line-height:26px;font-weight:740;letter-spacing:.02em;color:var(--lav-1);white-space:nowrap}
+.c05-av-l{margin-top:7px;font-size:32px;line-height:40px;font-weight:600;color:var(--lav-1);text-wrap:balance}
+/* a quinta conquista é maior que as outras */
+.c05-aviso.grande{min-height:252px;gap:36px;padding-left:34px}
+.c05-aviso.grande .c05-av-m{width:188px;height:188px}
+.c05-aviso.grande .c05-av-nome{font-size:76px;line-height:1.06}
+.c05-aura{position:absolute;left:-22%;top:-22%;width:144%;height:144%;border-radius:50%;background:repeating-conic-gradient(rgba(236,237,255,.24) 0 9deg,rgba(236,237,255,0) 9deg 22.5deg);
+  -webkit-mask-image:radial-gradient(closest-side,#000 60%,transparent 100%);mask-image:radial-gradient(closest-side,#000 60%,transparent 100%);animation:c05-gira 40s linear infinite}
+/* cópia da medalha que sobe do aviso para o contador */
+.c05-voo{position:absolute;pointer-events:none}
+
+/* trilha dos quatro mundos (SVG, na camada dos atores) */
+.c05-ponto,.c05-marco-i{transform-box:fill-box;transform-origin:50% 50%}
+.c05-ponto{animation:c05-pulsa 2.6s ease-in-out infinite}
+@keyframes c05-pulsa{0%,70%,100%{transform:scale(1)}35%{transform:scale(1.5)}}
+
+/* painel do passo 6: as cinco de uma vez, só emblema e nome. Preso por baixo: nome de 3 linhas faz o painel crescer para cima, longe da pergunta */
+.c05-painel{position:absolute;left:90px;bottom:114px;width:1100px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:8px;padding:26px 20px 30px;border-radius:16px;
+  background:#01021C;box-shadow:inset 0 0 0 2px rgba(227,226,253,.42),0 18px 40px rgba(0,1,15,.55);color:#fff}
+.c05-pn-item{display:flex;flex-direction:column;align-items:center;min-width:0}
+.c05-pn-m{width:126px;height:126px}
+.c05-pn-nome{margin-top:14px;min-height:64px;max-width:100%;text-align:center;font-size:28px;line-height:32px;font-weight:800;letter-spacing:-.008em;color:#fff;text-wrap:balance}
+
+/* cartão dos créditos (Jogo.cartao): lista à esquerda, código QR à direita, endereço embaixo */
+.c05-creditos .jg-ct-cab{font-size:24px;line-height:26px;padding-bottom:9px}
+.c05-creditos .jg-ct-l{margin:3px 300px 0 0;font-size:27px;line-height:32px}
+.c05-creditos .jg-ct-cab+.jg-ct-l{margin-top:12px;line-height:31px;font-weight:820}
+.c05-creditos .jg-ct-l b{width:24px}
+.c05-end{display:flex;align-items:center;gap:14px;height:52px;margin:13px 300px 0 0;padding:0 16px;border-radius:10px;border:3px dashed var(--l-500);white-space:nowrap}
+.c05-qr{position:absolute;right:26px;top:72px;width:268px;height:268px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 20px;border-radius:12px;border:3px dashed var(--l-500);text-align:center}
+.c05-vg-r{font-size:20px;line-height:24px;font-weight:840;letter-spacing:.14em;text-transform:uppercase;color:var(--n-400)}
+.c05-vg-t{font-size:22px;line-height:27px;font-weight:600;color:var(--n-200);text-wrap:balance}
+/* preenchidos (quando CREDITOS.endereco e CREDITOS.qr tiverem valor) */
+.c05-end.cheia{border:0;height:auto;min-height:52px;padding:8px 18px;background:var(--marinho);white-space:normal}
+.c05-end-url{min-width:0;overflow-wrap:anywhere;line-height:1.2;font-weight:800;letter-spacing:-.005em;color:#fff}
+.c05-qr.cheia{border:0;padding:10px;background:#fff;box-shadow:inset 0 0 0 2px rgba(0,6,83,.2)}
+.c05-qr.cheia img{display:block;width:100%;height:100%;image-rendering:pixelated}
+/* créditos: coluna entre a lista e o código QR, rótulo pequeno em cima e o nome embaixo */
+.c05-autoria{position:absolute;left:376px;top:80px;width:312px;display:flex;flex-direction:column;gap:9px;padding-left:18px;border-left:3px solid var(--l-500)}
+.c05-autoria>div{display:flex;flex-direction:column}
+.c05-au-r{font-size:20px;line-height:23px;font-weight:840;letter-spacing:.14em;text-transform:uppercase;color:var(--n-400)}
+.c05-au-t{font-size:23px;line-height:28px;font-weight:760;color:var(--marinho);text-wrap:balance}

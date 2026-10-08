@@ -1,0 +1,53 @@
+{
+  "cena": "05",
+  "passos": 8,
+  "obs": "O que o roteiro manda para a cena 05. Lido por verificacao/conferir.mjs. Mudou o roteiro ou o 1-conteudo.js, mude aqui. Esta cena não tem HUD de vidas (o jogo acabou): no lugar dele fica o contador .c05-placar, e por isso \"hud\" é null em todos os passos.",
+  "textos": [
+    { "seletor": ".jg-cab-e", "texto": "Fim de jogo" },
+    { "seletor": ".jg-cab-t", "texto": "As conquistas do analista de dados" },
+    { "seletor": ".c05-cont", "texto": "5/5 conquistas" },
+    { "seletor": ".jg-go", "texto": "Fase concluída", "obs": "quadro de partida: só aparece antes do passo 0 terminar" },
+    { "seletor": ".c05-av-r", "textos": ["Conquista desbloqueada", "Conquista desbloqueada", "Conquista desbloqueada", "Conquista desbloqueada", "Conquista desbloqueada"] },
+    { "seletor": ".c05-av-nome", "textos": ["Rápida", "Precisa", "Visual", "Faz sentido no negócio", "É uma jornada"] },
+    { "seletor": ".c05-av-l", "textos": [
+      "Para não perder o tempo do cliente, nem o da ação que a sua análise vai gerar.",
+      "Sempre teve de ser. Agora mais que nunca: uma alucinação leva o time para o caminho errado.",
+      "Os outros precisam entender o que você fez. Quem não entende não age, por medo.",
+      "Um número solto não basta: a conclusão tem de se ligar ao problema que você começou a explorar.",
+      "Você não sabe onde vai terminar, nem se a hipótese vai dar certo. Goste do caminho e seja criativo."
+    ] },
+    { "seletor": ".c05-etq", "textos": ["explicabilidade"], "obs": "a etiqueta acompanha a conquista 4: em \"estado\", só o passo 4 a tem visível" },
+    { "seletor": ".c05-pn-nome", "textos": ["Rápida", "Precisa", "Visual", "Faz sentido no negócio", "É uma jornada"] },
+    { "seletor": ".jg-frase", "texto": "Qual é a mais difícil para você?" },
+    { "seletor": ".jg-ct-cab", "texto": "Leve o jogo para casa" },
+    { "seletor": ".jg-ct-l", "textos": ["No repositório:", "· o código", "· esta apresentação", "· o resumo da técnica", "· o pipeline movido a IA", "· como usar"], "obs": "na tela é uma lista: cada ponto mediano do roteiro vira o marcador de uma linha" },
+    { "seletor": ".c05-au-r", "textos": ["Autores", "Professor", "ESEG · 2026"] },
+    { "seletor": ".c05-au-t", "textos": ["Felipe Marins e Claude", "Marino Hilario Catarino", "Data Science 2"], "obs": "créditos pedidos pelo Felipe em 2026-10-08" },
+    { "seletor": ".c05-end-url", "texto": "github.com/felipe44776-eseg/jornada-analista-dados", "obs": "endereço do repositório público, preenchido em 2026-10-08; o QR é imagem e está em \"contagens\"" }
+  ],
+  "contagens": [
+    { "seletor": ".c05-slot", "n": 5 }, { "seletor": ".c05-aviso", "n": 5 }, { "seletor": ".c05-aviso.grande", "n": 1 }, { "seletor": ".c05-pn-item", "n": 5 },
+    { "seletor": ".c05-marco", "n": 4 }, { "seletor": ".tp-fase", "n": 6 }, { "seletor": ".jg-hud", "n": 0 }, { "seletor": ".c05-qr img", "n": 1 }, { "seletor": ".c05-end-url", "n": 1 }
+  ],
+  "hud": [null, null, null, null, null, null, null, null],
+  "estado": [
+    { ".jg-go": false, ".jg-cab": true, ".c05-placar": true, ".c05-cont": "0/5 conquistas", ".c05-slot": 5, ".c05-slot.cheia": 0, ".c05-aviso": 0, ".tp-fase": 6, ".tp-atores .jg-heroi": true, ".tp-atores .jg-aliado": true, ".c05-marco": 0, ".c05-painel": false, ".jg-frase": false, ".jg-cartao": false },
+    { ".c05-cont": "1/5 conquistas", ".c05-slot.cheia": 1, ".c05-aviso": 1, ".c05-av-nome": "Rápida", ".c05-av-l": "Para não perder o tempo do cliente, nem o da ação que a sua análise vai gerar.", ".c05-etq": false, ".tp-fase": 0, ".c05-marco": 0, ".tp-atores .jg-heroi": true, ".tp-atores .jg-aliado": true },
+    { ".c05-cont": "2/5 conquistas", ".c05-slot.cheia": 2, ".c05-aviso": 1, ".c05-av-nome": "Precisa", ".c05-av-l": "Sempre teve de ser. Agora mais que nunca: uma alucinação leva o time para o caminho errado.", ".c05-etq": false, ".tp-fase": 0, ".c05-marco": 0 },
+    { ".c05-cont": "3/5 conquistas", ".c05-slot.cheia": 3, ".c05-aviso": 1, ".c05-av-nome": "Visual", ".c05-av-l": "Os outros precisam entender o que você fez. Quem não entende não age, por medo.", ".c05-etq": false, ".tp-fase": 0, ".c05-marco": 0 },
+    { ".c05-cont": "4/5 conquistas", ".c05-slot.cheia": 4, ".c05-aviso": 1, ".c05-av-nome": "Faz sentido no negócio", ".c05-av-l": "Um número solto não basta: a conclusão tem de se ligar ao problema que você começou a explorar.", ".c05-etq": "explicabilidade", ".tp-fase": 0, ".c05-marco": 0 },
+    { ".c05-cont": "5/5 conquistas", ".c05-slot.cheia": 5, ".c05-aviso": 1, ".c05-aviso.grande": 1, ".c05-av-nome": "É uma jornada", ".c05-av-l": "Você não sabe onde vai terminar, nem se a hipótese vai dar certo. Goste do caminho e seja criativo.", ".c05-etq": false, ".tp-fase": 0, ".c05-marco": 4, ".c05-painel": false },
+    { ".c05-cont": "5/5 conquistas", ".c05-slot.cheia": 5, ".c05-aviso": 0, ".c05-marco": 0, ".c05-painel": true, ".c05-pn-nome": 5, ".c05-pn-m": 5, ".jg-frase": "Qual é a mais difícil para você?", ".jg-cartao": false, ".tp-fase": 0, ".tp-atores .jg-heroi": true, ".tp-atores .jg-aliado": true },
+    { ".c05-cont": "5/5 conquistas", ".c05-slot.cheia": 5, ".c05-aviso": 0, ".c05-painel": false, ".jg-frase": false, ".jg-cartao": true, ".jg-ct-l": 6, ".c05-end": true, ".c05-qr": true, ".jg-cab": true, ".tp-atores .jg-heroi": true, ".tp-atores .jg-aliado": true }
+  ],
+  "acento": [],
+  "quadros": {
+    "1": [450, 800, 1100, 1500, 2250],
+    "2": [1000, 1300, 1600],
+    "3": [1000, 1320, 1700],
+    "4": [1000, 1300, 1700],
+    "5": [650, 1050, 1350, 2100, 2500, 2900, 3350, 3700, 4150],
+    "6": [450, 900, 1250, 1600, 2200, 2700],
+    "7": [600, 1150, 2000, 3300]
+  }
+}

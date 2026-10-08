@@ -1,0 +1,48 @@
+/* ============ CENA 02 · Mundo 2 — O aliado: a IA entra no jogo ============
+   Só o que é desta cena. Templo e cenário: jogo-templo.css. HUD, pedra, lasca, cartão, aposta, frase: jogo.css.
+   Nenhum ciano aqui fora do quadro de partida (que é do mundo 1): nesta cena o ciano é a faísca e o que ela toca, em SVG. */
+
+/* quadro de partida: a tela "Continuar?" do mundo 1, redesenhada. Mesmas medidas da cena 01; some no passo 0 */
+.c02-q01{position:absolute;inset:0}
+.c02-q01-museu{position:absolute;right:40px;top:74px;padding:9px 18px 10px;background:var(--lav-1);color:var(--marinho);font-size:20px;line-height:26px;font-weight:560;white-space:nowrap;border-radius:3px;box-shadow:0 8px 20px rgba(0,1,15,.5),inset 0 0 0 1px rgba(0,6,83,.18);transform-origin:50% -30px}
+.c02-q01-museu b{display:block;font-weight:820;letter-spacing:.01em}
+.c02-q01-cont{left:252px;top:486px;padding:9px 18px 10px;border-radius:10px;background:rgba(0,1,15,.78);font-size:34px}
+.c02-q01-p2{position:absolute;left:252px;top:546px;display:flex;align-items:center;gap:12px;padding:11px 20px 12px 16px;border-radius:10px;background:rgba(0,1,15,.82);box-shadow:inset 0 0 0 3px var(--acento),0 10px 24px rgba(0,1,15,.6);color:var(--acento);font-size:30px;line-height:1;font-weight:850;white-space:nowrap}
+.c02-q01-p2 i{width:18px;height:18px;background:var(--acento);transform:rotate(45deg);border-radius:3px}
+
+/* aposta à espera da turma: as três opções pulsam em sequência (parado=1 desliga) */
+.c02-espera .jg-ap-o span{animation:c02-espera 1.6s ease-in-out infinite}
+.c02-espera .jg-ap-o span:nth-child(2){animation-delay:.22s}
+.c02-espera .jg-ap-o span:nth-child(3){animation-delay:.44s}
+@keyframes c02-espera{0%,55%,100%{transform:scale(1)}26%{transform:scale(1.06)}}
+
+/* cartão dos três números: três colunas dentro da moldura do cartão */
+.c02-tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));color:var(--marinho)}
+.c02-num{display:flex;flex-direction:column;align-items:center;text-align:center;white-space:nowrap;padding:0 4px}
+.c02-num+.c02-num{box-shadow:-2px 0 0 rgba(0,6,83,.16)}
+.c02-num i{display:block;height:26px;font-style:normal;font-size:22px;line-height:26px;font-weight:720;color:var(--n-400)}
+.c02-num b{display:block;font-size:58px;line-height:62px;font-weight:860;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.c02-num span{display:block;margin-top:2px;font-size:23px;line-height:28px;font-weight:720}
+
+/* cartão dos estudos: o número de cada linha em corpo grande */
+.c02-est-l{display:flex;align-items:baseline;margin-top:10px;color:var(--marinho);white-space:nowrap}
+.c02-est-l b{flex:none;width:70px;padding-right:14px;text-align:right;font-size:44px;line-height:46px;font-weight:860;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.c02-est-l span{font-size:23px;line-height:29px;font-weight:680}
+
+/* a linha escrita nas tabuletas: cresce da esquerda para a direita */
+.c02-risco{transform-box:fill-box;transform-origin:0 50%}
+
+/* topo: "Fase concluída" à direita do templo, o rótulo do prêmio à esquerda dele, a pergunta no pé da tela */
+.c02-fc{position:absolute;left:790px;top:126px;width:450px;text-align:center;transform-origin:100% 45%}
+.c02-fc .jg-go{position:static;display:inline-block;font-size:70px;line-height:1.02}
+.c02-rotulo{position:absolute;right:790px;top:196px;padding:7px 16px 8px;border-radius:9px;background:rgba(0,1,15,.82);box-shadow:inset 0 0 0 2px var(--l-200);font-size:24px;line-height:28px;font-weight:800;letter-spacing:.04em;color:#fff;white-space:nowrap;transform-origin:100% 50%}
+.c02-rotulo::after{content:"";position:absolute;left:100%;top:50%;margin-top:-7px;border:7px solid transparent;border-left:10px solid var(--l-200);border-right:0}
+.c02-pergunta{font-size:45px;line-height:54px;font-weight:840;letter-spacing:-.012em}
+/* o prêmio brilhando: halo que pulsa, raios que giram, cintilações (parado=1 desliga o movimento; o desenho fica) */
+.c02-halo,.c02-raios,.c02-cintila{transform-box:fill-box;transform-origin:50% 50%}
+.c02-halo{animation:c02-pulsa 1.7s ease-in-out infinite alternate}
+.c02-raios{animation:c02-gira 16s linear infinite}
+.c02-cintila{animation:c02-cintila 1.3s ease-in-out infinite alternate}
+@keyframes c02-pulsa{from{transform:scale(.86);opacity:.65}to{transform:scale(1.14);opacity:1}}
+@keyframes c02-gira{to{transform:rotate(360deg)}}
+@keyframes c02-cintila{from{transform:scale(.2);opacity:.2}to{transform:scale(1);opacity:1}}

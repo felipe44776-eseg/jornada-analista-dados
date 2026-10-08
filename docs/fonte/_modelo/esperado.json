@@ -1,0 +1,36 @@
+{
+  "cena": "99",
+  "passos": 4,
+  "obs": "Esperado do modelo de cena. Na sua cena: copie do roteiro os textos exatos, o HUD ao fim de cada passo e o que tem de estar visível.",
+  "textos": [
+    { "seletor": ".jg-cab-e", "texto": "Mundo 99" },
+    { "seletor": ".jg-cab-t", "texto": "Modelo de cena" },
+    { "seletor": ".m9-selo", "texto": "Elemento próprio da cena" },
+    { "seletor": ".jg-jog", "texto": "2 jogadores: Analista · IA" },
+    { "seletor": ".jg-pedra span", "texto": "Os dados estavam incompletos." },
+    { "seletor": ".jg-lasca", "texto": "Os dados estavam incompletos." },
+    { "seletor": ".jg-balao", "texto": "Fala da IA." },
+    { "seletor": ".jg-ct-cab", "texto": "Cabeçalho do cartão" },
+    { "seletor": ".jg-ct-l", "textos": ["Primeira linha, comum.", "Linha do que é da IA."] },
+    { "seletor": ".jg-ct-rod", "texto": "Rodapé: fonte e recorte do número" },
+    { "seletor": ".jg-frase", "texto": "Frase que entra no passo 2." },
+    { "seletor": ".jg-ap-q", "texto": "Pergunta da aposta?" },
+    { "seletor": ".jg-ap-o span", "textos": ["10%", "25%", "50%"] }
+  ],
+  "contagens": [{ "seletor": ".jg-cor svg", "n": 5 }, { "seletor": ".tp-fase", "n": 6 }],
+  "hud": [
+    { "vidas": 5, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 1, "jogadores": true },
+    { "vidas": 4, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 0.8, "jogadores": true },
+    { "vidas": 3, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 0.8, "jogadores": true },
+    { "vidas": 3, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 0.8, "jogadores": true }
+  ],
+  "estado": [
+    { ".jg-cab": true, ".m9-selo": true, ".jg-heroi": true, ".jg-aliado": true, ".jg-bau": false, ".jg-premio": false, ".jg-lasca": 0, ".jg-pedra": 0, ".jg-cartao": false, ".jg-aposta": false, ".tp-fase": 6 },
+    { ".jg-lasca": 1, ".jg-pedra": 0, ".jg-bau": false, ".jg-frase": false, ".jg-balao": false },
+    { ".jg-bau": true, ".jg-balao": "Fala da IA.", ".jg-frase": "Frase que entra no passo 2.", ".jg-cartao": true, ".jg-ct-l": 2, ".jg-aposta": false, ".tp-fase": 0 },
+    { ".jg-bau": false, ".jg-balao": false, ".jg-cartao": false, ".jg-frase": false, ".jg-aposta": true, ".jg-ap-o .certa": "25%", ".jg-premio": true, ".tp-fase": 0 }
+  ],
+  "acento": [".jg-jog .ia", ".jg-ct-l.destaque", ".jg-ct-l.destaque *", ".jg-balao.ia > div"],
+  "quadros": { "1": [900, 2400, 4200, 5000], "2": [500, 1400, 3600], "3": [900, 2600, 3500] },
+  "leitura": [{ "passo": 1, "seletor": ".jg-pedra", "indice": 0, "minimoParadaMs": 1500 }]
+}

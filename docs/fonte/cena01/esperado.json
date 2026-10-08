@@ -1,0 +1,68 @@
+{
+  "cena": "01",
+  "passos": 9,
+  "obs": "O que o roteiro manda para a cena 01. Lido por verificacao/conferir.mjs. Mudou o roteiro, mude aqui.",
+  "primeiraTeclaComeca": true,
+  "textos": [
+    { "seletor": ".tp-fase", "textos": ["Entendimento do negócio", "Entendimento dos dados", "Preparação dos dados", "Modelagem", "Avaliação", "Implantação"] },
+    { "seletor": ".jg-pedra span", "textos": ["Os dados estavam incompletos.", "Os dados estavam errados.", "O modelo não funcionou.", "Seu chefe não entendeu.", "Demorou tanto que o cliente não precisa mais."] },
+    { "seletor": ".jg-lasca", "textos": ["Os dados estavam incompletos.", "Os dados estavam errados.", "O modelo não funcionou.", "Seu chefe não entendeu.", "Demorou tanto que o cliente não precisa mais."] },
+    { "seletor": ".jg-ct-cab", "texto": "Manual do jogo · edição de 2000" },
+    { "seletor": ".jg-ct-l", "textos": ["1. Sem manutenção desde 2000. A versão 2.0 nunca saiu.", "2. Sem método de garantia de qualidade.", "3. Monitoramento: só o plano, sem fase para executar.", "4. IA no processo: não prevista."] },
+    { "seletor": ".jg-t-nome", "texto": "A jornada do analista de dados" },
+    { "seletor": ".jg-t-mundo", "texto": "Mundo 1 · Incas e maias" },
+    { "seletor": ".jg-t-dica", "texto": "Espaço para começar" },
+    { "seletor": ".c1-eyebrow", "texto": "Incas e maias" },
+    { "seletor": ".c1-titulo", "texto": "CRISP-DM: o método antigo" },
+    { "seletor": ".c1-museu", "texto": "Guia de 2000 6 fases · 24 tarefas · 42 saídas", "obs": "na tela são duas linhas: a quebra fica no lugar do primeiro ponto mediano do roteiro" },
+    { "seletor": ".jg-hud .jg-r", "textos": ["Vidas", "Fase", "Prazo"] },
+    { "seletor": ".c1-cont-t b", "texto": "24" },
+    { "seletor": ".c1-cont-t span", "texto": "tarefas" },
+    { "seletor": ".c1-cont-s b", "texto": "42" },
+    { "seletor": ".c1-cont-s span", "texto": "saídas para documentar" },
+    { "seletor": ".c1-leg-volta", "texto": "Voltar é a regra. O guia não diz quando." },
+    { "seletor": ".jg-go", "texto": "GAME OVER" },
+    { "seletor": ".jg-cont > span:first-child", "texto": "Continuar?" },
+    { "seletor": ".c1-p2", "texto": "Novo jogador: IA" },
+    { "seletor": ".c1-fimq", "texto": "E se a IA subisse os degraus?" }
+  ],
+  "contagens": [
+    { "seletor": ".tp-tarefa[data-k=\"1\"]", "n": 4 }, { "seletor": ".tp-tarefa[data-k=\"2\"]", "n": 4 }, { "seletor": ".tp-tarefa[data-k=\"3\"]", "n": 5 },
+    { "seletor": ".tp-tarefa[data-k=\"4\"]", "n": 4 }, { "seletor": ".tp-tarefa[data-k=\"5\"]", "n": 3 }, { "seletor": ".tp-tarefa[data-k=\"6\"]", "n": 4 },
+    { "seletor": ".tp-tab", "n": 42 }, { "seletor": ".jg-cor svg", "n": 5 }
+  ],
+  "hud": [
+    null,
+    { "vidas": 5, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 1 },
+    { "vidas": 5, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 0.94 },
+    { "vidas": 4, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 0.78 },
+    { "vidas": 3, "fase": "2/6", "nome": "Entendimento dos dados", "prazo": 0.62 },
+    { "vidas": 2, "fase": "3/6", "nome": "Preparação dos dados", "prazo": 0.46 },
+    { "vidas": 1, "fase": "1/6", "nome": "Entendimento do negócio", "prazo": 0.12 },
+    { "vidas": 0, "fase": "6/6", "nome": "Implantação", "prazo": 0 },
+    { "vidas": 0, "fase": "6/6", "nome": "Implantação", "prazo": 0 }
+  ],
+  "estado": [
+    { ".c1-abre": true, ".c1-cab": false, ".tp-fase": 0, ".tp-atores .jg-heroi": false, ".jg-lasca": 0, ".jg-pedra": 0 },
+    { ".c1-abre": false, ".c1-cab": true, ".c1-museu": true, ".tp-fase": 6, ".tp-tarefa": 0, ".tp-tab": 0, ".tp-atores .jg-heroi": true, ".jg-lasca": 0, ".jg-pedra": 0, ".c1-grito": "" },
+    { ".tp-fase": 6, ".tp-tarefa": 24, ".tp-tab": 42, ".c1-cont": 2, ".jg-lasca": 0, ".jg-pedra": 0, ".c1-grito": "" },
+    { ".tp-fase": 6, ".tp-tarefa": 24, ".tp-tab": 42, ".c1-cont": 0, ".jg-lasca": 1, ".jg-pedra": 0, ".c1-grito": "Volta!", ".c1-leg-volta": false },
+    { ".tp-fase": 6, ".jg-lasca": 2, ".jg-pedra": 0, ".c1-grito": "Volta!", ".c1-leg-volta": false },
+    { ".tp-fase": 6, ".jg-lasca": 3, ".jg-pedra": 0, ".c1-grito": "Volta!", ".c1-leg-volta": false },
+    { ".tp-fase": 6, ".jg-lasca": 4, ".jg-pedra": 0, ".c1-grito": "Volta ao início!", ".c1-leg-volta": true, ".c1-go": false },
+    { ".tp-fase": 6, ".jg-lasca": 5, ".jg-pedra": 0, ".c1-grito": "", ".c1-leg-volta": false, ".c1-go": true, ".jg-cartao": false, ".tp-atores .jg-heroi": true },
+    { ".tp-fase": 0, ".jg-lasca": 5, ".jg-pedra": 0, ".c1-go": false, ".jg-cartao": true, ".jg-ct-l": 4, ".jg-cont": true, ".c1-p2": true, ".c1-fimq": true }
+  ],
+  "acento": [".jg-ct-l.destaque", ".jg-ct-l.destaque *", ".c1-p2", ".c1-p2 *", ".c1-fimq"],
+  "quadros": {
+    "1": [2000, 4500, 6900, 7950], "2": [2500, 6000], "3": [1100, 2600, 4200, 4440, 4950, 5800], "4": [2600, 4200, 4580, 5300],
+    "5": [2400, 3840, 4300, 4950, 5900], "6": [1800, 3000, 4700, 5400, 6400, 7400], "7": [1500, 2700, 3800, 5150, 5750, 6450, 7300], "8": [1500, 3000, 4600, 6600]
+  },
+  "leitura": [
+    { "passo": 3, "seletor": ".jg-pedra", "indice": 0, "minimoParadaMs": 1500 },
+    { "passo": 4, "seletor": ".jg-pedra", "indice": 1, "minimoParadaMs": 1500 },
+    { "passo": 5, "seletor": ".jg-pedra", "indice": 2, "minimoParadaMs": 1500 },
+    { "passo": 6, "seletor": ".jg-pedra", "indice": 3, "minimoParadaMs": 1500 },
+    { "passo": 7, "seletor": ".jg-pedra", "indice": 4, "minimoParadaMs": 1500 }
+  ]
+}

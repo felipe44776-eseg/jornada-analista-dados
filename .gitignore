@@ -1,0 +1,14 @@
+# dados nunca entram no git: só o manifesto com os hashes, que a etapa 00 põe em saidas/
+dados/
+modelos/
+modelos_regerado/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,29 @@
+/* ============ CENA 03 · Mundo 3 — O trapaceiro: a IA erra com convicção ============
+   Só o que é desta cena. Templo: jogo-templo.css. HUD, baú, balão, cartão, lasca, frase: jogo.css.
+   Nada abaixo de 20 px. O ciano fica com a faísca, a fala dela e a frase sobre a IA. */
+
+/* cartão de armadilha: o nome é o que a turma leva, então vai grande e em caixa normal; o número vira a linha forte do rodapé */
+.c03-arm .jg-ct-cab{padding-bottom:9px;font-size:29px;line-height:34px;font-weight:850;letter-spacing:-.012em;text-transform:none}
+.c03-arm .jg-ct-rod b{display:block;margin-bottom:3px;font-size:32px;line-height:36px;font-weight:860;letter-spacing:-.012em;color:var(--marinho);font-variant-numeric:tabular-nums}
+.c03-arm .jg-ct-rod i{font-style:italic}
+/* marca com o nome da armadilha: a lasca da cena 01, maior, porque os quatro nomes ficam até o fim */
+.c03-marca div{padding:9px 19px 10px;font-size:25px;line-height:30px;font-weight:760}
+/* cartão da fronteira: sem cabeçalho, a primeira linha encosta no topo */
+.c03-front .jg-ct-l:first-child{margin-top:0}
+/* a frase que fecha a cena, do tamanho da frase de acento, em branco: é para o analista, não é da IA */
+.c03-fecho{font-size:45px;line-height:54px;font-weight:840;letter-spacing:-.012em}
+/* à espera da tecla (passos 1 e 4): o baú fechado flutua, a luz da faísca pulsa e os brilhos piscam, para a tela não
+   parecer travada enquanto a turma responde. parado=1 e a impressão não animam: mostram o baú parado na luz, sem brilhos */
+.c03-flutua{animation:c03-flutua 1.5s ease-in-out infinite alternate}
+@keyframes c03-flutua{from{translate:0 0}to{translate:0 -7px}}
+.c03-pulsa{animation:c03-pulsa 1.5s ease-in-out infinite alternate}
+@keyframes c03-pulsa{from{opacity:1}to{opacity:.45}}
+.c03-brilho{transform-box:fill-box;transform-origin:50% 50%}
+.c03-on .c03-brilho{animation:c03-brilho 2.2s ease-in-out infinite}
+@keyframes c03-brilho{0%,60%,100%{opacity:0;transform:scale(.2) rotate(0deg)}25%{opacity:1;transform:scale(1) rotate(45deg)}}
+/* última vida piscando (parado=1 e a impressão mostram o coração cheio) */
+.c03-ultima{animation:c03-ultima .9s linear infinite}
+@keyframes c03-ultima{0%,46%{opacity:1;transform:scale(1.24)}50%,96%{opacity:.22;transform:scale(1)}100%{opacity:1;transform:scale(1.24)}}
+/* efeitos e peças de SVG da cena: giram e crescem em torno de si mesmos */
+.c03-fx{transform-box:fill-box;transform-origin:50% 50%}
+.c03-linha{transform-box:fill-box;transform-origin:50% 100%}

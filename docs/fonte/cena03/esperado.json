@@ -1,0 +1,71 @@
+{
+  "cena": "03",
+  "passos": 9,
+  "obs": "O que o roteiro manda para a cena 03 (9 passos, 0 a 8). Lido por verificacao/conferir.mjs. Mudou o roteiro, mude aqui. Nos passos 1 e 4 o baú chega e fica fechado até a tecla: a vida só cai nos passos 2 e 5. O prazo por passo não está no roteiro: é escolha da cena (1-conteudo.js, PRAZO). Os quadros além do fim dos passos 1 e 4 pegam a espera em andamento.",
+  "textos": [
+    { "seletor": ".jg-cab-e", "texto": "Mundo 3" },
+    { "seletor": ".jg-cab-t", "texto": "O trapaceiro: a IA erra com convicção" },
+    { "seletor": ".jg-jog", "texto": "2 jogadores: Analista · IA" },
+    { "seletor": ".jg-hud .jg-g > .jg-r", "textos": ["Vidas", "Fase", "Prazo"] },
+    { "seletor": ".tp-fase", "textos": ["Entendimento do negócio", "Entendimento dos dados", "Preparação dos dados", "Modelagem", "Avaliação", "Implantação"] },
+    { "seletor": ".jg-balao", "textos": ["Achei a fonte.", "Já calculei.", "Você tem razão.", "Deu significativo."] },
+    { "seletor": ".c03-arm .jg-ct-cab", "textos": ["Inventa a fonte:", "Calcula de cabeça:", "Concorda com você:", "Testa até dar:"] },
+    { "seletor": ".c03-arm .jg-ct-l", "textos": ["cita dataset, tabela ou URL que não existe.", "devolve um número plausível sem ter executado código.", "confirma a hipótese de quem pergunta.", "roda dezenas de recortes e mostra o que \"deu\"."] },
+    { "seletor": ".c03-arm .jg-ct-rod", "textos": ["3% a 13% das URLs citadas por LLMs não existem (Rao et al., 2026)", "34 a 66 p.p.: quanto muda o veredito de um analista-IA quando a persona vira confirmatória (Bertran et al., PNAS, 2026)"] },
+    { "seletor": ".jg-lasca", "textos": ["Inventa a fonte", "Calcula de cabeça", "Concorda com você", "Testa até dar"] },
+    { "seletor": ".c03-front .jg-ct-l", "textos": ["Onde a IA é boa: quem usou IA entregou com mais de 40% de qualidade a mais", "Onde ela não é: quem usou IA errou mais. Acerto de 84,5% sem IA e de 60% a 70% com IA"] },
+    { "seletor": ".c03-front .jg-ct-rod", "texto": "quem usa não vê a linha (Dell'Acqua et al., 2023; 758 consultores do BCG)" },
+    { "seletor": ".jg-frase", "textos": ["A IA não avisa quando erra.", "Você precisa de um mapa."] }
+  ],
+  "contagens": [
+    { "seletor": ".jg-cor svg", "n": 5 },
+    { "seletor": ".tp-fase", "n": 6 },
+    { "seletor": ".jg-cartao", "n": 5 },
+    { "seletor": ".jg-balao", "n": 4 },
+    { "seletor": ".jg-lasca", "n": 4 },
+    { "seletor": ".jg-cor svg.c03-ultima", "n": 1 },
+    { "seletor": ".jg-cor svg.vazio", "n": 4 },
+    { "seletor": ".c03-flutua", "n": 0 },
+    { "seletor": ".c03-pulsa", "n": 0 }
+  ],
+  "hud": [
+    { "vidas": 5, "fase": "6/6", "nome": "Implantação", "prazo": 1, "jogadores": true },
+    { "vidas": 5, "fase": "6/6", "nome": "Implantação", "prazo": 1, "jogadores": true },
+    { "vidas": 4, "fase": "6/6", "nome": "Implantação", "prazo": 0.86, "jogadores": true },
+    { "vidas": 3, "fase": "6/6", "nome": "Implantação", "prazo": 0.72, "jogadores": true },
+    { "vidas": 3, "fase": "6/6", "nome": "Implantação", "prazo": 0.72, "jogadores": true },
+    { "vidas": 2, "fase": "6/6", "nome": "Implantação", "prazo": 0.58, "jogadores": true },
+    { "vidas": 1, "fase": "6/6", "nome": "Implantação", "prazo": 0.44, "jogadores": true },
+    { "vidas": 1, "fase": "6/6", "nome": "Implantação", "prazo": 0.34, "jogadores": true },
+    { "vidas": 1, "fase": "6/6", "nome": "Implantação", "prazo": 0.34, "jogadores": true }
+  ],
+  "estado": [
+    { ".jg-cab": true, ".jg-premio": false, ".jg-heroi": true, ".jg-aliado": true, ".jg-bau": 0, ".jg-balao": "", ".jg-cartao": 0, ".jg-lasca": 0, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-cab": true, ".jg-premio": false, ".jg-bau": 1, ".jg-bau .b-fechado": 1, ".jg-bau .b-armadilha": 0, ".c03-flutua": 1, ".jg-balao": "Achei a fonte.", ".jg-cartao": 0, ".jg-lasca": 0, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-bau": 1, ".jg-bau .b-fechado": 0, ".jg-bau .b-armadilha": 1, ".c03-flutua": 0, ".jg-balao": "Achei a fonte.", ".jg-cartao": 1, ".c03-arm .jg-ct-cab": "Inventa a fonte:", ".c03-arm .jg-ct-rod": "3% a 13% das URLs citadas por LLMs não existem (Rao et al., 2026)", ".jg-lasca": 0, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-bau": 1, ".jg-bau .b-fechado": 0, ".jg-bau .b-armadilha": 1, ".jg-balao": "Já calculei.", ".jg-cartao": 1, ".c03-arm .jg-ct-cab": "Calcula de cabeça:", ".c03-arm .jg-ct-rod": "", ".jg-lasca": 1, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-bau": 1, ".jg-bau .b-fechado": 1, ".jg-bau .b-armadilha": 0, ".c03-flutua": 1, ".jg-balao": "Você tem razão.", ".jg-cartao": 0, ".jg-lasca": 2, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-bau": 1, ".jg-bau .b-fechado": 0, ".jg-bau .b-armadilha": 1, ".c03-flutua": 0, ".jg-balao": "Você tem razão.", ".jg-cartao": 1, ".c03-arm .jg-ct-cab": "Concorda com você:", ".c03-arm .jg-ct-rod": "34 a 66 p.p.: quanto muda o veredito de um analista-IA quando a persona vira confirmatória (Bertran et al., PNAS, 2026)", ".jg-lasca": 2, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-bau": 1, ".jg-bau .b-fechado": 0, ".jg-bau .b-armadilha": 1, ".jg-balao": "Deu significativo.", ".jg-cartao": 1, ".c03-arm .jg-ct-cab": "Testa até dar:", ".c03-arm .jg-ct-rod": "", ".jg-lasca": 3, ".c03-linha": false, ".jg-frase": 0, ".tp-fase": 6 },
+    { ".jg-bau": 0, ".jg-balao": "", ".jg-cartao": 1, ".c03-arm": 0, ".c03-front": true, ".c03-front .jg-ct-l": 2, ".c03-front .jg-ct-rod": true, ".jg-lasca": 4, ".c03-linha": true, ".jg-frase": 0, ".jg-heroi": true, ".jg-aliado": true, ".tp-fase": 6 },
+    { ".jg-bau": 0, ".jg-balao": "", ".jg-cartao": 1, ".c03-front": true, ".jg-lasca": 4, ".c03-linha": true, ".jg-frase": 2, ".jg-frase.acento": "A IA não avisa quando erra.", ".c03-fecho": "Você precisa de um mapa.", ".jg-heroi": true, ".jg-aliado": true, ".tp-fase": 6 }
+  ],
+  "acento": [".jg-jog .ia", ".jg-balao.ia > div", ".jg-frase.acento"],
+  "quadros": {
+    "1": [600, 1500, 2300, 2800, 3700, 4450],
+    "2": [200, 450, 650, 1100, 2000, 3400],
+    "3": [500, 1300, 2100, 2500, 3300, 4200],
+    "4": [500, 1100, 1900, 2800, 3900, 4650],
+    "5": [200, 450, 800, 1300, 2000, 3000, 4000],
+    "6": [450, 650, 1500, 2350, 2800, 3500, 4600],
+    "7": [600, 1300, 1750, 2000, 2700, 4200, 5600],
+    "8": [900, 2200, 3800]
+  },
+  "leitura": [
+    { "passo": 2, "seletor": ".jg-cartao", "indice": 0, "minimoParadaMs": 1500 },
+    { "passo": 3, "seletor": ".jg-cartao", "indice": 1, "minimoParadaMs": 1500 },
+    { "passo": 5, "seletor": ".jg-cartao", "indice": 2, "minimoParadaMs": 1500 },
+    { "passo": 6, "seletor": ".jg-cartao", "indice": 3, "minimoParadaMs": 1500 },
+    { "passo": 7, "seletor": ".jg-cartao", "indice": 4, "minimoParadaMs": 1500 }
+  ]
+}

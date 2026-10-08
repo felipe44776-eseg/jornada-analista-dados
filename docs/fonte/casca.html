@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A jornada do analista de dados · apresentação animada</title>
+<!--
+  Deck animado com cara de jogo, um arquivo só: sem CDN, sem fonte externa, sem arquivo de áudio.
+  ARQUIVO GERADO. Não edite aqui: as partes ficam em fonte\ e quem monta é fonte\montar.ps1.
+  Conteúdo: roteiro.md desta pasta. Teclas: → ou Espaço avança (ou pula a animação), ← volta,
+  R reinicia a cena, M som, F tela cheia, N notas.
+  Links: ?cena=1&passo=3&parado=1 (estado final, sem animação) · ?cena=1&passo=3&tocar=1 (ensaia o passo) · ?heroi=1 (oficina do herói)
+-->
+<style>
+@font-face{font-family:"Public Sans";font-style:normal;font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,__FONTE__) format("woff2")}
+__CSS__
+</style>
+</head>
+<body>
+<div id="vp"><div id="quadro"><div id="palco" class="palco"></div><div id="ind" class="no-print"></div></div></div>
+<aside id="notas" class="no-print"></aside>
+<div id="imp"></div>
+<script>
+'use strict';
+const ATIVOS = { logoEseg: 'data:image/png;base64,__LOGO__' };
+
+__SOM__
+
+__MOTOR__
+
+__JOGO__
+
+__CENAS__
+
+Deck.iniciar();
+</script>
+</body>
+</html>
