@@ -12,9 +12,27 @@ Este repositório é um **modelo de projeto**. Você cria uma cópia, preenche u
 | **O pipeline movido a IA** | [`AGENTS.md`](AGENTS.md), [`etapas/`](etapas/), [`templates/`](templates/) e [`referencias/`](referencias/) |
 | **O resumo do método**, em uma página | [`docs/resumo-da-tecnica.md`](docs/resumo-da-tecnica.md) |
 | **Como usar em cada ferramenta de IA** | [`docs/como-usar.md`](docs/como-usar.md) |
+| **As referências da apresentação**, com DOI | [`docs/referencias-da-apresentacao.md`](docs/referencias-da-apresentacao.md) |
 | **A base de pesquisa**, com as fontes | [`pesquisa/`](pesquisa/) |
 
 > A IA lê o [`AGENTS.md`](AGENTS.md). Você lê este arquivo. Termos técnicos estão em [`referencias/glossario.md`](referencias/glossario.md).
+
+## Tutoriais: escolha a sua ferramenta
+
+Cada link abre o passo a passo daquela ferramenta: como ela carrega as instruções, o que instalar, onde clicar e o que escrever na primeira mensagem.
+
+| Provedor | Ferramenta | Como trabalha | Passo a passo |
+|---|---|---|---|
+| Anthropic | **Claude Code** | agente no terminal | [abrir o tutorial](docs/como-usar.md#claude-code) |
+| Anthropic | **Claude Cowork** | agente no app de desktop | [abrir o tutorial](docs/como-usar.md#claude-cowork) |
+| Anthropic | **claude.ai** | conversa no navegador | [abrir o tutorial](docs/como-usar.md#claudeai-no-navegador) |
+| OpenAI | **Codex** | agente no terminal | [abrir o tutorial](docs/como-usar.md#codex) |
+| OpenAI | **ChatGPT** | conversa no navegador | [abrir o tutorial](docs/como-usar.md#chatgpt-no-navegador) |
+| Google | **Antigravity** | agente em app, IDE ou terminal | [abrir o tutorial](docs/como-usar.md#antigravity) |
+| Google | **Gemini CLI** | agente no terminal, só com chave paga | [abrir o tutorial](docs/como-usar.md#gemini-cli) |
+| Google | **Gemini** | conversa no navegador | [abrir o tutorial](docs/como-usar.md#gemini-no-navegador) |
+
+Não sabe qual usar? Veja [qual escolher](docs/como-usar.md#qual-escolher) e o [prompt de partida](docs/como-usar.md#o-prompt-de-partida), que vale para todas.
 
 ## Comece em 6 passos
 
@@ -161,6 +179,7 @@ A pesquisa que fundamenta o kit está resumida em [`referencias/frameworks.md`](
 - **Para assistir:** [abra no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/), ou baixe [`docs/index.html`](docs/index.html) e abra no Chrome.
 - **Teclas:** Espaço ou → avança · ← volta · R reinicia a cena · 1 a 5 vão direto a um mundo · M liga e desliga o som · F tela cheia · N mostra as notas de quem apresenta.
 - **Roteiro de fala**, com a origem de cada número: [`docs/roteiro.md`](docs/roteiro.md).
+- **Referências**, com o DOI ou o número do arXiv de cada fonte citada: [`docs/referencias-da-apresentacao.md`](docs/referencias-da-apresentacao.md).
 - **Código:** [`docs/fonte/`](docs/fonte/README.md). O script `docs/fonte/montar.ps1` gera o `index.html`, e [`docs/verificacao/`](docs/verificacao/README.md) confere cada cena.
 - **A primeira versão**, um deck de 31 slides com mais detalhe sobre os frameworks: [abrir](https://felipe44776-eseg.github.io/jornada-analista-dados/deck-31-slides/) · [roteiro](docs/deck-31-slides/roteiro.md).
 
@@ -182,7 +201,8 @@ Nos roteiros, os caminhos são os do projeto de origem: `fluxo/` é a raiz deste
 │   ├── fonte/ · verificacao/ · roteiro.md
 │   ├── deck-31-slides/
 │   ├── resumo-da-tecnica.md
-│   └── como-usar.md
+│   ├── como-usar.md
+│   └── referencias-da-apresentacao.md
 ├── pesquisa/                             ← relatórios com as fontes e o que foi ou não verificado
 ├── verificacao/                          ← testes do kit, para quem o mantém
 └── .devcontainer/                        ← o ambiente do Codespaces

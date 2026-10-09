@@ -11,14 +11,14 @@
 - ROLLINS, J. B. *Foundational Methodology for Data Science*. IBM Analytics, 2015. https://tdwi.org/~/media/64511a895d86457e964174edc5c4c7b1
 - IBM. *Analytics Solutions Unified Method (ASUM)*. 2016. https://public.dhe.ibm.com/software/data/sw-library/services/ASUM.pdf
 - MICROSOFT. *Team Data Science Process* (repositório arquivado em 2023; documentação retirada em 2025). https://github.com/Azure/Microsoft-TDSP
-- STUDER, S. et al. Towards CRISP-ML(Q): A Machine Learning Process Model with Quality Assurance Methodology. *Machine Learning and Knowledge Extraction*, 3(2):392–413, 2021. https://arxiv.org/abs/2003.05155
-- MARTÍNEZ-PLUMED, F. et al. CRISP-DM Twenty Years Later: From Data Mining Processes to Data Science Trajectories. *IEEE TKDE*, 33(8):3048–3061, 2021. https://research-information.bris.ac.uk/ws/files/220614618/TKDE_Data_Science_Trajectories_PF.pdf
+- STUDER, S. et al. Towards CRISP-ML(Q): A Machine Learning Process Model with Quality Assurance Methodology. *Machine Learning and Knowledge Extraction*, 3(2):392–413, 2021. DOI 10.3390/make3020020 · https://arxiv.org/abs/2003.05155
+- MARTÍNEZ-PLUMED, F. et al. CRISP-DM Twenty Years Later: From Data Mining Processes to Data Science Trajectories. *IEEE TKDE*, 33(8):3048–3061, 2021. DOI 10.1109/TKDE.2019.2962680 · https://research-information.bris.ac.uk/ws/files/220614618/TKDE_Data_Science_Trajectories_PF.pdf
 - WILD, C. J.; PFANNKUCH, M. Statistical Thinking in Empirical Enquiry. *International Statistical Review*, 67(3):223–265, 1999. https://www.stat.auckland.ac.nz/~iase/publications/isr/99.Wild.Pfannkuch.pdf
 - MACKAY, R. J.; OLDFORD, R. W. Scientific Method, Statistical Method and the Speed of Light. *Statistical Science*, 15(3), 2000. DOI 10.1214/ss/1009212817
 - PENG, R. D.; MATSUI, E. *The Art of Data Science*. Leanpub, 2015. https://bookdown.org/rdpeng/artofdatascience/
 - WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. *R for Data Science*. 2. ed. O'Reilly, 2023. https://r4ds.hadley.nz/
 - LEEK, J. T.; PENG, R. D. What is the question? *Science*, 347(6228):1314–1315, 2015. DOI 10.1126/science.aaa6146
-- TUKEY, J. W. *Exploratory Data Analysis*. Addison-Wesley, 1977. · We Need Both Exploratory and Confirmatory. *The American Statistician*, 34(1):23–25, 1980.
+- TUKEY, J. W. *Exploratory Data Analysis*. Addison-Wesley, 1977. · We Need Both Exploratory and Confirmatory. *The American Statistician*, 34(1):23–25, 1980. DOI 10.1080/00031305.1980.10482706
 - BLITZSTEIN, J.; PFISTER, H. CS109 Data Science: The Data Science Process (aula 1). Harvard, 2015. https://github.com/cs109/2015/raw/master/Lectures/01-Introduction.pdf
 - GOOGLE. *Google Data Analytics Professional Certificate* (Coursera). https://www.coursera.org/professional-certificates/google-data-analytics
 - DESIGN COUNCIL. *The Double Diamond*. https://www.designcouncil.org.uk/our-resources/the-double-diamond/
@@ -35,7 +35,7 @@
 - GELMAN, A.; STERN, H. The Difference Between "Significant" and "Not Significant" is not Itself Statistically Significant. *The American Statistician*, 60(4), 2006.
 - KERR, N. L. HARKing: Hypothesizing After the Results are Known. *Personality and Social Psychology Review*, 2(3):196–217, 1998.
 - SIMMONS, J. P.; NELSON, L. D.; SIMONSOHN, U. False-Positive Psychology. *Psychological Science*, 22(11):1359–1366, 2011.
-- NOSEK, B. A. et al. The preregistration revolution. *PNAS*, 115(11):2600–2606, 2018.
+- NOSEK, B. A. et al. The preregistration revolution. *PNAS*, 115(11):2600–2606, 2018. DOI 10.1073/pnas.1708274114
 - WAGENMAKERS, E.-J. et al. An Agenda for Purely Confirmatory Research. *Perspectives on Psychological Science*, 7(6):632–638, 2012.
 - DWORK, C. et al. The reusable holdout: Preserving validity in adaptive data analysis. *Science*, 349(6248):636–638, 2015.
 - STEEGEN, S. et al. Increasing Transparency Through a Multiverse Analysis. *Perspectives on Psychological Science*, 11(5):702–712, 2016.
@@ -79,9 +79,9 @@
 
 ## IA na análise de dados
 
-- DELL'ACQUA, F. et al. Navigating the Jagged Technological Frontier. HBS WP 24-013, 2023; *Organization Science*, 37(2), 2026. https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf
+- DELL'ACQUA, F. et al. Navigating the Jagged Technological Frontier. HBS WP 24-013, 2023; *Organization Science*, 37(2):403–423, 2026. DOI 10.1287/orsc.2025.21838 · https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf
 - ZHU; WANG; ZHANG. (Human) Attention Is (Still) All You Need (HLER), 2026. https://arxiv.org/abs/2606.12848
-- BERTRAN; FOGLIATO; WU. Many AI analysts, one dataset. *PNAS*, 123(29), 2026. https://pmc.ncbi.nlm.nih.gov/articles/PMC13393493/
+- BERTRAN; FOGLIATO; WU. Many AI analysts, one dataset: Navigating the agentic data science multiverse. *PNAS*, 123(29):e2606495123, 2026. DOI 10.1073/pnas.2606495123 · https://pmc.ncbi.nlm.nih.gov/articles/PMC13393493/
 - MIAO; PRITCHARD; ZOU. The Agentic Garden of Forking Paths, 2026. https://arxiv.org/abs/2607.01507
 - ASHER et al. Do Claude Code and Codex P-Hack?, 2026. https://jmalzahn.com/documents/asher_et_al_LLM_sycophancy.pdf
 - BAUMANN et al. LLM Hacking, 2025. https://arxiv.org/abs/2509.08825
