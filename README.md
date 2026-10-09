@@ -4,22 +4,44 @@ Análise de dados com IA em todas as etapas, do problema à decisão, com um hum
 
 **Autores:** Felipe Marins e Claude · **Professor:** Marino Hilario Catarino · Data Science 2 · ESEG · 2026
 
+## Links principais
+
+| | |
+|---|---|
+| **Apresentação em jogo** | [abrir no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/) |
+| **Apresentação técnica**, 31 slides | [abrir no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/deck-31-slides/) |
+| **Como usar**, passo a passo | [`docs/como-usar.md`](docs/como-usar.md) |
+| **Onde pôr a base de dados** | [passo 3 do guia](docs/como-usar.md#passo-3--ponha-a-base-de-dados-no-lugar-certo) |
+| **O que escrever para a IA** | [os prompts, do começo ao fim](docs/como-usar.md#2-o-que-você-escreve-do-começo-ao-fim) |
+| **O método em uma página** | [`docs/resumo-da-tecnica.md`](docs/resumo-da-tecnica.md) |
+| **Referências, com DOI** | [`docs/referencias-da-apresentacao.md`](docs/referencias-da-apresentacao.md) |
+| **Criar o seu projeto a partir deste** | [usar este modelo](https://github.com/felipe44776-eseg/jornada-analista-dados/generate) |
+
 Este repositório é um **modelo de projeto**. Você cria uma cópia, preenche um arquivo com o seu tema e as suas referências, e a IA conduz a análise etapa por etapa: explica o que vai fazer, mostra as decisões que tomou e para em cada portão para você decidir.
 
-| O que tem aqui | Onde |
-|---|---|
-| **A apresentação**, em forma de jogo | [abrir no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/) · código em [`docs/`](docs/) |
-| **O pipeline movido a IA** | [`AGENTS.md`](AGENTS.md), [`etapas/`](etapas/), [`templates/`](templates/) e [`referencias/`](referencias/) |
-| **O resumo do método**, em uma página | [`docs/resumo-da-tecnica.md`](docs/resumo-da-tecnica.md) |
-| **Como usar em cada ferramenta de IA** | [`docs/como-usar.md`](docs/como-usar.md) |
-| **As referências da apresentação**, com DOI | [`docs/referencias-da-apresentacao.md`](docs/referencias-da-apresentacao.md) |
-| **A base de pesquisa**, com as fontes | [`pesquisa/`](pesquisa/) |
+## O que tem em cada pasta
+
+| Pasta ou arquivo | O que tem | Quem usa |
+|---|---|---|
+| [`PROJETO.md`](PROJETO.md) | o arquivo que você preenche: tema, pergunta, dados, referências | você |
+| [`AGENTS.md`](AGENTS.md) | as instruções do processo para a IA: papel, ciclo, portões, regras e travas | a IA |
+| [`CLAUDE.md`](CLAUDE.md) | carrega o `AGENTS.md` e o `PROJETO.md` no Claude Code | a IA |
+| [`etapas/`](etapas/) | 13 arquivos, um por etapa: missão, roteiro, armadilhas e prompts prontos | a IA e você |
+| [`templates/`](templates/) | 18 modelos dos documentos que as etapas produzem | a IA |
+| [`referencias/`](referencias/) | material de consulta: frameworks, catálogo de fontes externas, guia de testes estatísticos, guia de gráficos, riscos de IA, glossário e bibliografia | a IA e você |
+| [`docs/`](docs/) | as duas apresentações, o guia de uso, o resumo do método e as referências | você |
+| [`docs/fonte/`](docs/fonte/README.md) e [`docs/verificacao/`](docs/verificacao/README.md) | o código da apresentação em jogo e o que a confere | quem quiser mexer na apresentação |
+| [`pesquisa/`](pesquisa/) | 4 relatórios com as fontes: frameworks de processo; análise, rigor e comunicação; IA na análise de dados; fontes de dados externas | quem quiser conferir de onde veio cada ideia |
+| [`verificacao/`](verificacao/README.md) | os testes do kit | quem mantém o kit |
+| `.devcontainer/` | o ambiente pronto do GitHub Codespaces | o GitHub |
+
+A etapa 00 cria o resto, no seu projeto: `dados/` (a sua base, fora do git), `analise/` (os scripts), `resultados/` (os números), `figuras/`, `saidas/` (os documentos de cada etapa) e `apresentacoes/`. Não edite `AGENTS.md`, `etapas/`, `templates/` nem `referencias/` durante a análise.
 
 > A IA lê o [`AGENTS.md`](AGENTS.md). Você lê este arquivo. Termos técnicos estão em [`referencias/glossario.md`](referencias/glossario.md).
 
 ## Tutoriais: escolha a sua ferramenta
 
-Cada link abre o passo a passo daquela ferramenta: como ela carrega as instruções, o que instalar, onde clicar e o que escrever na primeira mensagem.
+O guia completo está em [`docs/como-usar.md`](docs/como-usar.md). Cada link abaixo abre o passo a passo de uma ferramenta.
 
 | Provedor | Ferramenta | Como trabalha | Passo a passo |
 |---|---|---|---|
@@ -32,37 +54,41 @@ Cada link abre o passo a passo daquela ferramenta: como ela carrega as instruç�
 | Google | **Gemini CLI** | agente no terminal, só com chave paga | [abrir o tutorial](docs/como-usar.md#gemini-cli) |
 | Google | **Gemini** | conversa no navegador | [abrir o tutorial](docs/como-usar.md#gemini-no-navegador) |
 
-Não sabe qual usar? Veja [qual escolher](docs/como-usar.md#qual-escolher) e o [prompt de partida](docs/como-usar.md#o-prompt-de-partida), que vale para todas.
+Não sabe qual usar? Veja [qual ferramenta escolher](docs/como-usar.md#3-qual-ferramenta-escolher) e o [prompt de partida](docs/como-usar.md#para-começar), que vale para todas.
 
 ## Comece em 6 passos
 
-Este é o caminho mais curto: tudo no navegador, pelo GitHub Codespaces, com o Claude Code. O Claude Code pede um plano pago do Claude, e o Codespaces segue a cota da sua conta do GitHub.
-
-Para trabalhar no seu computador, ou com outra ferramenta, o passo a passo de cada uma está em [`docs/como-usar.md`](docs/como-usar.md): Claude Cowork e claude.ai, Codex e ChatGPT, Antigravity, Gemini CLI e Gemini no navegador. Há caminhos que funcionam com conta gratuita.
+Este é o caminho mais curto: tudo no navegador, pelo GitHub Codespaces, com o Claude Code. O Claude Code pede um plano pago do Claude, e o Codespaces segue a cota da sua conta do GitHub. Há caminhos com conta gratuita no [guia](docs/como-usar.md#3-qual-ferramenta-escolher).
 
 1. **Crie o seu repositório.** No topo desta página, clique em **Use this template** e depois em **Create a new repository**. Se os seus dados não forem públicos, marque **Private**.
 2. **Abra o ambiente.** No seu repositório, clique em **Code**, na aba **Codespaces**, e em **Create codespace on main**. Em alguns minutos abre um editor no navegador, com Python e as ferramentas já instalados.
 3. **Preencha o [`PROJETO.md`](PROJETO.md).** Tema, pergunta, dados e referências. É o único arquivo que você escreve para começar.
-4. **Ponha os dados em `dados/brutos/`.** Arraste os arquivos para a pasta. Se você não tem dados, diga isso no `PROJETO.md`: a etapa 03 procura bases públicas.
-5. **Chame a IA.** No terminal do Codespace, digite `claude`, faça o login e escreva:
+4. **Ponha os dados em `dados/brutos/`** e crie o cofre. Arraste os arquivos para a pasta e, no terminal, rode:
+
+   ```bash
+   mkdir -p ../cofre && export COFRE_DIR="$(cd ../cofre && pwd)"
+   ```
+
+   Se você não tem dados, diga isso no `PROJETO.md`: a etapa 03 procura bases públicas.
+5. **Chame a IA.** No mesmo terminal, digite `claude`, faça o login e escreva:
 
    ```text
    Comece pela etapa 00.
    ```
 
    O [`CLAUDE.md`](CLAUDE.md) já carrega as instruções do processo e o seu `PROJETO.md`.
-6. **Decida em cada portão.** A IA para e mostra um resumo. Leia, dê uma semente para o sorteio (um número qualquer), rode de novo os scripts dos 2 números sorteados e responda com uma destas frases:
+6. **Decida em cada portão.** A IA para e mostra um resumo. Escreva `Semente: 4217` (um número qualquer), rode de novo os scripts dos 2 números que ela sortear e responda com uma destas frases:
    - `Aprovo G3`
    - `Ajustar: <o quê>`
    - `Voltar à etapa 02: <motivo>`
 
-   Depois de aprovar, o commit e a tag do portão são seus (`git tag G3`). Nos portões ★ há ainda uma âncora fora do projeto; a etapa 00 explica as duas rotas e a IA lembra na hora.
+   Depois de aprovar, o commit e a tag do portão são seus (`git tag G3`). Nos portões ★ há ainda uma âncora fora do projeto. O [guia](docs/como-usar.md#em-cada-portão) mostra a conversa inteira.
 
 ### Antes de subir qualquer dado
 
 - **Tudo o que a IA vê vai para o provedor dela.** Dado pessoal não entra em conversa: a IA lê os dados por script que imprime só contagens e totais. A regra completa está na [etapa 00](etapas/00-kickoff.md).
 - **Repositório com dado que não é público tem de ser privado.** A pasta `dados/` já fica fora do git por padrão.
-- **As ferramentas de IA têm regras de acesso próprias**, e algumas pedem plano pago. Veja [`docs/como-usar.md`](docs/como-usar.md).
+- **As ferramentas de IA têm regras de acesso próprias**, e algumas pedem plano pago. Veja o [guia](docs/como-usar.md#3-qual-ferramenta-escolher).
 
 ## O funil
 
@@ -172,43 +198,19 @@ No essencial, **as 12 regras de ouro e as travas externas valem igual**. Algumas
 
 A pesquisa que fundamenta o kit está resumida em [`referencias/frameworks.md`](referencias/frameworks.md), [`referencias/riscos-ia.md`](referencias/riscos-ia.md) e [`referencias/bibliografia.md`](referencias/bibliografia.md). Os relatórios completos, com fontes e status de verificação, estão na pasta `pesquisa/` do projeto que acompanha este kit.
 
-## A apresentação
+## As apresentações
 
-"A jornada do analista de dados" é um jogo em cinco mundos, num arquivo HTML só, com animação e som.
+**"A jornada do analista de dados"** é um jogo em cinco mundos, num arquivo HTML só, com animação e som.
 
 - **Para assistir:** [abra no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/), ou baixe [`docs/index.html`](docs/index.html) e abra no Chrome.
 - **Teclas:** Espaço ou → avança · ← volta · R reinicia a cena · 1 a 5 vão direto a um mundo · M liga e desliga o som · F tela cheia · N mostra as notas de quem apresenta.
 - **Roteiro de fala**, com a origem de cada número: [`docs/roteiro.md`](docs/roteiro.md).
 - **Referências**, com o DOI ou o número do arXiv de cada fonte citada: [`docs/referencias-da-apresentacao.md`](docs/referencias-da-apresentacao.md).
 - **Código:** [`docs/fonte/`](docs/fonte/README.md). O script `docs/fonte/montar.ps1` gera o `index.html`, e [`docs/verificacao/`](docs/verificacao/README.md) confere cada cena.
-- **A primeira versão**, um deck de 31 slides com mais detalhe sobre os frameworks: [abrir](https://felipe44776-eseg.github.io/jornada-analista-dados/deck-31-slides/) · [roteiro](docs/deck-31-slides/roteiro.md).
+
+**A apresentação técnica** é um deck de 31 slides, com mais detalhe sobre os frameworks, as travas e as etapas: [abrir no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/deck-31-slides/) · [roteiro](docs/deck-31-slides/roteiro.md). Setas navegam, F abre a tela cheia e N mostra as notas.
 
 Nos roteiros, os caminhos são os do projeto de origem: `fluxo/` é a raiz deste repositório, `apresentacao/` é `docs/deck-31-slides/` e `apresentacao-animada/` é `docs/`.
-
-## Estrutura do repositório
-
-```text
-.
-├── README.md                             ← você está aqui
-├── PROJETO.md                            ← o que você preenche
-├── CLAUDE.md                             ← carrega as instruções e o PROJETO.md no Claude Code
-├── AGENTS.md                             ← instruções para a IA: papel, ciclo, portões, regras, travas
-├── etapas/                               ← 13 arquivos: missão, roteiro, armadilhas, prompts
-├── templates/                            ← 18 modelos de artefato
-├── referencias/                          ← frameworks, fontes externas, testes, gráficos, riscos de IA, glossário, bibliografia
-├── docs/                                 ← a apresentação e os guias
-│   ├── index.html                        ← o jogo
-│   ├── fonte/ · verificacao/ · roteiro.md
-│   ├── deck-31-slides/
-│   ├── resumo-da-tecnica.md
-│   ├── como-usar.md
-│   └── referencias-da-apresentacao.md
-├── pesquisa/                             ← relatórios com as fontes e o que foi ou não verificado
-├── verificacao/                          ← testes do kit, para quem o mantém
-└── .devcontainer/                        ← o ambiente do Codespaces
-```
-
-A etapa 00 cria o resto, no seu projeto: `dados/`, `analise/`, `resultados/`, `figuras/`, `saidas/` e `apresentacoes/`. Não edite `AGENTS.md`, `etapas/`, `templates/` nem `referencias/` durante a análise.
 
 ## Uso de IA neste projeto
 
