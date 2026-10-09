@@ -2,16 +2,16 @@
 
 Este guia leva você do zero até a primeira aprovação: como pegar a sua cópia, o que preencher, **onde pôr a base de dados**, **o que escrever para a IA** em cada momento e o que muda de uma ferramenta para outra.
 
-> **Conferido em 2026-10-08, na documentação oficial de cada ferramenta.** Essas ferramentas mudam rápido. O que não foi possível confirmar em página oficial está marcado como **não verificado**; as páginas consultadas estão no fim.
+> Conferido em 2026-10-08 na documentação oficial de cada ferramenta, listada no fim. Essas ferramentas mudam rápido: se um botão estiver com outro nome, vale a página oficial.
 
 **Neste guia**
 
 1. [Antes de tudo: quatro passos que valem para qualquer ferramenta](#1-antes-de-tudo)
 2. [O que você escreve, do começo ao fim](#2-o-que-você-escreve-do-começo-ao-fim)
 3. [Qual ferramenta escolher](#3-qual-ferramenta-escolher)
-4. Passo a passo por ferramenta: [Claude Code](#claude-code) · [Claude Cowork](#claude-cowork) · [claude.ai](#claudeai-no-navegador) · [Codex](#codex) · [ChatGPT](#chatgpt-no-navegador) · [Antigravity](#antigravity) · [Gemini CLI](#gemini-cli) · [Gemini](#gemini-no-navegador)
+4. [Passo a passo por ferramenta](#4-passo-a-passo-por-ferramenta): [Claude Code](#claude-code) · [Claude Cowork](#claude-cowork) · [claude.ai](#claudeai-no-navegador) · [Codex](#codex) · [ChatGPT](#chatgpt-no-navegador) · [Antigravity](#antigravity) · [Gemini CLI](#gemini-cli) · [Gemini](#gemini-no-navegador)
 5. [Onde ficam os resultados](#5-onde-ficam-os-resultados)
-6. [Páginas consultadas e o que ficou sem confirmação](#6-páginas-consultadas)
+6. [Páginas consultadas](#6-páginas-consultadas)
 
 ---
 
@@ -25,7 +25,9 @@ Prefere não usar o GitHub? Clique em **Code** e em **Download ZIP**, e descompa
 
 ### Passo 2 · Preencha o `PROJETO.md`
 
-É o único arquivo que você escreve para começar. Troque cada texto entre `<` e `>` pelo seu. Um exemplo preenchido:
+É o único arquivo que você escreve para começar. Troque cada texto entre `<` e `>` pelo seu. Dá para editar direto no GitHub: abra o arquivo, clique no lápis, escreva e clique em **Commit changes**.
+
+Um exemplo preenchido:
 
 ```markdown
 ## 1. Tema
@@ -58,7 +60,7 @@ O exemplo é inventado, só para mostrar o formato.
 | Se a sua ferramenta… | A base vai… |
 |---|---|
 | trabalha como **agente**, numa pasta (Claude Code, Codex, Antigravity, Cowork, Gemini CLI) | na pasta **`dados/brutos/`**, dentro do projeto. Se a pasta não existir, crie. Copie os arquivos para lá como estão, sem abrir e "arrumar" antes |
-| é uma **conversa no navegador** (claude.ai, ChatGPT, Gemini) | **anexada na conversa, só quando a IA pedir**, na etapa 02. Não ponha a base junto com os arquivos de instrução do projeto |
+| é uma **conversa no navegador** (claude.ai, ChatGPT, Gemini) | **anexada na conversa, quando a IA pedir**, na etapa 02. A IA lê as instruções pelo seu repositório do GitHub, e a base não está lá |
 | você **não tem dados** | escreva isso no `PROJETO.md`. A etapa 03 procura bases públicas e a IA confere se cada uma existe antes de usar |
 
 Três regras sobre os dados, para qualquer ferramenta:
@@ -101,11 +103,11 @@ depois teste suas próprias capacidades (execução, arquivos, internet) e
 registre as saídas reais.
 ```
 
-"Leia AGENTS.md inteiro" tem motivo: o arquivo tem cerca de 33 mil bytes, e duas ferramentas cortam o que carregam sozinhas (o Codex aos 32 KiB e o Antigravity aos 24.000 bytes por arquivo).
+Use o prompt inteiro, com o "Leia AGENTS.md inteiro": algumas ferramentas carregam sozinhas só o começo de arquivos longos, e é esse pedido que garante a leitura completa.
 
 ### No kickoff
 
-A IA faz até duas rodadas de perguntas, sobre o que não estiver no `PROJETO.md`: a política de dados da sua instituição, se há git, onde fica o cofre. Responda em texto corrido. Depois ela testa o que consegue fazer (rodar código, listar arquivos, abrir uma página) e mostra o resultado real de cada teste.
+A IA faz até duas rodadas de perguntas, sobre o que não estiver no `PROJETO.md`: a política de dados da sua instituição, se há git, onde fica o cofre. Responda em texto corrido. Depois ela testa o que consegue fazer (rodar código, listar arquivos, abrir uma página) e mostra o resultado real de cada teste. Se ela não executar código na ferramenta que você escolheu, o processo continua: ela entrega o script, você roda e cola a saída.
 
 ### Em cada portão
 
@@ -153,7 +155,7 @@ O estado do projeto fica nos arquivos, não na conversa. Abra uma sessão nova e
 Leia saidas/00-status.md e continue de onde paramos.
 ```
 
-Em ferramenta de conversa, anexe de novo o `AGENTS.md`, o `PROJETO.md`, o arquivo da etapa atual e o `saidas/00-status.md`, e cole o prompt de partida.
+Em ferramenta de conversa, abra uma conversa nova, garanta que a IA está lendo a versão atual do seu repositório e cole o prompt de partida.
 
 ### Na etapa 04: guardar a confirmação
 
@@ -171,7 +173,7 @@ Em ferramenta de conversa, é aqui que você anexa o arquivo de confirmação.
 
 ### Na etapa 08: abrir a auditoria
 
-Quem abre é você, numa **sessão nova**, sem histórico, numa **cópia** do projeto. O texto a colar está pronto em [`etapas/08-validacao.md`](../etapas/08-validacao.md#prompt-de-auditoria-adversarial). A IA que fez a análise não pode abrir a própria auditoria.
+Quem abre é você, numa **sessão nova**, sem histórico, numa **cópia** do projeto. O texto a colar está pronto em [`etapas/08-validacao.md`](../etapas/08-validacao.md#prompt-de-auditoria-adversarial). A IA que fez a análise não abre a própria auditoria.
 
 ### Prompts prontos de cada etapa
 
@@ -181,18 +183,18 @@ Cada arquivo de [`etapas/`](../etapas/) termina com uma seção **Prompts pronto
 
 ## 3. Qual ferramenta escolher
 
-| Ferramenta | Como trabalha | Lê o `AGENTS.md` sozinha? | Acesso |
+| Ferramenta | Como trabalha | Como recebe as instruções | Acesso |
 |---|---|---|---|
-| **Claude Code** | agente no terminal: edita arquivos e roda código | sim, pelo `CLAUDE.md` deste repositório | plano pago do Claude ou conta Console |
-| **Claude Cowork** | agente no app de desktop, sobre uma pasta sua | não verificado | plano pago do Claude |
-| **claude.ai** | conversa no navegador, com execução de código própria | não; você sobe os arquivos num projeto | conta gratuita serve |
-| **Codex** | agente no terminal | sim | incluído nos planos do ChatGPT; no gratuito, não verificado para o terminal |
-| **ChatGPT** | conversa no navegador | não; você sobe os arquivos num projeto | não verificado para o plano gratuito |
-| **Antigravity** | agente em app, IDE ou terminal (`agy`) | sim | conta Google pessoal, com cota semanal |
-| **Gemini CLI** | agente no terminal | lê `GEMINI.md`; `AGENTS.md` com configuração | **só com chave de API paga ou licença** |
-| **Gemini** | conversa no navegador | não; você anexa os arquivos | conta Google pessoal |
+| **Claude Code** | agente no terminal: edita arquivos e roda código | lê o `CLAUDE.md` deste repositório | plano pago do Claude ou conta Console |
+| **Claude Cowork** | agente no app de desktop, sobre uma pasta sua | você cola o prompt de partida nas instruções do projeto | plano pago do Claude |
+| **claude.ai** | conversa no navegador, com execução de código | projeto ligado ao seu repositório do GitHub | conta gratuita serve |
+| **Codex** | agente no terminal | lê o `AGENTS.md` sozinho | planos do ChatGPT; o terminal consta na documentação a partir do Plus |
+| **ChatGPT** | conversa no navegador, com análise de dados em Python | projeto com os arquivos, ou o plugin do GitHub | conta do ChatGPT; o número de arquivos por projeto varia com o plano |
+| **Antigravity** | agente em app, IDE ou terminal (`agy`) | lê o `AGENTS.md` sozinho | conta Google pessoal, com cota semanal |
+| **Gemini CLI** | agente no terminal | lê `GEMINI.md` | só com chave de API paga ou licença |
+| **Gemini** | conversa no navegador | importa o seu repositório do GitHub na conversa | conta Google pessoal |
 
-**Se puder escolher, use uma das que trabalham como agente** (Claude Code, Codex ou Antigravity). O kit foi desenhado para uma IA que lê e grava arquivos e executa código: é assim que os números saem de script e as travas funcionam. Nas ferramentas de conversa o processo é o mesmo, mas você salva os arquivos e, às vezes, roda o código.
+**Se puder escolher, use uma das que trabalham como agente** (Claude Code, Codex ou Antigravity). O kit foi desenhado para uma IA que lê e grava arquivos e executa código: é assim que os números saem de script e as travas funcionam. Nas ferramentas de conversa o processo é o mesmo, com uma diferença: é você quem leva os arquivos de um lado para o outro.
 
 ---
 
@@ -224,37 +226,49 @@ Agente de terminal da Anthropic. **Acesso:** plano Pro, Max, Team ou Enterprise,
 3. Copie os dados para `dados/brutos/` e crie o cofre ([passo 4](#passo-4--crie-o-cofre)).
 4. Na pasta do projeto, `claude`, e depois `Comece pela etapa 00.`
 
-**Atenção:** no Codespace, o login sobrevive a parar e iniciar o ambiente, mas se perde quando o ambiente é reconstruído. Os dados em `dados/` só existem dentro do Codespace: se você apagar o Codespace, eles vão junto.
+**Bom saber:** no Codespace, o login continua valendo quando você para e reinicia o ambiente, e é pedido de novo se o ambiente for reconstruído. Os dados em `dados/` ficam só dentro do Codespace: guarde os originais no seu computador.
 
 ### Claude Cowork
 
-O agente do app de desktop do Claude, que trabalha sobre uma pasta do seu computador. A Anthropic está unindo o Cowork ao chat comum: em contas que já receberam a mudança, não há mais uma opção "Cowork" separada. **Acesso:** plano pago do Claude.
+O agente do app de desktop do Claude, que trabalha sobre uma pasta do seu computador. A Anthropic está unindo o Cowork ao chat comum: em contas que já receberam a mudança, o mesmo recurso aparece direto no chat. **Acesso:** plano pago do Claude.
 
 1. Baixe o seu repositório para o computador (`git clone`, ou **Download ZIP**).
 2. Copie os dados para `dados/brutos/`, dentro da pasta do projeto.
 3. Abra o Claude Desktop (macOS ou Windows) e entre na sua conta.
 4. Em **Projects**, clique em **+** e em **Use an existing folder**; escolha a pasta do projeto.
-5. Cole o [prompt de partida](#para-começar) nas instruções do projeto ou na primeira mensagem.
-6. Siga a conversa dos portões.
+5. Cole o [prompt de partida](#para-começar) nas instruções do projeto: é ele que manda a IA ler o `AGENTS.md` e o `PROJETO.md`.
+6. Abra uma conversa no projeto, escreva `Comece pela etapa 00.` e siga a conversa dos portões.
 
-**Atenção:** **não verificado** se o Cowork lê sozinho o `CLAUDE.md` ou o `AGENTS.md` da pasta; por isso o prompt de partida é obrigatório aqui. **Não verificado** onde o código roda no desktop comum (a página de suporte fala em ambiente isolado nos servidores da Anthropic), então pergunte à IA, no kickoff, se ela enxerga a pasta do cofre. O Cowork lê e grava só nas pastas que você conectar.
+**Bom saber:** o Cowork lê e grava só nas pastas que você conectar. No kickoff, quando a IA perguntar onde fica o cofre, confirme com ela se a pasta do cofre está ao alcance.
+
+### As três ferramentas de navegador: como os arquivos circulam
+
+claude.ai, ChatGPT e Gemini leem o seu repositório do GitHub, mas não gravam nele. Então o caminho é sempre o mesmo:
+
+1. **As instruções chegam pelo GitHub.** Você liga a ferramenta ao seu repositório (o que você criou no [passo 1](#passo-1--pegue-a-sua-cópia)), e ela lê o `AGENTS.md`, o `PROJETO.md` e as etapas de lá.
+2. **A base de dados chega pela conversa.** Você anexa o arquivo quando a IA pedir, na etapa 02. A pasta `dados/` não está no GitHub.
+3. **O que a IA produz sai por download.** Baixe cada arquivo (script, relatório, gráfico) e ponha no seu repositório, na pasta que a IA indicar: `analise/`, `saidas/`, `resultados/`, `figuras/`.
+4. **Para pôr um arquivo no repositório sem instalar nada:** na página do repositório, entre na pasta, clique em **Add file** e em **Upload files**, arraste os arquivos e clique em **Commit changes**.
+5. **Depois de cada portão**, atualize a leitura da IA, do jeito de cada ferramenta (abaixo), para ela enxergar o `saidas/00-status.md` novo.
 
 ### claude.ai no navegador
 
-Conversa, com um ambiente próprio para rodar código. Não enxerga a pasta do seu computador. **Acesso:** conta gratuita serve, com limite de cinco projetos.
+Conversa com um ambiente próprio para rodar código. **Acesso:** conta gratuita serve, com limite de cinco projetos; a ligação com o GitHub e a execução de código estão em todos os planos.
 
-1. Em claude.ai/projects, clique em **+ New Project** e dê o nome do seu projeto.
-2. Em **Set project instructions**, cole o [prompt de partida](#para-começar) e salve.
-3. Na base de conhecimento do projeto, clique em **+** e suba os arquivos de instrução: `AGENTS.md`, `PROJETO.md` e os arquivos de `etapas/`, `templates/` e `referencias/`. **Não suba a base de dados aqui.**
-4. Em **Settings** → **Capabilities**, ligue **Code execution and file creation**.
-5. Abra uma conversa dentro do projeto e escreva: `Comece pela etapa 00.`
-6. Na etapa 02, quando a IA pedir os dados, **anexe o arquivo na conversa**.
-7. A cada arquivo que a IA produzir (script, relatório, gráfico), baixe e salve na pasta certa do seu repositório: `analise/`, `saidas/`, `resultados/`, `figuras/`.
-8. Na etapa 04, baixe o arquivo de confirmação e guarde fora do projeto. Só anexe de novo na etapa 07.
+1. **Ligue o GitHub, uma vez só:** em **Customize** → **Connectors** → **GitHub Integration**, clique em **Connect** e dê acesso ao seu repositório. Funciona com repositório privado.
+2. Em claude.ai/projects, clique em **+ New Project** e dê o nome do seu trabalho. O projeto precisa ser privado, não compartilhado.
+3. Em **Set project instructions**, cole o [prompt de partida](#para-começar) e salve.
+4. Na base de conhecimento do projeto, clique em **+** e em **GitHub**, escolha o seu repositório, marque `AGENTS.md`, `PROJETO.md`, `etapas/` e `templates/`, e clique em **Add files**. Quando uma etapa pedir um guia de `referencias/`, acrescente esse arquivo do mesmo jeito.
+5. Em **Settings** → **Capabilities**, ligue **Code execution and file creation**.
+6. Abra uma conversa dentro do projeto e escreva: `Comece pela etapa 00.`
+7. **A base de dados:** na etapa 02, quando a IA pedir, clique no **+** da caixa de mensagem e em **Add files or photos**. CSV e XLSX são aceitos, até 30 MB por arquivo.
+8. Baixe os arquivos que a IA criar e suba no seu repositório ([como](#as-três-ferramentas-de-navegador-como-os-arquivos-circulam)).
+9. **Depois de cada portão:** no repositório dentro da base de conhecimento do projeto, clique em **Sync now**.
+10. Na etapa 04, baixe o arquivo de confirmação e guarde fora do projeto. Só anexe de novo na etapa 07.
 
 ### Codex
 
-Agente de terminal da OpenAI. **Acesso:** a página de preços diz que o Codex está incluído nos planos do ChatGPT. **Não verificado** se o terminal funciona nos planos Free e Go: a documentação lista o terminal a partir do Plus.
+Agente de terminal da OpenAI. **Acesso:** incluído nos planos do ChatGPT; a documentação lista o terminal a partir do plano Plus.
 
 1. Baixe o seu repositório e entre na pasta. No Codespace deste repositório o Codex já vem instalado.
 2. No seu computador, instale:
@@ -262,29 +276,31 @@ Agente de terminal da OpenAI. **Acesso:** a página de preços diz que o Codex e
    - macOS ou Linux: `curl -fsSL https://chatgpt.com/codex/install.sh | sh`
    - Windows (PowerShell): `powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"`
 3. Copie os dados para `dados/brutos/` e crie o cofre ([passo 4](#passo-4--crie-o-cofre)).
-4. Na pasta do projeto, digite `codex` e escolha **Sign in with ChatGPT**. No Codespace, sem navegador local, use `codex login --device-auth` (recurso em beta, que precisa ser habilitado nas configurações de segurança do ChatGPT).
+4. Na pasta do projeto, digite `codex` e escolha **Sign in with ChatGPT**. No Codespace, use `codex login --device-auth`, que se habilita nas configurações de segurança do ChatGPT.
 5. Cole o [prompt de partida](#para-começar).
 6. Siga a conversa dos portões.
 
-**Atenção:** o Codex lê o `AGENTS.md` sozinho, mas para de carregar aos 32 KiB, e o arquivo deste kit passa um pouco disso. O prompt de partida resolve, ao pedir a leitura do arquivo inteiro. O limite é a opção `project_doc_max_bytes`, em `~/.codex/config.toml`. Há também uma versão do Codex em nuvem, que trabalha sobre repositórios do GitHub; **não verificado** se ela lê o `AGENTS.md`.
+**Bom saber:** o Codex lê o `AGENTS.md` sozinho até 32 KiB. O prompt de partida pede a leitura do arquivo inteiro; se preferir, aumente o limite em `~/.codex/config.toml`, na opção `project_doc_max_bytes`.
 
 ### ChatGPT no navegador
 
-Conversa. Não enxerga a pasta do seu computador. **Acesso:** **não verificado** na documentação oficial se projetos estão no plano gratuito.
+Conversa que escreve e executa Python sobre os arquivos que você envia. **Acesso:** conta do ChatGPT; o número de arquivos por projeto varia com o plano.
 
-1. Em chatgpt.com, crie um projeto com o nome do seu trabalho.
+1. Na barra lateral de chatgpt.com, clique em **New project** e dê o nome do seu trabalho.
 2. Nas instruções do projeto, cole o [prompt de partida](#para-começar).
-3. Suba os arquivos de instrução no projeto: `AGENTS.md`, `PROJETO.md` e os arquivos de `etapas/`, `templates/` e `referencias/`. **Não suba a base de dados aqui.**
+3. **As instruções do kit**, por um de dois caminhos:
+   - **Pelo GitHub:** na aba **Plugins**, abra o plugin do GitHub, clique no botão de mais e autentique, escolhendo o seu repositório. Depois, na conversa, peça: `Leia AGENTS.md e PROJETO.md do repositório <nome do seu repositório>.`
+   - **Por arquivo:** na seção **Sources** do projeto, suba `AGENTS.md`, `PROJETO.md`, o arquivo da etapa em que você está e o modelo dela, de `templates/`. Ao avançar de etapa, troque os dois últimos.
 4. Abra uma conversa dentro do projeto e escreva: `Comece pela etapa 00.`
-5. Na etapa 02, quando a IA pedir os dados, **anexe o arquivo na conversa**.
-6. Salve no seu repositório cada arquivo que a IA produzir.
+5. **A base de dados:** na etapa 02, quando a IA pedir, anexe o arquivo na conversa (`.csv`, `.xls` ou `.xlsx`).
+6. Baixe os arquivos que a IA criar e suba no seu repositório ([como](#as-três-ferramentas-de-navegador-como-os-arquivos-circulam)).
 7. Na etapa 04, guarde o arquivo de confirmação fora do projeto. Só anexe de novo na etapa 07.
 
-**Atenção:** **não verificado** se a conversa executa código. Na etapa 00 a IA testa a própria capacidade e registra o resultado. Se ela não executar, ela entrega o script, você roda no seu computador e cola a saída; ela nunca pode simular uma execução.
+**Bom saber:** no app de desktop do ChatGPT, um projeto pode ser ligado a uma pasta do computador: no menu do projeto, **Edit project** → **Add folder**.
 
 ### Antigravity
 
-O caminho do Google para quem não paga: app de desktop, IDE e terminal (`agy`). **Acesso:** conta Google pessoal, 18 anos ou mais, em país atendido (o Brasil está na lista). Sem assinatura, há uma cota que se renova toda semana. **Não verificado** se conta de escola funciona; a página de dúvidas sugere usar uma conta `@gmail.com`.
+O caminho do Google sem assinatura: app de desktop, IDE e terminal (`agy`). **Acesso:** conta Google pessoal (`@gmail.com`), 18 anos ou mais; sem assinatura, há uma cota que se renova toda semana.
 
 **Pelo app:**
 
@@ -302,33 +318,32 @@ O caminho do Google para quem não paga: app de desktop, IDE e terminal (`agy`).
 2. Crie o cofre ([passo 4](#passo-4--crie-o-cofre)), entre na pasta do projeto e digite `agy`.
 3. Cole o [prompt de partida](#para-começar).
 
-**Atenção:** o Antigravity lê o `AGENTS.md` sozinho, mas trunca cada arquivo acima de 24.000 bytes, e o deste kit é maior. O prompt de partida resolve. **Não verificado** se o `agy` funciona no GitHub Codespaces.
+**Bom saber:** o Antigravity lê o `AGENTS.md` sozinho até 24.000 bytes por arquivo. O prompt de partida pede a leitura do arquivo inteiro.
 
 ### Gemini CLI
 
-**Deixou de atender quem usava de graça.** Desde 2026-06-18, o Gemini CLI não atende mais contas gratuitas nem assinantes do Google AI Pro e Ultra; o Google indica o Antigravity no lugar. Continua para quem tem chave de API paga ou licença do Gemini Code Assist Standard ou Enterprise.
+Desde 2026-06-18, o Gemini CLI atende quem tem chave de API paga ou licença do Gemini Code Assist Standard ou Enterprise. Para conta gratuita e para assinantes do Google AI Pro e Ultra, o Google indica o [Antigravity](#antigravity).
 
-Se você tem uma dessas:
+Se você tem chave ou licença:
 
 1. Instale: `npm install -g @google/gemini-cli` (Node.js 20 ou mais novo).
 2. Na raiz do projeto, crie um arquivo `GEMINI.md` com duas linhas: `@AGENTS.md` e `@PROJETO.md`. A alternativa é pôr em `settings.json`: `{"context": {"fileName": ["AGENTS.md", "GEMINI.md"]}}`.
 3. Copie os dados para `dados/brutos/` e crie o cofre ([passo 4](#passo-4--crie-o-cofre)).
 4. Na pasta do projeto, digite `gemini` e cole o [prompt de partida](#para-começar).
 
-**Atenção:** o login com conta Google precisa de um navegador que fale com o terminal. No Codespace, use a variável `GEMINI_API_KEY`.
+**Bom saber:** no Codespace, entre com a variável `GEMINI_API_KEY`.
 
 ### Gemini no navegador
 
-Conversa em gemini.google.com. Não tem "projeto". **Acesso:** conta Google pessoal.
+Conversa em gemini.google.com, no computador. **Acesso:** conta Google pessoal, 18 anos ou mais, com a opção Keep Activity ligada.
 
 1. Abra uma conversa nova.
-2. Anexe `AGENTS.md`, `PROJETO.md` e o arquivo da etapa em que você está, de `etapas/`. Cabem até 10 arquivos por mensagem; o Gemini também aceita uma pasta de código ou um repositório do GitHub.
+2. **As instruções do kit, pelo GitHub:** clique em **Add file** → **More Uploads** → **Import code**, cole o endereço do seu repositório e clique em **Import**. Para repositório privado, vincule a sua conta do GitHub quando ele pedir. Entra um repositório por conversa, de até 5.000 arquivos e 100 MB.
+   - **Sem GitHub:** no mesmo **Import code**, escolha **Upload folder** e aponte para a pasta do projeto no seu computador.
 3. Cole o [prompt de partida](#para-começar).
-4. Na etapa 02, quando a IA pedir os dados, **anexe o arquivo na conversa**.
-5. Salve no seu repositório cada arquivo que a IA produzir.
-6. A cada sessão nova, anexe de novo o `AGENTS.md`, o `PROJETO.md`, o arquivo da etapa atual e o `saidas/00-status.md`.
-
-**Atenção:** os **Gems**, que guardam instruções e arquivos, saem das contas pessoais a partir de novembro de 2026; o substituto, as **Skills**, não se aplica a todas as conversas como um projeto. **Não verificado** se a conversa executa código: vale a regra de você rodar o script e colar a saída.
+4. **A base de dados:** na etapa 02, quando a IA pedir, clique em **Add files** → **Upload**. Cabem até 10 arquivos por mensagem, de até 100 MB cada.
+5. Baixe os arquivos que o Gemini gerar, ou exporte para o Drive, e suba no seu repositório ([como](#as-três-ferramentas-de-navegador-como-os-arquivos-circulam)). Código pode ir direto para o Colab, em **Share & export** → **Export to Colab**, que é um bom lugar para rodar os scripts.
+6. **Depois de cada portão**, e a cada sessão nova: abra outra conversa e importe o repositório de novo, porque o Gemini guarda o repositório como estava na hora da importação.
 
 ---
 
@@ -355,20 +370,9 @@ Para saber em que ponto o projeto está, abra `saidas/00-status.md`.
 |---|---|
 | Claude Code | <https://code.claude.com/docs/en/memory> · <https://code.claude.com/docs/en/setup> · <https://code.claude.com/docs/en/devcontainer> · <https://code.claude.com/docs/en/authentication> |
 | Claude Cowork | <https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude> · <https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork> · <https://claude.com/docs/cowork/guide/projects> · <https://claude.com/product/cowork> |
-| claude.ai | <https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects> · <https://support.claude.com/en/articles/9517075-what-are-projects> · <https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude> |
+| claude.ai | <https://claude.com/docs/connectors/github> · <https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects> · <https://support.claude.com/en/articles/9517075-what-are-projects> · <https://support.claude.com/en/articles/8241126-uploading-files-to-claude> · <https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude> |
 | Codex | <https://learn.chatgpt.com/docs/agent-configuration/agents-md> · <https://learn.chatgpt.com/docs/codex/cli> · <https://learn.chatgpt.com/docs/auth> · <https://learn.chatgpt.com/docs/pricing> · <https://github.com/openai/codex> |
-| ChatGPT | <https://learn.chatgpt.com/docs/projects.md> · <https://learn.chatgpt.com/docs/web> |
+| ChatGPT | <https://learn.chatgpt.com/docs/projects.md> · <https://learn.chatgpt.com/docs/web> · <https://learn.chatgpt.com/docs/plugins.md> · <https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt> · <https://help.openai.com/en/articles/10169521-projects-in-chatgpt> |
 | Antigravity | <https://antigravity.google/docs/rules> · <https://antigravity.google/docs/getting-started/> · <https://antigravity.google/docs/cli/install/> · <https://antigravity.google/docs/plans/> · <https://antigravity.google/docs/faq/> |
 | Gemini CLI | <https://developers.googleblog.com/en/an-important-update-transitioning-gemini-cli-to-antigravity-cli/> · <https://geminicli.com/docs/cli/gemini-md/> · <https://geminicli.com/docs/get-started/installation/> · <https://geminicli.com/docs/get-started/authentication/> |
-| Gemini no navegador | <https://support.google.com/gemini/answer/18560919> · <https://support.google.com/gemini/answer/15146780> · <https://support.google.com/gemini/answer/14903178> |
-
-### O que ficou sem confirmação
-
-- Se o Claude Cowork lê sozinho um `CLAUDE.md` ou um `AGENTS.md` da pasta, e onde o código dele roda.
-- Se o Codex em nuvem lê o `AGENTS.md`, e se o Codex de terminal funciona nos planos Free e Go.
-- Se o ChatGPT no navegador executa código, e se projetos estão no plano gratuito.
-- Se o Antigravity aceita conta de escola, e se o `agy` funciona no Codespaces.
-- Se o Gemini no navegador executa código.
-- O ambiente do Codespaces deste repositório foi escrito a partir da documentação e **não foi testado** num Codespace de verdade.
-
-Achou algo desatualizado? A regra do kit vale aqui também: confira na fonte antes de confiar.
+| Gemini no navegador | <https://support.google.com/gemini/answer/16176929> · <https://support.google.com/gemini/answer/14903178> · <https://support.google.com/gemini/answer/14184041> · <https://blog.google/innovation-and-ai/products/gemini-app/generate-files-in-gemini/> |
