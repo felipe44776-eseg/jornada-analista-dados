@@ -1,6 +1,6 @@
 # Roteiro da apresentação — Análise de dados assistida por IA
 
-> Conteúdo slide a slide e fala do apresentador. O deck (`apresentacao/index.html`) é gerado a partir deste roteiro.
+> Conteúdo slide a slide e fala do apresentador. O deck é o `index.html` desta pasta.
 > **Não há análise real.** Os números citados vêm de fontes publicadas (pasta `pesquisa/`) ou dos projetos DataS1, DataS2 e DataS2.1 da disciplina, conferidos nos arquivos de origem. Cada slide traz o rastreio.
 
 **Público:** turma de Data Science 2 (ESEG). **Duração-alvo:** 20 a 25 minutos + perguntas.
@@ -156,7 +156,7 @@
   | **Aprovação literal** registrada | aprovação fantasma |
 - **Destaque:** em 280 execuções, 3 portões humanos antes dos resultados + cálculo em código reduziram as falhas críticas de **72% para 16%**, **com os mesmos modelos e prompts** (HLER, Zhu et al., 2026).
 - **Fala (60 s):** "Princípio de construção: determinístico onde dá, IA onde há julgamento. Se uma regra pode virar código, vira código. Se pode virar trava fora do alcance da IA, vira trava. E o número do HLER mostra que o controle não está no modelo: está no processo em volta dele."
-- **Fontes:** `fluxo/AGENTS.md` §5; `pesquisa/03` §2.
+- **Fontes:** `AGENTS.md` §5; `pesquisa/03` §2.
 
 ## 12 · Fase 1: Enquadrar
 
@@ -209,7 +209,7 @@
   2. **Prova de leitura** (DataS2): 10,50% contra os 10,0% do CDC. Com o método de quem publica, a **mediana entre 53 jurisdições dá 10,04%**. Não era erro, era outra estatística.
   3. **Mesma definição + deflação** (DataS2.1, Airbnb NYC): o preço do apartamento inteiro de 30+ noites, de 2019 a 2026, dava **−6,4%** com o preço com desconto e **+4,0%** na mesma definição, em dólar constante. O sinal inverteu.
   4. **Mesmo universo** (DataS2.1): o "60%" de cumprimento da lei dividia o total da cidade pelos anúncios da base. Com a mesma unidade dos dois lados, **86%** (2.268 de 2.635).
-- **Rastreio:** `DataS2/docs/05-comparacao-brfss-original.md` (linhas 143–162, 278) · `DataS2.1/docs/05-comparativo-2019-2026.md` (53, 108, 117) · `DataS2.1/CLAUDE.md` (134–137)
+- **Rastreio:** projetos DataS1, DataS2 e DataS2.1 da disciplina, conferidos nos arquivos de origem.
 - **Fala (75 s):** "Não é teoria. São quatro números que teriam sido apresentados errado, três deles com o sinal ou a ordem de grandeza trocados."
 
 ## 17 · Fase 3: Explorar e travar
@@ -260,7 +260,7 @@
   2. **Validação que imita o uso** (DataS2.1): MdAPE de **18,5%** com KFold aleatório contra **22,0%** com blocos espaciais.
   3. **Auditoria adversarial** (DataS2): 20 agentes, um cético por achado. **8 confirmados, 4 derrubados**. O OR de manchete foi de **0,7459 [0,719; 0,774]** para **0,6738 [0,641; 0,708]**, e os intervalos não se sobrepõem.
   4. **Régua fixa × régua móvel:** o DataS2.1 publicou dois critérios pré-registrados **reprovados** (C4 e C5). No DataS1, a meta de cobertura, anotada como "inicial; ajustar após exploração", foi de ≥ 95% para ≥ 90%, e o resultado, **87,7%**, ficou abaixo das duas, sem marca de reprovado.
-- **Rastreio:** `DataS2.1/docs/07-modelagem.md` (70, 302–304) · `DataS2/docs/23-sintese-final.md` (75–76) · `DataS2/docs/25-linha-do-tempo.md` (253–254, 268) · `DataS2.1/docs/01-entendimento-do-negocio.md` (74–75, 103) · `DataS1/PLANO_CRISP_DM.md` (40) · `DataS1/RELATORIO_FINAL.md` (44)
+- **Rastreio:** projetos DataS1, DataS2 e DataS2.1 da disciplina, conferidos nos arquivos de origem.
 - **Fala (75 s):** "O último cartão é meu: no DataS1, eu mesmo deixei a régua andar. É exatamente o que o pré-registro existe para impedir."
 
 ## 21 · Escada de evidência
@@ -325,7 +325,7 @@
   | Comprovar | escolhe o teste, escreve o código | *p-hacking* automatizado; falso sucesso | cofre; só o registrado; auditor reexecutando |
   | Comunicar | redige, resume, traduz | exagera, inventa impacto, some com a incerteza | escada de evidência; números por script |
 - **Destaque:** em tarefas abertas de análise, os melhores agentes acertam entre 15% e 40% (DSBench, DA-Code, DiscoveryBench); em desafios reais, **humano + IA** superou IA sozinha (AgentDS, 2026).
-- **Fontes:** `fluxo/referencias/riscos-ia.md`; `pesquisa/03` §1.3.
+- **Fontes:** `referencias/riscos-ia.md`; `pesquisa/03` §1.3.
 
 ## 25 · O kit passou pela própria etapa 08
 
@@ -340,13 +340,13 @@
   | 5 | v3.2 | **3** | o auditor não conferia o conteúdo das travas, e tag num remoto sem proteção a IA consegue forjar |
   - **Hoje:** v3.3, com todos os achados corrigidos e o código do kit testado num projeto simulado.
 - **Fala (60 s):** "Esse é o melhor argumento que eu tenho: o método pegou os erros do próprio método, cinco vezes. A segunda rodada mostra que consertar também quebra. A quarta e a quinta mostram que auditoria não termina: o kit não está 'auditado', está 'auditado até aqui'. Se eu tivesse pedido para a mesma conversa revisar, ela teria dito que estava ótimo."
-- **Fontes:** `CLAUDE.md` do projeto, seção Histórico.
+- **Fontes:** histórico de revisões do kit.
 
 ## 26 · Como usar o kit
 
 - **Título:** Para usar: copie a pasta, cole um prompt e responda a cada portão
 - **Conteúdo:**
-  - **Estrutura:** `fluxo/` → `README.md` · `AGENTS.md` (instruções para a IA) · `etapas/` (13) · `templates/` (18) · `referencias/` (7)
+  - **Estrutura:** raiz do repositório → `README.md` · `AGENTS.md` (instruções para a IA) · `etapas/` (13) · `templates/` (18) · `referencias/` (7)
   - **5 passos:** copiar a pasta e criar o cofre fora dela → pôr os dados em `dados/brutos/` → abrir a IA na pasta → colar o prompt de partida → responder a cada portão, depois de conferir os 2 números sorteados com a sua semente.
   - **Modos:** completo (13 portões) ou essencial (6 portões e escopo reduzido, para trabalho de disciplina). As 12 regras e as travas valem nos dois.
   - **Por ferramenta:** Claude Code → `CLAUDE.md` com `@AGENTS.md` · agentes que leem `AGENTS.md` → nada a fazer · IA de chat → anexar `AGENTS.md` + etapa atual.
@@ -397,7 +397,7 @@
   1. A pergunta, a decisão e o efeito que importa vêm antes do dado.
   2. Toda conclusão encara uma régua externa e um revisor que não a escreveu e que reexecuta o código.
   3. A IA propõe e executa; quem aprova é você, com as travas fora do alcance dela.
-- **Rodapé:** kit em `fluxo/`: 13 etapas · 18 templates · 7 referências · pesquisa em `pesquisa/`
+- **Rodapé:** kit na raiz do repositório: 13 etapas · 18 templates · 7 referências · pesquisa em `pesquisa/`
 - **Fala (30 s):** "Obrigado. O kit está disponível. Testem na próxima análise de vocês e me digam onde ele quebra: ele foi feito para ser auditado."
 
 ---
@@ -407,7 +407,7 @@
 ### A1 · Matriz de convergência
 
 - **Título:** Cada etapa do funil tem origem em pelo menos um framework clássico, exceto onde estavam as lacunas
-- **Conteúdo:** matriz etapa × framework (CRISP-DM, KDD, SEMMA, IBM FMDS, TDSP, CRISP-ML(Q), DMAIC, PPDAC), igual à seção 3 de `fluxo/referencias/frameworks.md`, com as linhas das lacunas (03 dados externos, 07 testes) destacadas.
+- **Conteúdo:** matriz etapa × framework (CRISP-DM, KDD, SEMMA, IBM FMDS, TDSP, CRISP-ML(Q), DMAIC, PPDAC), igual à seção 3 de `referencias/frameworks.md`, com as linhas das lacunas (03 dados externos, 07 testes) destacadas.
 - **Fala:** só se perguntarem "de onde veio isso?".
 
 ### A2 · Referências principais
@@ -431,4 +431,4 @@
 - Minto (1987); Knaflic (2015); Garner & Alley (2013).
 - Código de Boas Práticas das Estatísticas Europeias; LGPD (Lei 13.709/2018).
 
-Lista completa em `fluxo/referencias/bibliografia.md`.
+Lista completa em `referencias/bibliografia.md`.

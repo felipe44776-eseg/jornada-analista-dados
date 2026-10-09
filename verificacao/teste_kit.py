@@ -1,4 +1,4 @@
-# Teste de ponta a ponta do código do kit, extraído do texto publicado em fluxo/:
+# Teste de ponta a ponta do código do kit, extraído do texto publicado no kit:
 # rodar_tudo.py e trecho da partição selada (etapa 04), trecho de saída do modelo (etapa 06),
 # comparar_resultados.py (etapa 08) e sorteio.py (AGENTS.md §4), num projeto simulado com scripts falsos de cada etapa.
 # uso: python verificacao/teste_kit.py      (esperado: todas as checagens passam; roda numa pasta temporária)

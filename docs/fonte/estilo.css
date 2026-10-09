@@ -1,7 +1,7 @@
 /* ============ MOTOR ============ */
 :root{
   --w:1280px;--h:720px;
-  /* identidade ESEG (PERFIL-ESEG.md 2.1): o jogo é azul e branco */
+  /* identidade ESEG: o jogo é azul e branco */
   --marinho:#000653;--lav-1:#ECEDFF;--lav-2:#E3E2FD;--acento:#00A1B8;
   /* derivados do marinho e das lavandas: noite, pedra, mata */
   --n-900:#00010F;--n-800:#020430;--n-700:#070B4A;--n-600:#0C1060;--n-500:#151A6E;

@@ -1,23 +1,22 @@
 # Roteiro da apresentação animada — A jornada do analista de dados
 
-> Deck novo, separado de `apresentacao/` (31 slides, kit v3.3), que não é alterado por este trabalho.
-> Aqui **cada slide é uma cena animada com som**, avançada por tecla, **com cara de jogo**: o analista de dados é o herói, tem vidas, e cada cena é um mundo. O deck (`apresentacao-animada/index.html`) é gerado a partir deste roteiro pelo agente `deck-html`, com `brief-deck.md`.
+> Aqui **cada slide é uma cena animada com som**, avançada por tecla, **com cara de jogo**: o analista de dados é o herói, tem vidas, e cada cena é um mundo. O deck (`index.html`) é montado a partir de `fonte/` por `fonte/montar.ps1`.
 > **Não há análise real.** Todo número vem de `pesquisa/`, com o rastreio indicado em cada cena. O que for ilustrativo está marcado como ilustrativo.
 
 **Público:** turma de Data Science 2 (ESEG), cerca de 22 anos.
 **Visual:** azul e branco da ESEG (marinho, lavandas, branco). O acento ciano marca só o que é da IA.
 
-**Arco: a jornada do herói [proposta, a confirmar com o Felipe]**
+**Arco: a jornada do herói**
 
 | Mundo | Momento da jornada | O que mostra |
 |---|---|---|
-| 1 | O mundo comum | O templo do CRISP-DM. O analista sobe sozinho, apanha em cada fase e perde. **(cena 01, escrita abaixo)** |
+| 1 | O mundo comum | O templo do CRISP-DM. O analista sobe sozinho, apanha em cada fase e perde. |
 | 2 | O aliado | Entra a IA como segundo jogador e sobe os degraus em segundos |
 | 3 | O trapaceiro | A IA erra com convicção: inventa fonte, calcula de cabeça, concorda com você, testa até dar |
 | 4 | O mapa | As 13 etapas em 5 fases, o fluxo de cada etapa, os checkpoints, quem faz o quê e por que herói e aliado jogam juntos |
 | 5 | O final do jogo | As cinco conquistas do analista, que são o resumo da aula, e o repositório para levar o jogo para casa |
 
-**Estado (2026-10-08):** as cinco cenas estão construídas, cada uma conferida no seu build. Falta a integração: o `index.html` com as cinco e os cortes entre elas. Na cena 05, o endereço do repositório só entra na etapa final, quando o repositório público existir. Cada mundo recomeça com 5 vidas e o prazo cheio.
+Cada mundo recomeça com 5 vidas e o prazo cheio.
 
 **Regra dos passos de espera:** onde há pergunta à turma, a cena para com o objeto da pergunta na tela e espera a tecla. Nunca um tempo fixo.
 
@@ -104,8 +103,6 @@
 
 ## 02 · Mundo 2 — O aliado: a IA entra no jogo
 
-> **Construída em 2026-10-08**, em `fonte/` na pasta da cena.
-
 **Ideia.** Mesmo templo, segundo jogador. A IA entra como aliada, em ciano, e o jogo vira cooperativo. Os degraus do meio, que no mundo 1 custavam vidas, passam em segundos. Mas a luz dela enfraquece no primeiro e no último degrau: esses continuam do analista. Os dois chegam ao topo com vidas e prazo sobrando, e o prêmio pisca de um jeito estranho.
 
 **Texto fixo na tela**
@@ -144,9 +141,9 @@
 **Rastreio**
 - 25,1% mais rápido, +12,2% de tarefas concluídas, mais de 40% de ganho de qualidade, 758 consultores, três braços: `pesquisa/03-ia-na-analise-de-dados.md` §3.1. Na tela os dois primeiros estão arredondados para 25% e 12%.
 - 41 de análise exploratória, 33 de modelos, 23 de coleta e preparação, 3 de definição do problema, 1 de implantação: Chintakunta, Nascimento & Guimaraes (arXiv 2508.11698), §5.1, conferido na fonte em 2026-10-08. Um artigo pode contar em mais de uma etapa.
-- **O total de artigos fica fora da tela e da fala.** `pesquisa/01` §15.1 diz 62 e `pesquisa/03` §1.1 diz 66. A divergência é do próprio artigo: o texto fala em "a corpus of 66 research papers" e as legendas de duas figuras usam "out of 62 papers", sem explicar a diferença.
+- **O total de artigos fica fora da tela e da fala.** O próprio artigo traz dois totais: o texto fala em "a corpus of 66 research papers" e as legendas de duas figuras usam "out of 62 papers", sem explicar a diferença.
 - A IA vai bem em entendimento dos dados, preparação e modelagem, com "partial correctness" em cenários complexos (Musazade et al., 2024): `pesquisa/03` §2. É o que sustenta os degraus 2, 3 e 4.
-- Na cena construída a IA também acende o degrau 5 (Avaliação), no passo 3. O apoio é mais fraco: no mapeamento de Chintakunta et al., "model building and evaluation" soma 33 artigos, mas isso é avaliação de modelo, não a avaliação contra o negócio do CRISP-DM. Fica coerente com a tela, em que a luz só enfraquece nos degraus 1 e 6. **Decisão do Felipe:** manter o 5 aceso ou deixá-lo neutro.
+- Na cena, a IA também acende o degrau 5 (Avaliação), no passo 3. O apoio é mais fraco: no mapeamento de Chintakunta et al., "model building and evaluation" soma 33 artigos, mas isso é avaliação de modelo, não a avaliação contra o negócio do CRISP-DM. Fica coerente com a tela, em que a luz só enfraquece nos degraus 1 e 6.
 - **Ilustrativo, sem fonte:** a pedra do passo 3 e a frase "só ficou barato".
 
 **Cuidados**
@@ -158,8 +155,6 @@
 
 ## 03 · Mundo 3 — O trapaceiro: a IA erra com convicção
 
-> **Construída em 2026-10-08**, em `fonte/` na pasta da cena.
-
 **Ideia.** O prêmio do mundo 2 era falso. O aliado tem um lado trapaceiro: entrega presentes que são armadilhas. No mundo 1 o analista via a pedra chegando; aqui a armadilha vem embrulhada. São quatro baús, quatro vidas perdidas, e uma fronteira que ninguém enxerga.
 
 **Texto fixo na tela**
@@ -167,7 +162,7 @@
 - Título: **O trapaceiro: a IA erra com convicção**
 - HUD: 5 vidas · prazo cheio · 2 jogadores
 
-**Os quatro baús** (texto exato; conteúdo do slide 02 do deck anterior, já conferido)
+**Os quatro baús** (texto exato)
 
 | Baú | O que a IA entrega | A armadilha | Número | Vidas depois |
 |---|---|---|---|---|
@@ -194,26 +189,23 @@
 - Onde a IA é boa: quem usou IA entregou com mais de 40% de qualidade a mais
 - Onde ela não é: quem usou IA errou mais. Acerto de 84,5% sem IA e de 60% a 70% com IA
 - Rodapé: quem usa não vê a linha (Dell'Acqua et al., 2023; 758 consultores do BCG)
-- Versão anterior, trocada em 2026-10-08 porque o Felipe não entendeu: "Dentro da fronteira: mais de 40% de qualidade / Fora: 19 pontos percentuais a menos de acerto". "Fronteira" não estava explicada e os dois números não diziam com o que se comparavam. Os 19 pontos continuam na fala.
 
 **Interação com a turma.** Nos baús 1 e 3 a entrega e a abertura são passos separados (1 e 2; 4 e 5): com o baú fechado na tela, perguntar "abre ou não abre?", contar as mãos e só então apertar a tecla. O tempo da pausa é do apresentador, não da animação. Nos baús 2 e 4, seguir direto, para o ritmo não cair.
 
 **Fala (cerca de 2 min):** "Era falso. E esse é o problema do segundo jogador: ele não joga contra você, ele te entrega presentes. [baú 1] 'Achei a fonte.' Entre três e treze por cento das URLs que esses modelos citam não existem. [baú 2] 'Já calculei.' Um número plausível, sem rodar código nenhum. [baú 3] 'Você tem razão.' Quando o analista-IA é instruído a confirmar, o veredito muda de trinta e quatro a sessenta e seis pontos percentuais. [baú 4] 'Deu significativo.' Testou dezenas de recortes e mostrou o que deu. Nenhuma dessas falhas é exótica; todas aparecem na primeira semana de uso. E tem a pior. No experimento do BCG, nas tarefas em que a IA é boa, quem usou IA entregou com mais de quarenta por cento de qualidade a mais. Mas havia uma tarefa escolhida por estar fora do que ela faz bem, e nessa quem usou IA errou mais: sem IA, oitenta e quatro por cento acertaram; com IA, entre sessenta e setenta. São dezenove pontos a menos, por confiar na resposta errada. E quem usa não enxerga a linha entre uma coisa e outra. A IA não avisa quando erra. Vocês precisam de um mapa."
 
 **Rastreio**
-- As quatro falhas e os três números: `apresentacao/roteiro.md`, slide 02, que rastreia para `pesquisa/03-ia-na-analise-de-dados.md` §3.1, §4.1 e §4.3.
+- As quatro falhas e os três números: `pesquisa/03-ia-na-analise-de-dados.md` §3.1, §4.1 e §4.3.
 - Fora do que a IA faz bem (1 tarefa escolhida para isso), 19 p.p. a menos de soluções corretas: o controle acertou cerca de 84,5%; os dois grupos com IA, 60% e 70%. `pesquisa/03` §3.1.
-- **Ilustrativo, sem fonte:** as quatro falas da IA entre aspas, os baús e a ordem das armadilhas. No slide 02 do deck anterior o baú 4 dizia "50 recortes"; aqui virou "dezenas", porque o 50 não tem fonte.
+- **Ilustrativo, sem fonte:** as quatro falas da IA entre aspas, os baús e a ordem das armadilhas.
 
 **Cuidados**
 - A IA não vira vilã: a faísca tem o mesmo brilho no acerto e no erro. É esse o ponto da cena.
-- Os três números (3% a 13%, 34 a 66 p.p., 19 p.p.) foram conferidos em 2026-10-08 contra `pesquisa/03` §4.1, §4.3 e §3.1. Não foram reabertos na fonte primária.
+- Os três números (3% a 13%, 34 a 66 p.p., 19 p.p.) foram conferidos em 2026-10-08 contra `pesquisa/03` §4.1, §4.3 e §3.1.
 
 ---
 
 ## 04 · Mundo 4 — O mapa: herói e aliado jogam juntos
-
-> **Construída em 2026-10-08**, em `fonte/` na pasta da cena.
 
 **Ideia.** O mapa do jogo, visto de cima: um caminho com 13 etapas em 5 regiões. Entre uma etapa e outra há um checkpoint, e só o herói salva o jogo. A cena responde aos três mundos anteriores: a pedra ainda cai, mas agora devolve o herói só até o último checkpoint; o baú-armadilha chega, mas para no portão; e uma segunda IA, que não viu a partida, confere tudo numa cópia. Os dois terminam com as 5 vidas.
 
@@ -222,7 +214,7 @@
 - Título: **O mapa: 13 etapas, 13 portões**
 - HUD: 5 vidas · prazo cheio · 2 jogadores
 
-**O mapa** (texto exato dos rótulos; `fluxo/AGENTS.md` §2)
+**O mapa** (texto exato dos rótulos; `AGENTS.md` §2)
 
 | Região | Etapas | Portões (★ = crítico) |
 |---|---|---|
@@ -275,12 +267,11 @@
 **Fala (cerca de 3 min):** "Este é o mapa. Treze etapas em cinco regiões: enquadrar, reunir, explorar, comprovar, comunicar. Nada aqui é novo; é o templo do mundo 1 redesenhado. O que muda é o que acontece dentro de cada etapa. [zoom] A IA planeja e diz o que espera antes de rodar. Executa, com o código salvo. Verifica. E para. [pergunta] Quem decide é você: aprova, ajusta ou manda voltar. Por isso depois de cada etapa tem um checkpoint. São treze, e em cinco deles você não decide sozinho: chama uma segunda pessoa. E o jogo salvo mora nos arquivos, não na conversa. Agora vejam o que acontece com os problemas de antes. A pedra ainda cai, mas você volta só até o último portão. O presente ainda chega: a IA diz 'já calculei'. [pergunta] Só que no portão, antes de aprovar, você sorteia dois números do que ela entregou e manda rodar de novo o código que gerou cada um. Como o sorteio é seu, ela não escolhe o que vai ser conferido. Se o número não saiu de código nenhum, aparece ali, antes de você abrir. E na etapa oito entra outra IA, que não viu a partida, e confere tudo numa cópia. Por que tanto cuidado com quem faz o quê? [aposta] Num sistema parecido com este, com os mesmos modelos e os mesmos prompts, três portões humanos e o cálculo em código derrubaram as falhas críticas de setenta e dois para dezesseis por cento. O controle não está no modelo; está no processo em volta dele. A IA acelera. O método protege."
 
 **Rastreio**
-- 5 fases, 13 etapas, nomes das etapas, 13 portões e os 5 críticos (G1, G3, G5, G8, G11), segunda pessoa nos críticos: `fluxo/AGENTS.md` §2.
-- Ciclo PEVD, com P, E e V da IA e D do humano; expectativa declarada antes de rodar; respostas do portão (aprova, ajusta, volta): `fluxo/AGENTS.md` §4 e slide 10 de `apresentacao/roteiro.md`.
-- Sorteio de 2 números com semente do humano (um da etapa atual, um do projeto todo) e reexecução do script de origem de cada um: `fluxo/AGENTS.md` §4 e §5.
-- **Troca de 2026-10-08, depois que o Felipe não entendeu a tela:** o baú era "Achei a fonte." e as frases eram "Dois números sorteados pelo humano, reexecutados." e "A armadilha para no portão.". Além de obscuras, casavam a armadilha errada com a trava: sorteio e reexecução pegam número que não saiu de código, não fonte inventada. O baú passou a ser o "Já calculei.".
-- "O estado do projeto mora nos arquivos, não na memória da conversa": `fluxo/AGENTS.md` §3.
-- Analista e auditor separados; o auditor não edita e trabalha só na cópia de auditoria, na etapa 08: `fluxo/AGENTS.md` §0 e §1.
+- 5 fases, 13 etapas, nomes das etapas, 13 portões e os 5 críticos (G1, G3, G5, G8, G11), segunda pessoa nos críticos: `AGENTS.md` §2.
+- Ciclo PEVD, com P, E e V da IA e D do humano; expectativa declarada antes de rodar; respostas do portão (aprova, ajusta, volta): `AGENTS.md` §4 e slide 10 do deck de 31 slides.
+- Sorteio de 2 números com semente do humano (um da etapa atual, um do projeto todo) e reexecução do script de origem de cada um: `AGENTS.md` §4 e §5.
+- "O estado do projeto mora nos arquivos, não na memória da conversa": `AGENTS.md` §3.
+- Analista e auditor separados; o auditor não edita e trabalha só na cópia de auditoria, na etapa 08: `AGENTS.md` §0 e §1.
 - 72% para 16% em 280 execuções sobre 4 datasets, mesmos modelos e prompts, 3 portões humanos e estimação em código: `pesquisa/03-ia-na-analise-de-dados.md` §2 (HLER).
 - **Ilustrativo, sem fonte:** a pedra e o baú reaproveitados, e a imagem de "voltar só até o último portão". No kit, o que existe é a resposta `Voltar à etapa NN` no portão.
 
@@ -297,7 +288,7 @@
 
 ## 05 · O final do jogo — As conquistas do analista
 
-> **Construída em 2026-10-08**, em `fonte/cena05/`. O conteúdo é a mensagem de fechamento do Felipe. O texto de tela abaixo é uma versão curta das palavras dele e **ainda espera a aprovação dele**; fica em `fonte/cena05/1-conteudo.js`, para a troca ser só de texto.
+> O conteúdo é a mensagem de fechamento do autor. O texto de tela fica em `fonte/cena05/1-conteudo.js`.
 
 **Ideia.** Tela de fim de jogo. O resumo da aula aparece como conquistas desbloqueadas, uma por tecla, cada uma com um emblema. No fim, as cinco formam um painel e entra a tela de créditos, com o repositório para a turma levar o jogo para casa.
 
@@ -307,7 +298,7 @@
 - Contador: **n/5 conquistas**
 - Em cada conquista, o rótulo: **Conquista desbloqueada**
 
-**As cinco conquistas** (texto de tela, a aprovar)
+**As cinco conquistas** (texto de tela)
 
 | # | Conquista | Linha na tela | Emblema | Retoma |
 |---|---|---|---|---|
@@ -332,24 +323,23 @@ Na conquista 4, uma etiqueta pequena ao lado do nome: **explicabilidade**.
 | 6 | As cinco se juntam num painel, só emblema e nome | acorde final | os cinco nomes · "Qual é a mais difícil para você?" |
 | 7 | Créditos. Entra o cartão do repositório | tema do jogo, curto | cartão abaixo |
 
-**Cartão do passo 7 — leve o jogo para casa** (texto exato; o endereço entra na etapa final)
+**Cartão do passo 7 — leve o jogo para casa** (texto exato)
 - Cabeçalho: Leve o jogo para casa
 - No repositório: o código · esta apresentação · o resumo da técnica · o pipeline movido a IA · como usar
-- Créditos, entre a lista e o código QR (pedidos pelo Felipe em 2026-10-08): Autores: Felipe Marins e Claude · Professor: Marino Hilario Catarino · ESEG · 2026: Data Science 2
+- Créditos, entre a lista e o código QR: Autores: Felipe Marins e Claude · Professor: Marino Hilario Catarino · ESEG · 2026: Data Science 2
 - Endereço: github.com/felipe44776-eseg/jornada-analista-dados
-- Código QR: aponta para `https://github.com/felipe44776-eseg/jornada-analista-dados`; gerado em 2026-10-08 e conferido lendo a imagem de volta
+- Código QR: aponta para `https://github.com/felipe44776-eseg/jornada-analista-dados`; conferido lendo a imagem de volta
 
 **Interação com a turma**
 - Antes do passo 1: "depois de quatro mundos, o que a análise de dados precisa ser? Uma palavra." Ouvir três ou quatro respostas e só então apertar a tecla.
 - Passo 6: "qual destas é a mais difícil para você?". Mão levantada para cada conquista.
 
-**Fala (cerca de 2 min, nas palavras do Felipe):** "A análise de dados precisa ser rápida, para não perder o tempo do cliente, ou o da ação que a sua análise vai gerar. Mas ela também tem de ser precisa. Sempre teve, mas agora mais do que nunca: alucinação não pode acontecer, para não levar o time para o caminho errado. A análise de dados precisa ser visual: as outras pessoas precisam entender o que você fez, senão não vão agir, por medo. E ela precisa fazer sentido no negócio, ou seja, ter explicabilidade. Não é só jogar um número ou uma conclusão que não se conecta com o problema de negócio que você começou a explorar. E, por fim, análise de dados é uma jornada, uma aventura. Quando você começa, não sabe exatamente onde vai terminar, nem se vai dar certo testar as suas hipóteses. Então o analista tem de gostar também do caminho, e ser criativo para ir resolvendo os problemas ao longo da jornada."
+**Fala (cerca de 2 min, nas palavras do autor):** "A análise de dados precisa ser rápida, para não perder o tempo do cliente, ou o da ação que a sua análise vai gerar. Mas ela também tem de ser precisa. Sempre teve, mas agora mais do que nunca: alucinação não pode acontecer, para não levar o time para o caminho errado. A análise de dados precisa ser visual: as outras pessoas precisam entender o que você fez, senão não vão agir, por medo. E ela precisa fazer sentido no negócio, ou seja, ter explicabilidade. Não é só jogar um número ou uma conclusão que não se conecta com o problema de negócio que você começou a explorar. E, por fim, análise de dados é uma jornada, uma aventura. Quando você começa, não sabe exatamente onde vai terminar, nem se vai dar certo testar as suas hipóteses. Então o analista tem de gostar também do caminho, e ser criativo para ir resolvendo os problemas ao longo da jornada."
 
 **Rastreio**
-- As cinco conquistas são a mensagem do Felipe, não citação de fonte. Não levam número.
+- As cinco conquistas são a mensagem do autor, não citação de fonte. Não levam número.
 - A coluna "Retoma" liga cada conquista a uma cena deste deck; é costura de roteiro, não evidência.
 
 **Cuidados**
 - "n/5 conquistas" é contagem da tela, não dado.
 - Emblemas em azul e branco, como o resto. O ciano continua reservado ao que é da IA: nesta cena, só a faísca.
-- Não construir o passo 7 com endereço inventado. Sem repositório, o cartão fica com o espaço do endereço vazio e marcado.

@@ -93,7 +93,7 @@
       rastreio: [
         '25,1% mais rápido, +12,2% de tarefas concluídas, mais de 40% de ganho de qualidade, 758 consultores, três braços: pesquisa/03-ia-na-analise-de-dados.md §3.1. Na tela os dois primeiros estão arredondados para 25% e 12%.',
         '41 de análise exploratória, 33 de modelos, 23 de coleta e preparação, 3 de definição do problema, 1 de implantação: Chintakunta, Nascimento & Guimaraes (arXiv 2508.11698), §5.1, conferido na fonte em 2026-10-08. Um artigo pode contar em mais de uma etapa.',
-        'O total de artigos fica fora da tela e da fala. pesquisa/01 §15.1 diz 62 e pesquisa/03 §1.1 diz 66. A divergência é do próprio artigo: o texto fala em "a corpus of 66 research papers" e as legendas de duas figuras usam "out of 62 papers", sem explicar a diferença.',
+        'O total de artigos fica fora da tela e da fala. O próprio artigo traz dois totais: o texto fala em "a corpus of 66 research papers" e as legendas de duas figuras usam "out of 62 papers", sem explicar a diferença.',
         'A IA vai bem em entendimento dos dados, preparação e modelagem, com "partial correctness" em cenários complexos (Musazade et al., 2024): pesquisa/03 §2. É o que sustenta os degraus 2, 3 e 4.',
         'Ilustrativo, sem fonte: a pedra do passo 3 e a frase "só ficou barato".'
       ]

@@ -4,7 +4,7 @@ Scripts que conferem um deck montado, cena por cena. Rodam com o Chrome ou o Edg
 
 ## Ordem
 
-Num prompt do PowerShell 7, a partir de `apresentacao-animada\`:
+Num prompt do PowerShell 7, a partir de `docs\`:
 
 ```powershell
 # 1. monta o deck e roda node --check (sem parâmetros: todas as cenas, no index.html)
@@ -47,6 +47,6 @@ Chame os `.ps1` com `&`, não com `pwsh -File`: com `-File`, uma lista como `-Pa
 ## Limites
 
 - Todo comando de navegador tem teto de tempo (45 s por captura, 300 s no `conferir.mjs`) e o processo é morto se passar.
-- **Som:** o teste confirma que o contexto de áudio nasce na primeira tecla e mede o pico na saída do compressor. Ninguém ouve nada: timbre e equilíbrio só se conferem com caixa de som.
+- **Som:** o teste confirma que o contexto de áudio nasce na primeira tecla e mede o pico na saída do compressor. Timbre e equilíbrio se conferem ouvindo, com caixa de som.
 - **Fluidez:** os quadros provam que a coreografia acontece, não que roda liso. Isso só se vê na máquina da sala.
 - Mudou o roteiro, mude o `esperado.json` da cena.

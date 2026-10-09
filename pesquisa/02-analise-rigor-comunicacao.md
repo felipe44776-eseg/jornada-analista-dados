@@ -2,7 +2,7 @@
 
 **Para que serve:** dar base factual e citável a um fluxo único de análise de dados assistida por IA (arquivos `.md` que uma IA segue), do problema às apresentações técnica e executiva, para uma turma de Data Science (ESEG).
 **Verificado em:** 2026-09-23.
-**Escopo (ajustado pelo coordenador):** o corpo prioriza A, B e D; C fica curto. No fecho entram só (c), o checklist de rigor, e (e), a tabela deck técnico × executivo. CRISP-DM, KDD, SEMMA, TDSP, ASUM e CRISP-ML ficam com outro pesquisador.
+**Escopo:** o corpo prioriza A, B e D; C fica curto. No fecho entram só (c), o checklist de rigor, e (e), a tabela deck técnico × executivo. CRISP-DM, KDD, SEMMA, TDSP, ASUM e CRISP-ML estão em `01-frameworks-de-processo.md`.
 
 **Legenda de verificação**
 - **[V]**: abri a fonte nesta pesquisa e conferi o trecho.

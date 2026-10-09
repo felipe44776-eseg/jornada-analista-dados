@@ -22,8 +22,8 @@
     { "seletor": ".jg-ct-cab", "texto": "Leve o jogo para casa" },
     { "seletor": ".jg-ct-l", "textos": ["No repositório:", "· o código", "· esta apresentação", "· o resumo da técnica", "· o pipeline movido a IA", "· como usar"], "obs": "na tela é uma lista: cada ponto mediano do roteiro vira o marcador de uma linha" },
     { "seletor": ".c05-au-r", "textos": ["Autores", "Professor", "ESEG · 2026"] },
-    { "seletor": ".c05-au-t", "textos": ["Felipe Marins e Claude", "Marino Hilario Catarino", "Data Science 2"], "obs": "créditos pedidos pelo Felipe em 2026-10-08" },
-    { "seletor": ".c05-end-url", "texto": "github.com/felipe44776-eseg/jornada-analista-dados", "obs": "endereço do repositório público, preenchido em 2026-10-08; o QR é imagem e está em \"contagens\"" }
+    { "seletor": ".c05-au-t", "textos": ["Felipe Marins e Claude", "Marino Hilario Catarino", "Data Science 2"] },
+    { "seletor": ".c05-end-url", "texto": "github.com/felipe44776-eseg/jornada-analista-dados", "obs": "endereço do repositório público; o QR é imagem e está em \"contagens\"" }
   ],
   "contagens": [
     { "seletor": ".c05-slot", "n": 5 }, { "seletor": ".c05-aviso", "n": 5 }, { "seletor": ".c05-aviso.grande", "n": 1 }, { "seletor": ".c05-pn-item", "n": 5 },

@@ -602,4 +602,4 @@ Plano pré-registrado (aprovado no portão anterior): <plano>{hipóteses, métri
 - **Fontes primárias não abertas:** APA; página oficial da ISO 42001; PDF do guia SciELO; texto oficial da Portaria CNPq 2.664/2026; CAPES NT 3/2025; versão HDSR de Tu et al.; lançamento original (2023) do guia acadêmico da ANPD; política da ESEG.
 - **Sem estudo encontrado:** não há estudo empírico que meça a taxa de *datasets* inexistentes sugeridos por LLMs.
 - **Números mudam rápido:** os leaderboards (DABstep, MLE-bench etc.) evoluem; os números acima são os dos papers.
-- **Ferramentas não testadas:** a §8 se limita ao que a documentação oficial afirma; nada foi testado na prática.
+- **Ferramentas:** a §8 descreve o que a documentação oficial de cada uma afirma.

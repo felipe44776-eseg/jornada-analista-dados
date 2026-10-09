@@ -4,7 +4,7 @@ import pathlib, re, sys, textwrap
 
 sys.stdout.reconfigure(encoding="utf-8")
 RAIZ = pathlib.Path(__file__).resolve().parents[1]
-# dois leiautes: o de desenvolvimento, com o kit em fluxo/, e o do repositório publicado, com o kit na raiz
+# o kit pode estar numa pasta fluxo/ ou na raiz do repositório
 if (RAIZ / "fluxo").is_dir():
     FLUXO = RAIZ / "fluxo"
     kit = sorted(FLUXO.rglob("*.md"))
@@ -38,7 +38,7 @@ for p, n in cont.items():
     if n != esperado[p]:
         problemas.append(f"contagem: {p} tem {n}, esperado {esperado[p]}")
 
-# 4. termos obsoletos (o Histórico do CLAUDE.md cita versões antigas de propósito: fica de fora)
+# 4. termos obsoletos
 obsoletos = {
     r"G5\.\.G7|G5\.\.HEAD|G5\.\.G8": "diff do auditor parte do SHA de trava-registro",
     r"estado do G7": "cópia de auditoria na tag G8-auditoria",

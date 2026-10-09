@@ -1,10 +1,10 @@
 # Como escrever uma cena deste deck
 
-Contrato para quem constrói uma cena. Leia inteiro antes de escrever código. O conteúdo da cena vem do `roteiro.md`; as regras gerais, do `brief-deck.md`; aqui está **como** construir.
+Contrato para quem constrói uma cena. Leia inteiro antes de escrever código. O conteúdo da cena vem do `roteiro.md`; aqui está **como** construir.
 
 ## 1. As três regras
 
-1. **Escreva só em `fonte\cenaNN\`** (NN = número da cena no roteiro, com dois dígitos). Não edite `motor.js`, `som.js`, `jogo-*.js`, `jogo*.css`, `estilo.css`, `casca.html`, `montar.ps1`, nem a pasta de outra cena, nem o `index.html` da raiz. Se faltar algo na parte compartilhada, resolva dentro da sua pasta e reporte.
+1. **Escreva só em `fonte\cenaNN\`** (NN = número da cena no roteiro, com dois dígitos). Não edite `motor.js`, `som.js`, `jogo-*.js`, `jogo*.css`, `estilo.css`, `casca.html`, `montar.ps1`, nem a pasta de outra cena, nem o `index.html` da raiz. Se faltar algo na parte compartilhada, resolva dentro da sua pasta.
 2. **Toda classe CSS da cena leva o prefixo dela** (`c02-`, `c03-`, `c04-`). Prefixos `jg-` e `tp-` são da parte compartilhada: use os componentes, não redefina as classes deles.
 3. **`tocar(ctx)` anima, `fim()` fixa.** O estado final de um passo só existe se o `fim()` dele o aplicar. O motor chega a um passo de três jeitos (tocando, pulando a animação, link direto) e nos três o resultado tem de ser o mesmo.
 
@@ -13,20 +13,20 @@ Contrato para quem constrói uma cena. Leia inteiro antes de escrever código. O
 `fonte\_modelo\` é uma cena mínima que funciona e usa todos os componentes. Copie a pasta, renomeie e troque o id, o prefixo e o conteúdo.
 
 ```powershell
-# a partir de apresentacao-animada\
+# a partir de docs\
 Copy-Item .\fonte\_modelo .\fonte\cena02 -Recurse      # depois troque '99' por '02' e m9- por c02- nos três arquivos
 
 # build privado: só a sua cena, num arquivo fora do projeto (nunca no index.html)
-& .\fonte\montar.ps1 -Cenas 02 -Destino C:\caminho\do\scratchpad\c02.html
+& .\fonte\montar.ps1 -Cenas 02 -Destino C:\saida\c02.html
 
 # estado final de cada passo, um PNG por passo (abra todos e olhe)
-& .\verificacao\capturar.ps1 -Saida C:\caminho\do\scratchpad\c02 -Deck C:\caminho\do\scratchpad\c02.html -Cena 02
+& .\verificacao\capturar.ps1 -Saida C:\saida\c02 -Deck C:\saida\c02.html -Cena 02
 
 # a cena tocando de verdade: teclas, quadros do meio, HUD, textos, fim natural x link direto, PDF
-node .\verificacao\conferir.mjs --saida C:\caminho\do\scratchpad\c02 --deck C:\caminho\do\scratchpad\c02.html --cena 02
+node .\verificacao\conferir.mjs --saida C:\saida\c02 --deck C:\saida\c02.html --cena 02
 
 # folhas de contato com os quadros do meio da animação
-& .\verificacao\folhas.ps1 -Saida C:\caminho\do\scratchpad\c02
+& .\verificacao\folhas.ps1 -Saida C:\saida\c02
 ```
 
 Chame os `.ps1` com `&`, não com `pwsh -File` (com `-File`, uma lista como `-Passos 0,1` chega como texto). O modelo roda assim: `& .\fonte\montar.ps1 -Cenas _modelo -Destino <arquivo>` e `node .\verificacao\conferir.mjs --deck <arquivo> --cena 99 --esperado .\fonte\_modelo\esperado.json --saida <pasta>`.
@@ -320,9 +320,9 @@ Azul e branco: marinho `#000653`, lavandas `#E3E2FD` e `#ECEDFF`, branco. Variá
 - **A troca de cena é uma cortina curta.** Ao avançar de uma cena para a seguinte, o motor deixa o último quadro da cena que sai por cima da que entra e o desfaz em 0,7 s. O que as duas cenas têm no mesmo lugar não se mexe; o resto se dissolve. Voltar (←), link direto e os atalhos 1 a 9 (ir direto a uma cena, para ensaio) são corte seco. A cena que redesenha o último quadro da anterior e o desfaz no próprio passo 0 (como a 02 faz com o fim da 01) declara `entrada: 'seca'` no registro, para a cortina não duplicar a imagem.
 - **O canto de cima à direita já tem dono:** a aba "2 jogadores" vai até y 98. O que a cena puser ali começa abaixo disso.
 
-## 11. Antes de reportar
+## 11. Antes de concluir
 
 1. `montar.ps1` com `node --check OK`.
 2. Um PNG por passo (`capturar.ps1`), **todos abertos e olhados**: nada cortado, nada sobreposto, texto legível, HUD coerente.
 3. `conferir.mjs` com 0 erros e 0 falhas, e as folhas do meio da animação olhadas.
-4. Diga o que não deu para conferir (som e fluidez não aparecem em captura) e o que a parte compartilhada não cobriu.
+4. Som e fluidez não aparecem em captura: confira os dois tocando o deck.

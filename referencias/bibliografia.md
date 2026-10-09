@@ -127,4 +127,4 @@
 
 ## Base empírica local
 
-- Projetos da disciplina DataS1 (IPTU × ITBI), DataS2 (diabetes/BRFSS) e DataS2.1 (Airbnb NYC 2019 → 2026): práticas e casos reunidos num relatório interno, não publicado.
+- Projetos da disciplina DataS1 (IPTU × ITBI), DataS2 (diabetes/BRFSS) e DataS2.1 (Airbnb NYC 2019 → 2026): práticas e casos.

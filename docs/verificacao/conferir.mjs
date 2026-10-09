@@ -1,6 +1,6 @@
 // Conferência de UMA cena em tempo real pelo Chrome/Edge headless (DevTools Protocol), sem dependências.
 // Uso:  node verificacao/conferir.mjs --saida <pasta> [--deck <arquivo.html>] [--cena 01] [--esperado <arquivo.json>] [tudo|real|teclas|dom|pdf]
-//   --deck      arquivo montado (padrão: ..\index.html). Para um build privado, o arquivo do scratchpad.
+//   --deck      arquivo montado (padrão: ..\index.html). Para um build privado, o arquivo gerado com -Destino.
 //   --cena      id da cena (padrão: 01). O esperado sai de fonte\cena<id>\esperado.json, salvo se vier --esperado.
 //  real    toca a cena com teclas de verdade, fotografa quadros no meio da animação ("quadros"), mede quanto tempo um
 //          elemento fica inteiro e parado ("leitura"), confere o HUD ("hud") e o que está visível ("estado") ao fim de

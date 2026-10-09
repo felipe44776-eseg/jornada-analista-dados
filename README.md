@@ -210,8 +210,6 @@ A pesquisa que fundamenta o kit está resumida em [`referencias/frameworks.md`](
 
 **A apresentação técnica** é um deck de 31 slides, com mais detalhe sobre os frameworks, as travas e as etapas: [abrir no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/deck-31-slides/) · [roteiro](docs/deck-31-slides/roteiro.md). Setas navegam, F abre a tela cheia e N mostra as notas.
 
-Nos roteiros, os caminhos são os do projeto de origem: `fluxo/` é a raiz deste repositório, `apresentacao/` é `docs/deck-31-slides/` e `apresentacao-animada/` é `docs/`.
-
 ## Uso de IA neste projeto
 
 O kit, a pesquisa e as apresentações foram produzidos com assistência de IA (Claude, via Claude Code), com revisão humana. A pesquisa marca o que foi conferido na fonte primária, o que veio de fonte secundária e o que não pôde ser verificado.
