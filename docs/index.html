@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- o deck tem as próprias cores: o navegador e as extensões de modo escuro não devem recolorir (o QR code do fim depende do fundo claro) -->
 <meta name="color-scheme" content="only light">
 <meta name="darkreader-lock">
@@ -12,6 +12,7 @@
   ARQUIVO GERADO. Não edite aqui: as partes ficam em fonte\ e quem monta é fonte\montar.ps1.
   Conteúdo: roteiro.md desta pasta. Teclas: → ou Espaço avança (ou pula a animação), ← volta,
   R reinicia a cena, M som, F tela cheia, N notas.
+  Em tela de toque: toque à direita avança, na borda esquerda volta, arrastar também; o botão do canto abre o menu.
   Links: ?cena=1&passo=3&parado=1 (estado final, sem animação) · ?cena=1&passo=3&tocar=1 (ensaia o passo) · ?heroi=1 (oficina do herói)
 -->
 <style>
@@ -27,9 +28,9 @@
   --font:"Public Sans",Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--n-900);overflow:hidden}
+html,body{margin:0;height:100%;background:var(--n-900);overflow:hidden;touch-action:manipulation;overscroll-behavior:none;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font);color:var(--lav-1);-webkit-font-smoothing:antialiased;font-kerning:normal}
-#vp{position:fixed;inset:0;overflow:hidden;cursor:default}
+#vp{position:fixed;inset:0;overflow:hidden;cursor:default;touch-action:none}   /* sobre o palco o gesto é do deck: sem isso o navegador toma o arrastar para si */
 #quadro{position:absolute;left:0;top:0;width:var(--w);height:var(--h);transform-origin:0 0}
 .palco{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--n-900);font-family:var(--font);color:var(--lav-1);user-select:none}
 .palco.cortina{position:absolute;left:0;top:0;z-index:30;pointer-events:none}
@@ -45,6 +46,21 @@ body{font-family:var(--font);color:var(--lav-1);-webkit-font-smoothing:antialias
 #notas li{margin-bottom:6px}
 #notas .teclas{margin-top:20px;padding-top:12px;border-top:1px solid var(--n-300);font-size:13px;color:var(--l-300)}
 #imp{display:none}
+/* ---------- tela de toque (celular e tablet): só existe com a classe .toque, que o motor põe; no computador nada disto aparece ---------- */
+html.toque,html.toque body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#tq-menu{position:fixed;z-index:90;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid var(--l-500);background:rgba(0,3,37,.72);color:var(--lav-1);font:inherit;cursor:pointer}
+#tq-painel{position:fixed;z-index:91;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));width:min(300px,calc(100vw - 16px));max-height:calc(100dvh - 16px);overflow:auto;display:none;gap:8px;padding:12px;border-radius:14px;border:1px solid var(--l-500);background:rgba(0,3,37,.96);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+#tq-painel.aberto{display:grid}
+#tq-painel .tq-l{display:flex;gap:8px}
+#tq-painel .tq-r{margin-top:2px;font-size:12px;line-height:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--l-300)}
+#tq-painel button{flex:1 1 0;min-height:44px;padding:8px 10px;border-radius:10px;border:1px solid var(--n-300);background:var(--n-600);color:var(--lav-1);font:700 16px/1.2 var(--font);cursor:pointer}
+#tq-painel button:active{background:var(--n-400)}
+#tq-painel button[aria-current="true"]{background:var(--lav-1);color:var(--marinho);border-color:var(--lav-1)}
+#tq-dica,#tq-girar{position:fixed;z-index:85;left:0;right:0;margin:0 auto;width:fit-content;max-width:calc(100vw - 24px);padding:8px 14px;border-radius:999px;background:rgba(0,3,37,.82);color:var(--lav-1);font:700 15px/1.25 var(--font);text-align:center;pointer-events:none}
+#tq-dica{bottom:max(10px,env(safe-area-inset-bottom));opacity:0;transition:opacity .4s}
+#tq-dica.visivel{opacity:1}
+#tq-girar{display:none;top:calc(50% + 28.125vw + 14px);color:var(--l-300);background:none}
+@media (orientation:portrait){#tq-girar{display:block}}
 html.parado *,html.parado *::before,html.parado *::after{animation:none!important;transition:none!important}
 @page{size:1280px 720px;margin:0}
 @media print{
@@ -681,7 +697,7 @@ const Som = (() => {
 })();
 
 /* ================================================================
-   MOTOR · registro de cenas, passos, teclas, link direto, impressão.
+   MOTOR · registro de cenas, passos, teclas, toque, link direto, impressão.
 
    Contrato de uma cena (objeto passado a Deck.registrar):
      id, titulo        identificação
@@ -702,8 +718,8 @@ const Som = (() => {
 const Deck = (() => {
   const W = 1280, H = 720;
   const cenas = [];
-  const est = { c: 0, p: -1, animando: false, parado: false, montada: false, imprimindo: false };
-  let quadro, palco, ind, notas, imp, exec = null, cortina = null;
+  const est = { c: 0, p: -1, animando: false, parado: false, montada: false, imprimindo: false, toque: false };
+  let quadro, palco, ind, notas, imp, exec = null, cortina = null, tq = null;
   const CORTINA_MS = 700;
 
   function registrar(cena) { cenas.push(cena); return cena; }
@@ -786,6 +802,7 @@ const Deck = (() => {
     } else palco.replaceChildren();
     est.c = i; est.p = -1; est.montada = true;
     cenas[i].montar(palco);
+    if (est.toque) dicasDeToque(palco);
   }
   /* ?cena=02 acha pelo id; ?cena=2 acha a cena de id numérico 2; sem id que sirva, vale a posição no build */
   function acharCena(v) {
@@ -851,6 +868,10 @@ const Deck = (() => {
     const c = cenas[est.c];
     ind.innerHTML = `${numDaCena(est.c)} · ${Math.max(est.p, 0)}/${c.passos.length - 1}` + (Som.mudo ? '<span class="mudo">mudo</span>' : '');
     if (notas.classList.contains('aberto')) preencherNotas();
+    if (tq) {
+      tq.som.textContent = Som.mudo ? 'Ligar o som' : 'Tirar o som';
+      tq.mundos.forEach((b, i) => b.setAttribute('aria-current', i === est.c ? 'true' : 'false'));
+    }
   }
   const esc = s => String(s).replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m]));
   function preencherNotas() {
@@ -860,7 +881,9 @@ const Deck = (() => {
       (n.fala ? `<h3>Fala</h3><p>${esc(n.fala)}</p>` : '') +
       (n.interacao ? `<h3>Interação com a turma</h3><p>${esc(n.interacao)}</p>` : '') +
       (n.rastreio && n.rastreio.length ? `<h3>Rastreio</h3><ul>${n.rastreio.map(r => `<li>${esc(r)}</li>`).join('')}</ul>` : '') +
-      `<p class="teclas">→ ou Espaço: avança (ou pula a animação) · ←: volta · R: reinicia a cena · M: som · F: tela cheia · N: notas</p>`;
+      (est.toque
+        ? `<p class="teclas">Toque à direita: avança (ou pula a animação) · toque na borda esquerda: volta · arrastar para os lados também vale · o botão do canto abre o menu</p>`
+        : `<p class="teclas">→ ou Espaço: avança (ou pula a animação) · ←: volta · R: reinicia a cena · M: som · F: tela cheia · N: notas</p>`);
   }
   function alternarNotas() { if (notas.classList.toggle('aberto')) preencherNotas(); }
   function telaCheia() {
@@ -897,6 +920,85 @@ const Deck = (() => {
     Som.destravar();                      // política de autoplay: o áudio nasce aqui
     mapa[k]();
   }
+
+  /* ---------- tela de toque: celular e tablet ----------
+     No computador nada muda: o mouse não navega e os controles não existem. O modo liga sozinho em aparelho de toque
+     (ou no primeiro toque) e acrescenta: toque à direita avança, toque na borda esquerda volta, arrastar para os lados
+     faz o mesmo, e um botão no canto abre o menu (mundos, som, reiniciar, notas, tela cheia). */
+  const BORDA_VOLTA = 1 / 3;                       // fração da largura, a partir da esquerda, em que o toque volta
+  function dicasDeToque(raiz) { raiz.querySelectorAll('[data-toque]').forEach(el => { el.textContent = el.dataset.toque; }); }
+  function abrirPainel(v) { tq.painel.classList.toggle('aberto', v); tq.menu.setAttribute('aria-expanded', v ? 'true' : 'false'); }
+  function esconderDica() { if (tq) tq.dica.classList.remove('visivel'); }
+  function criarToque() {
+    const h = util.html;
+    const menu = h('<button id="tq-menu" class="no-print" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>');
+    const painel = h(`<div id="tq-painel" class="no-print">
+      <div class="tq-l"><button type="button" data-a="voltar">Voltar</button><button type="button" data-a="avancar">Avançar</button></div>
+      <div class="tq-r">Mundos</div>
+      <div class="tq-l">${cenas.map((c, i) => `<button type="button" data-c="${i}" aria-label="Mundo ${numDaCena(i)}">${numDaCena(i)}</button>`).join('')}</div>
+      <div class="tq-l"><button type="button" data-a="som"></button><button type="button" data-a="reiniciar">Reiniciar cena</button></div>
+      <div class="tq-l"><button type="button" data-a="notas">Notas</button>${document.documentElement.requestFullscreen ? '<button type="button" data-a="cheia">Tela cheia</button>' : ''}<button type="button" data-a="fechar">Fechar</button></div></div>`);
+    const dica = h('<div id="tq-dica" class="no-print">Toque à direita para avançar · na borda esquerda para voltar</div>');
+    const girar = h('<div id="tq-girar" class="no-print">Gire o aparelho para ver maior</div>');
+    document.body.append(menu, painel, dica, girar);
+    tq = { menu, painel, dica, som: painel.querySelector('[data-a="som"]'), mundos: Array.from(painel.querySelectorAll('[data-c]')) };
+    /* o toque nos controles é resolvido em aoSoltar(), sem depender do clique que o navegador sintetiza (ele some depois
+       de um arrastar rápido). O clique fica para teclado e mouse, e é ignorado logo depois de um toque já atendido */
+    const semToqueRecente = () => performance.now() - toqueUI > 700;
+    menu.addEventListener('click', () => { if (semToqueRecente()) abrirPainel(!painel.classList.contains('aberto')); });
+    painel.addEventListener('click', e => { const b = e.target.closest('button'); if (b && semToqueRecente()) acaoDoPainel(b); });
+    dica.classList.add('visivel'); setTimeout(esconderDica, 7000);
+  }
+  function acaoDoPainel(b) {
+    Som.destravar();
+    if (b.dataset.c != null) { abrirPainel(false); entrarCena(+b.dataset.c); return; }
+    const acoes = {
+      voltar, avancar,
+      som: () => { Som.alternarMudo(); atualizarUI(); },
+      reiniciar: () => { abrirPainel(false); entrarCena(est.c); },
+      notas: () => { abrirPainel(false); alternarNotas(); },
+      cheia: () => { abrirPainel(false); telaCheia(); },
+      fechar: () => abrirPainel(false)
+    };
+    if (acoes[b.dataset.a]) acoes[b.dataset.a]();
+  }
+  function modoToque() {
+    if (est.toque) return;
+    est.toque = true; document.documentElement.classList.add('toque');
+    criarToque(); if (palco) dicasDeToque(palco); atualizarUI();
+  }
+  let toqueIni = null, dedos = 0, toqueUI = -1e9;
+  function aoBaixar(e) {
+    Som.destravar();
+    if (e.pointerType === 'mouse') return;
+    modoToque(); dedos++;
+    const alvo = e.target && e.target.closest ? e.target : null;
+    toqueIni = dedos === 1 ? {
+      id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(),
+      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#notas') : null,                       // começou nos controles ou nas notas: não navega
+      botao: alvo ? alvo.closest('#tq-menu,#tq-painel button') : null
+    } : null;
+  }
+  function aoSoltar(e) {
+    Som.destravar();
+    if (e.pointerType === 'mouse') return;
+    dedos = Math.max(0, dedos - 1);
+    const i = toqueIni; if (!i || i.id !== e.pointerId) return;
+    toqueIni = null;
+    const dx = e.clientX - i.x, dy = e.clientY - i.y;
+    const batida = Math.abs(dx) < 14 && Math.abs(dy) < 14 && performance.now() - i.t < 700;
+    if (i.ui) {
+      if (i.botao && batida) { toqueUI = performance.now(); if (i.botao.id === 'tq-menu') abrirPainel(!tq.painel.classList.contains('aberto')); else acaoDoPainel(i.botao); }
+      return;
+    }
+    if (tq.painel.classList.contains('aberto')) { abrirPainel(false); return; }           // toque fora do menu só fecha o menu
+    const noComeco = est.c === 0 && est.p <= 0;                                           // na tela de título, qualquer toque começa
+    if (Math.abs(dx) > 48 && Math.abs(dx) > 1.5 * Math.abs(dy)) (dx < 0 || noComeco ? avancar : voltar)();   // arrastar
+    else if (batida) (e.clientX < innerWidth * BORDA_VOLTA && !noComeco ? voltar : avancar)();
+    else return;
+    esconderDica();
+  }
+  function aoCancelar(e) { if (e.pointerType !== 'mouse') { dedos = Math.max(0, dedos - 1); toqueIni = null; } }
 
   /* ---------- impressão: uma página por cena, estado final do último passo ---------- */
   let antes = null;
@@ -935,9 +1037,12 @@ const Deck = (() => {
     est.parado = q.get('parado') === '1';
     if (est.parado) { document.documentElement.classList.add('parado'); Som.travar(); }
     const c = acharCena(q.get('cena'));
-    ajustar(); addEventListener('resize', ajustar);
+    ajustar(); addEventListener('resize', ajustar); addEventListener('orientationchange', () => setTimeout(ajustar, 250));
+    if (window.visualViewport) visualViewport.addEventListener('resize', ajustar);
     addEventListener('keydown', tecla);
-    addEventListener('pointerdown', () => Som.destravar());
+    addEventListener('pointerdown', aoBaixar); addEventListener('pointerup', aoSoltar); addEventListener('pointercancel', aoCancelar);
+    ['touchend', 'click'].forEach(t => addEventListener(t, () => Som.destravar()));       // no iOS o áudio só destrava ao soltar o dedo
+    if (window.matchMedia && matchMedia('(hover: none) and (pointer: coarse)').matches) modoToque();
     addEventListener('beforeprint', prepararImpressao);
     addEventListener('afterprint', desfazerImpressao);
     const p0 = num('passo', 0);
@@ -1164,7 +1269,7 @@ const Jogo = (() => {
 
   /* telas: só a marcação e a classe; a cena posiciona e anima */
   function titulo(pai, t) {
-    const el = html(`<div class="jg-titulo"><div class="jg-t-mundo">${t.mundo}</div><h1 class="jg-t-nome">${t.nome}</h1><div class="jg-t-dica"><i>${t.dica}</i></div></div>`);
+    const el = html(`<div class="jg-titulo"><div class="jg-t-mundo">${t.mundo}</div><h1 class="jg-t-nome">${t.nome}</h1><div class="jg-t-dica"><i${t.dicaToque ? ` data-toque="${t.dicaToque}"` : ''}>${t.dica}</i></div></div>`);   // dicaToque: o texto que vale em tela de toque (o motor troca)
     pai.appendChild(el); return el;
   }
   /* faixa grande: GAME OVER por padrão; com texto, serve para "Fase concluída" */
@@ -2016,7 +2121,7 @@ const Oficina = (() => {
     r.hud = Jogo.hud(H, { vidas: VIDAS, fases: FASES.map(f => f.nome) });
     r.h = Jogo.heroi(tp.atores, { escala: 1 });
     r.h0 = Jogo.heroi(r.abre.querySelector('.c1-abre-heroi'), { escala: 2.3 }).por(302, 525);
-    Jogo.titulo(r.abre, { mundo: 'Mundo 1 · Incas e maias', nome: 'A jornada do analista de dados', dica: 'Espaço para começar' });
+    Jogo.titulo(r.abre, { mundo: 'Mundo 1 · Incas e maias', nome: 'A jornada do analista de dados', dica: 'Espaço para começar', dicaToque: 'Toque para começar' });
     r.cont = Jogo.continuar(H, 'Continuar?', 3); r.cont.el.classList.add('c1-continuar');
     r.contTn = r.contT.querySelector('b'); r.contSn = r.contS.querySelector('b');
     estadoInicial();

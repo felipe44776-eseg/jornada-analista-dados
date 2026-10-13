@@ -25,6 +25,9 @@ node .\verificacao\conferir.mjs --saida C:\saida\c02 --deck C:\saida\c02.html --
 # regressão: compara os passoN.png de duas pastas, pixel a pixel
 node .\verificacao\comparar.mjs C:\saida\antes C:\saida\depois
 
+# tela de toque: emula celular em pé, celular deitado e tablet, com toque de verdade, e confere que o computador não mudou
+node .\verificacao\toque.mjs --saida C:\saida\toque
+
 # folhas de oficina (todos os componentes desenhados)
 & .\verificacao\capturar.ps1 -Saida C:\saida\oficina -Oficina
 ```

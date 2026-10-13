@@ -203,7 +203,8 @@ A pesquisa que fundamenta o kit está resumida em [`referencias/frameworks.md`](
 **"A jornada do analista de dados"** é um jogo em cinco mundos, num arquivo HTML só, com animação e som.
 
 - **Para assistir:** [abra no navegador](https://felipe44776-eseg.github.io/jornada-analista-dados/), ou baixe [`docs/index.html`](docs/index.html) e abra no Chrome.
-- **Teclas:** Espaço ou → avança · ← volta · R reinicia a cena · 1 a 5 vão direto a um mundo · M liga e desliga o som · F tela cheia · N mostra as notas de quem apresenta.
+- **No computador:** Espaço ou → avança · ← volta · R reinicia a cena · 1 a 5 vão direto a um mundo · M liga e desliga o som · F tela cheia · N mostra as notas de quem apresenta.
+- **No celular ou no tablet:** toque à direita para avançar e na borda esquerda para voltar; arrastar para os lados faz o mesmo. O botão do canto abre o menu, com os mundos, o som e as notas. Com o aparelho deitado a tela fica maior.
 - **Roteiro de fala**, com a origem de cada número: [`docs/roteiro.md`](docs/roteiro.md).
 - **Referências**, com o DOI ou o número do arXiv de cada fonte citada: [`docs/referencias-da-apresentacao.md`](docs/referencias-da-apresentacao.md).
 - **Código:** [`docs/fonte/`](docs/fonte/README.md). O script `docs/fonte/montar.ps1` gera o `index.html`, e [`docs/verificacao/`](docs/verificacao/README.md) confere cada cena.

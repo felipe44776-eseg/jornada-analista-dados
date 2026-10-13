@@ -68,7 +68,7 @@ const Jogo = (() => {
 
   /* telas: só a marcação e a classe; a cena posiciona e anima */
   function titulo(pai, t) {
-    const el = html(`<div class="jg-titulo"><div class="jg-t-mundo">${t.mundo}</div><h1 class="jg-t-nome">${t.nome}</h1><div class="jg-t-dica"><i>${t.dica}</i></div></div>`);
+    const el = html(`<div class="jg-titulo"><div class="jg-t-mundo">${t.mundo}</div><h1 class="jg-t-nome">${t.nome}</h1><div class="jg-t-dica"><i${t.dicaToque ? ` data-toque="${t.dicaToque}"` : ''}>${t.dica}</i></div></div>`);   // dicaToque: o texto que vale em tela de toque (o motor troca)
     pai.appendChild(el); return el;
   }
   /* faixa grande: GAME OVER por padrão; com texto, serve para "Fase concluída" */

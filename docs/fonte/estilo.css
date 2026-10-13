@@ -9,9 +9,9 @@
   --font:"Public Sans",Arial,sans-serif;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--n-900);overflow:hidden}
+html,body{margin:0;height:100%;background:var(--n-900);overflow:hidden;touch-action:manipulation;overscroll-behavior:none;-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
 body{font-family:var(--font);color:var(--lav-1);-webkit-font-smoothing:antialiased;font-kerning:normal}
-#vp{position:fixed;inset:0;overflow:hidden;cursor:default}
+#vp{position:fixed;inset:0;overflow:hidden;cursor:default;touch-action:none}   /* sobre o palco o gesto é do deck: sem isso o navegador toma o arrastar para si */
 #quadro{position:absolute;left:0;top:0;width:var(--w);height:var(--h);transform-origin:0 0}
 .palco{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--n-900);font-family:var(--font);color:var(--lav-1);user-select:none}
 .palco.cortina{position:absolute;left:0;top:0;z-index:30;pointer-events:none}
@@ -27,6 +27,21 @@ body{font-family:var(--font);color:var(--lav-1);-webkit-font-smoothing:antialias
 #notas li{margin-bottom:6px}
 #notas .teclas{margin-top:20px;padding-top:12px;border-top:1px solid var(--n-300);font-size:13px;color:var(--l-300)}
 #imp{display:none}
+/* ---------- tela de toque (celular e tablet): só existe com a classe .toque, que o motor põe; no computador nada disto aparece ---------- */
+html.toque,html.toque body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#tq-menu{position:fixed;z-index:90;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid var(--l-500);background:rgba(0,3,37,.72);color:var(--lav-1);font:inherit;cursor:pointer}
+#tq-painel{position:fixed;z-index:91;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));width:min(300px,calc(100vw - 16px));max-height:calc(100dvh - 16px);overflow:auto;display:none;gap:8px;padding:12px;border-radius:14px;border:1px solid var(--l-500);background:rgba(0,3,37,.96);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+#tq-painel.aberto{display:grid}
+#tq-painel .tq-l{display:flex;gap:8px}
+#tq-painel .tq-r{margin-top:2px;font-size:12px;line-height:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--l-300)}
+#tq-painel button{flex:1 1 0;min-height:44px;padding:8px 10px;border-radius:10px;border:1px solid var(--n-300);background:var(--n-600);color:var(--lav-1);font:700 16px/1.2 var(--font);cursor:pointer}
+#tq-painel button:active{background:var(--n-400)}
+#tq-painel button[aria-current="true"]{background:var(--lav-1);color:var(--marinho);border-color:var(--lav-1)}
+#tq-dica,#tq-girar{position:fixed;z-index:85;left:0;right:0;margin:0 auto;width:fit-content;max-width:calc(100vw - 24px);padding:8px 14px;border-radius:999px;background:rgba(0,3,37,.82);color:var(--lav-1);font:700 15px/1.25 var(--font);text-align:center;pointer-events:none}
+#tq-dica{bottom:max(10px,env(safe-area-inset-bottom));opacity:0;transition:opacity .4s}
+#tq-dica.visivel{opacity:1}
+#tq-girar{display:none;top:calc(50% + 28.125vw + 14px);color:var(--l-300);background:none}
+@media (orientation:portrait){#tq-girar{display:block}}
 html.parado *,html.parado *::before,html.parado *::after{animation:none!important;transition:none!important}
 @page{size:1280px 720px;margin:0}
 @media print{

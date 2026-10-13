@@ -24,7 +24,7 @@
     r.hud = Jogo.hud(H, { vidas: VIDAS, fases: FASES.map(f => f.nome) });
     r.h = Jogo.heroi(tp.atores, { escala: 1 });
     r.h0 = Jogo.heroi(r.abre.querySelector('.c1-abre-heroi'), { escala: 2.3 }).por(302, 525);
-    Jogo.titulo(r.abre, { mundo: 'Mundo 1 · Incas e maias', nome: 'A jornada do analista de dados', dica: 'Espaço para começar' });
+    Jogo.titulo(r.abre, { mundo: 'Mundo 1 · Incas e maias', nome: 'A jornada do analista de dados', dica: 'Espaço para começar', dicaToque: 'Toque para começar' });
     r.cont = Jogo.continuar(H, 'Continuar?', 3); r.cont.el.classList.add('c1-continuar');
     r.contTn = r.contT.querySelector('b'); r.contSn = r.contS.querySelector('b');
     estadoInicial();
