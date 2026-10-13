@@ -76,5 +76,5 @@
     function fim0() { op(r.partida, 0); dia(true); r.tp.nomes(true); r.cab.definir(true); op(r.placar, 1); tf(r.placar, 'none'); placar(0); }
   ].concat(CONQUISTAS.map((_, i) => fimConquista(i)), [
     function fim6() { aviso(-1); trilha(false); painel(true); r.pergunta.definir(true); },
-    function fim7() { painel(false); r.pergunta.definir(false); r.cartao.definir({ visivel: true }); }
+    function fim7() { painel(false); r.pergunta.definir(false); r.cartao.definir({ visivel: true }); r.cartao.el.classList.add('c05-ativo'); }   // com o cartão na tela, os links passam a valer
   ]);

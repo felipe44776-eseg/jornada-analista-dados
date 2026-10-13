@@ -190,7 +190,8 @@ async function main() {
     acento.forEach(x => falha(`ciano fora da lista "acento": ${x}`));
     rel.dom = { textosConferidos: (ESP.textos || []).length, contagensConferidas: (ESP.contagens || []).length, divergencias: div, cianoForaDaLista: acento,
       menorTextoPx: await ev(`Math.min(...__q('#palco *').filter(e => e.children.length === 0 && e.textContent.trim() && !e.closest('svg')).map(e => parseFloat(getComputedStyle(e).fontSize)))`),
-      recursosExternos: await ev(`__q('[src],[href]').map(e => e.getAttribute('src') || e.getAttribute('href')).filter(u => /^(https?:)?\\/\\//i.test(u)).length`) };
+      /* recurso externo é o que a página CARREGA de fora (imagem, fonte, script, folha de estilo). Link para outra página (<a href>) não conta */
+      recursosExternos: await ev(`__q('[src],[href]').filter(e => e.tagName.toLowerCase() !== 'a').map(e => e.getAttribute('src') || e.getAttribute('href')).filter(u => /^(https?:)?\\/\\//i.test(u)).length`) };
     if (rel.dom.menorTextoPx < 20) falha(`há texto de ${rel.dom.menorTextoPx} px no palco (mínimo 20)`);
     if (rel.dom.recursosExternos) falha('há recurso externo em src ou href');
     gravar();

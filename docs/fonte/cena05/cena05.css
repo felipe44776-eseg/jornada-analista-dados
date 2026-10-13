@@ -76,6 +76,12 @@
 .c05-end-url{min-width:0;overflow-wrap:anywhere;line-height:1.2;font-weight:800;letter-spacing:-.005em;color:#fff}
 .c05-qr.cheia{border:0;padding:10px;background:#fff;box-shadow:inset 0 0 0 2px rgba(0,6,83,.2)}
 .c05-qr.cheia img{display:block;width:100%;height:100%;image-rendering:pixelated}
+/* o endereço e o código QR são links. A camada do HUD não recebe o ponteiro; estes dois recebem, e só com o cartão na tela */
+a.c05-end-url{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+a.c05-qr{text-decoration:none}
+.c05-creditos.c05-ativo a{pointer-events:auto;cursor:pointer}
+.c05-creditos.c05-ativo a.c05-end-url:hover,.c05-creditos.c05-ativo a.c05-end-url:focus-visible{color:var(--lav-1);text-decoration-thickness:3px}
+.c05-creditos.c05-ativo a.c05-qr:hover,.c05-creditos.c05-ativo a.c05-qr:focus-visible{box-shadow:inset 0 0 0 3px var(--marinho)}
 /* créditos: coluna entre a lista e o código QR, rótulo pequeno em cima e o nome embaixo */
 .c05-autoria{position:absolute;left:376px;top:80px;width:312px;display:flex;flex-direction:column;gap:9px;padding-left:18px;border-left:3px solid var(--l-500)}
 .c05-autoria>div{display:flex;flex-direction:column}

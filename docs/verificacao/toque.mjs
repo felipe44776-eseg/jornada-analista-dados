@@ -181,6 +181,37 @@ async function main() {
   await sleep(2800);
   checar('computador: o botão some de novo com o mouse parado', (await evJ('getComputedStyle(document.getElementById("tc")).opacity')) === '0');
 
+  /* ---------- último slide: o endereço e o código QR são links para o repositório ---------- */
+  const ultima = await evJ('Deck.estado.cenas');
+  const linkEm = sel => evJ(`(() => { const a = document.querySelector(${JSON.stringify(sel)}); if (!a) return null; const b = a.getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2, el = document.elementFromPoint(x, y); return { x, y, tag: a.tagName, href: a.getAttribute("href"), target: a.target, rel: a.rel, texto: a.textContent.trim(), noPonto: !!(el && el.closest("a") === a) }; })()`);
+  const espiar = () => evJ('(() => { window.__clique = null; if (!window.__espia) { window.__espia = true; addEventListener("click", e => { const a = e.target.closest && e.target.closest("a[href]"); if (a) { window.__clique = { href: a.href, barrado: e.defaultPrevented }; e.preventDefault(); } }); } return 1; })()');
+  await abrir(`${URL0}?cena=${ultima}&passo=6`);
+  let lk = await linkEm('.c05-end-url');
+  checar('link: antes do cartão aparecer, o endereço não recebe clique', !!lk && lk.noPonto === false, lk);
+  await abrir(`${URL0}?cena=${ultima}&passo=7`);
+  lk = await linkEm('.c05-end-url');
+  checar('link: o endereço é um link para o repositório, em outra aba', !!lk && lk.tag === 'A' && lk.href === 'https://' + lk.texto && lk.target === '_blank' && /noopener/.test(lk.rel), lk);
+  checar('link: o endereço está ao alcance do clique', !!lk && lk.noPonto, lk);
+  const qr = await linkEm('a.c05-qr');
+  checar('link: o código QR também é link, para o mesmo endereço', !!qr && qr.href === lk.href && qr.target === '_blank' && qr.noPonto, qr && { ...qr, texto: '' });
+  await espiar(); const antesDoClique = await estado();
+  for (const type of ['mousePressed', 'mouseReleased']) await send('Input.dispatchMouseEvent', { type, x: lk.x, y: lk.y, button: 'left', clickCount: 1 });
+  await sleep(300);
+  let cq = await evJ('window.__clique');
+  checar('link: o clique do mouse chega ao link sem ser barrado', !!cq && cq.href === lk.href && cq.barrado === false, cq);
+  e = await estado();
+  checar('link: clicar no link não muda de passo', e.c === antesDoClique.c && e.p === antesDoClique.p, e);
+  await sleep(300); await foto('computador-ultimo-slide-link.png');
+  await send('Emulation.setDeviceMetricsOverride', { width: 844, height: 390, deviceScaleFactor: 2, mobile: true });
+  await send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 5 });
+  await abrir(`${URL0}?cena=${ultima}&passo=7`);
+  lk = await linkEm('.c05-end-url'); await espiar();
+  await toque(lk.x, lk.y); await sleep(500);
+  cq = await evJ('window.__clique'); e = await estado();
+  checar('link: no celular, o toque no endereço abre o link', !!cq && cq.href === lk.href && cq.barrado === false, cq);
+  checar('link: no celular, tocar no link não muda de passo', e.p === 7, e);
+  await send('Emulation.setTouchEmulationEnabled', { enabled: false });
+
   checar('nenhum erro de JavaScript', rel.erros.length === 0, rel.erros);
   ws.close();
 }

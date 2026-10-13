@@ -114,14 +114,19 @@
         <div class="c05-av-l">${[].concat(c.linha).map(esc).join(' <br>')}</div></div></div>`;     /* o espaço antes do <br> mantém o texto corrido legível */
   }
   /* espaço do endereço e do código QR: tracejado e marcado enquanto CREDITOS.endereco e CREDITOS.qr estiverem vazios */
+  /* o endereço e o código QR são links para o repositório: abrem em outra aba. Só recebem clique com o cartão na tela
+     (classe c05-ativo no cartão, posta no fim do passo 7): antes disso são invisíveis e não podem roubar o toque de avançar */
+  const hrefRepo = () => 'https://' + CREDITOS.endereco.replace(/^https?:\/\//, '');
+  const LINK = 'target="_blank" rel="noopener noreferrer"';
   function desEndereco() {
     const v = CREDITOS.vago.endereco, e = CREDITOS.endereco;
     /* preenchido: o endereço sozinho, no maior corpo que cabe numa linha (de 28 a 20 px); mais comprido que isso, quebra em duas */
-    return e ? `<div class="c05-end cheia"><span class="c05-end-url" style="font-size:${Math.max(20, Math.min(28, Math.floor(612 / (e.length * 0.6))))}px">${esc(e)}</span></div>`
+    return e ? `<div class="c05-end cheia"><a class="c05-end-url" href="${esc(hrefRepo())}" ${LINK} style="font-size:${Math.max(20, Math.min(28, Math.floor(612 / (e.length * 0.6))))}px">${esc(e)}</a></div>`
       : `<div class="c05-end"><span class="c05-vg-r">${esc(v.rotulo)}</span> <span class="c05-vg-t">${esc(v.texto)}</span></div>`;
   }
   function desQr() {
     const v = CREDITOS.vago.qr;
-    return CREDITOS.qr ? `<div class="c05-qr cheia"><img alt="${esc(v.rotulo)}" src="${esc(CREDITOS.qr)}"></div>`
-      : `<div class="c05-qr"><span class="c05-vg-r">${esc(v.rotulo)}</span> <span class="c05-vg-t">${esc(v.texto)}</span></div>`;
+    if (!CREDITOS.qr) return `<div class="c05-qr"><span class="c05-vg-r">${esc(v.rotulo)}</span> <span class="c05-vg-t">${esc(v.texto)}</span></div>`;
+    const img = `<img alt="${esc(v.rotulo)}" src="${esc(CREDITOS.qr)}">`;
+    return CREDITOS.endereco ? `<a class="c05-qr cheia" href="${esc(hrefRepo())}" ${LINK} aria-label="Abrir o repositório">${img}</a>` : `<div class="c05-qr cheia">${img}</div>`;
   }

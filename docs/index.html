@@ -474,6 +474,12 @@ html.parado *,html.parado *::before,html.parado *::after{animation:none!importan
 .c05-end-url{min-width:0;overflow-wrap:anywhere;line-height:1.2;font-weight:800;letter-spacing:-.005em;color:#fff}
 .c05-qr.cheia{border:0;padding:10px;background:#fff;box-shadow:inset 0 0 0 2px rgba(0,6,83,.2)}
 .c05-qr.cheia img{display:block;width:100%;height:100%;image-rendering:pixelated}
+/* o endereço e o código QR são links. A camada do HUD não recebe o ponteiro; estes dois recebem, e só com o cartão na tela */
+a.c05-end-url{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+a.c05-qr{text-decoration:none}
+.c05-creditos.c05-ativo a{pointer-events:auto;cursor:pointer}
+.c05-creditos.c05-ativo a.c05-end-url:hover,.c05-creditos.c05-ativo a.c05-end-url:focus-visible{color:var(--lav-1);text-decoration-thickness:3px}
+.c05-creditos.c05-ativo a.c05-qr:hover,.c05-creditos.c05-ativo a.c05-qr:focus-visible{box-shadow:inset 0 0 0 3px var(--marinho)}
 /* créditos: coluna entre a lista e o código QR, rótulo pequeno em cima e o nome embaixo */
 .c05-autoria{position:absolute;left:376px;top:80px;width:312px;display:flex;flex-direction:column;gap:9px;padding-left:18px;border-left:3px solid var(--l-500)}
 .c05-autoria>div{display:flex;flex-direction:column}
@@ -1029,7 +1035,7 @@ const Deck = (() => {
     const alvo = e.target && e.target.closest ? e.target : null;
     toqueIni = dedos === 1 ? {
       id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(),
-      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#tc,#tc-aviso,#notas') : null,         // começou nos controles ou nas notas: não navega
+      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#tc,#tc-aviso,#notas,a[href]') : null, // começou nos controles, nas notas ou num link: não navega
       botao: alvo ? alvo.closest('#tq-menu,#tc,#tq-painel button') : null
     } : null;
   }
@@ -4268,16 +4274,21 @@ const Oficina = (() => {
         <div class="c05-av-l">${[].concat(c.linha).map(esc).join(' <br>')}</div></div></div>`;     /* o espaço antes do <br> mantém o texto corrido legível */
   }
   /* espaço do endereço e do código QR: tracejado e marcado enquanto CREDITOS.endereco e CREDITOS.qr estiverem vazios */
+  /* o endereço e o código QR são links para o repositório: abrem em outra aba. Só recebem clique com o cartão na tela
+     (classe c05-ativo no cartão, posta no fim do passo 7): antes disso são invisíveis e não podem roubar o toque de avançar */
+  const hrefRepo = () => 'https://' + CREDITOS.endereco.replace(/^https?:\/\//, '');
+  const LINK = 'target="_blank" rel="noopener noreferrer"';
   function desEndereco() {
     const v = CREDITOS.vago.endereco, e = CREDITOS.endereco;
     /* preenchido: o endereço sozinho, no maior corpo que cabe numa linha (de 28 a 20 px); mais comprido que isso, quebra em duas */
-    return e ? `<div class="c05-end cheia"><span class="c05-end-url" style="font-size:${Math.max(20, Math.min(28, Math.floor(612 / (e.length * 0.6))))}px">${esc(e)}</span></div>`
+    return e ? `<div class="c05-end cheia"><a class="c05-end-url" href="${esc(hrefRepo())}" ${LINK} style="font-size:${Math.max(20, Math.min(28, Math.floor(612 / (e.length * 0.6))))}px">${esc(e)}</a></div>`
       : `<div class="c05-end"><span class="c05-vg-r">${esc(v.rotulo)}</span> <span class="c05-vg-t">${esc(v.texto)}</span></div>`;
   }
   function desQr() {
     const v = CREDITOS.vago.qr;
-    return CREDITOS.qr ? `<div class="c05-qr cheia"><img alt="${esc(v.rotulo)}" src="${esc(CREDITOS.qr)}"></div>`
-      : `<div class="c05-qr"><span class="c05-vg-r">${esc(v.rotulo)}</span> <span class="c05-vg-t">${esc(v.texto)}</span></div>`;
+    if (!CREDITOS.qr) return `<div class="c05-qr"><span class="c05-vg-r">${esc(v.rotulo)}</span> <span class="c05-vg-t">${esc(v.texto)}</span></div>`;
+    const img = `<img alt="${esc(v.rotulo)}" src="${esc(CREDITOS.qr)}">`;
+    return CREDITOS.endereco ? `<a class="c05-qr cheia" href="${esc(hrefRepo())}" ${LINK} aria-label="Abrir o repositório">${img}</a>` : `<div class="c05-qr cheia">${img}</div>`;
   }
 
   /* ================= Parte 3: montagem (estado ANTES do passo 0) e estado final de cada passo ================= */
@@ -4357,7 +4368,7 @@ const Oficina = (() => {
     function fim0() { op(r.partida, 0); dia(true); r.tp.nomes(true); r.cab.definir(true); op(r.placar, 1); tf(r.placar, 'none'); placar(0); }
   ].concat(CONQUISTAS.map((_, i) => fimConquista(i)), [
     function fim6() { aviso(-1); trilha(false); painel(true); r.pergunta.definir(true); },
-    function fim7() { painel(false); r.pergunta.definir(false); r.cartao.definir({ visivel: true }); }
+    function fim7() { painel(false); r.pergunta.definir(false); r.cartao.definir({ visivel: true }); r.cartao.el.classList.add('c05-ativo'); }   // com o cartão na tela, os links passam a valer
   ]);
 
   /* ================= Parte 4: os passos (tocar) ================= */

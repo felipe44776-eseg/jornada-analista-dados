@@ -316,7 +316,7 @@ const Deck = (() => {
     const alvo = e.target && e.target.closest ? e.target : null;
     toqueIni = dedos === 1 ? {
       id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(),
-      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#tc,#tc-aviso,#notas') : null,         // começou nos controles ou nas notas: não navega
+      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#tc,#tc-aviso,#notas,a[href]') : null, // começou nos controles, nas notas ou num link: não navega
       botao: alvo ? alvo.closest('#tq-menu,#tc,#tq-painel button') : null
     } : null;
   }
