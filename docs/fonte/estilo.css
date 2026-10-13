@@ -27,6 +27,15 @@ body{font-family:var(--font);color:var(--lav-1);-webkit-font-smoothing:antialias
 #notas li{margin-bottom:6px}
 #notas .teclas{margin-top:20px;padding-top:12px;border-top:1px solid var(--n-300);font-size:13px;color:var(--l-300)}
 #imp{display:none}
+/* ---------- botão de tela cheia: no computador só aparece enquanto o mouse se mexe (.mexeu); em tela de toque fica à vista, ao lado do menu ---------- */
+#tc{position:fixed;z-index:90;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid var(--l-500);background:rgba(0,3,37,.72);color:var(--lav-1);font:inherit;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s}
+html.mexeu #tc,html.toque #tc{opacity:1;pointer-events:auto}
+html.toque #tc{right:calc(max(8px,env(safe-area-inset-right)) + 52px)}
+#tc .sai,html.cheia #tc .entra{display:none}
+html.cheia #tc .sai{display:block}
+#tc-aviso{position:fixed;z-index:92;top:calc(max(8px,env(safe-area-inset-top)) + 52px);right:max(8px,env(safe-area-inset-right));width:min(320px,calc(100vw - 16px));padding:12px 14px;border-radius:12px;border:1px solid var(--l-500);background:rgba(0,3,37,.96);color:var(--lav-1);font:600 15px/1.4 var(--font);display:none}
+#tc-aviso.visivel{display:block}
+#tc-aviso b{font-weight:800;color:#fff}
 /* ---------- tela de toque (celular e tablet): só existe com a classe .toque, que o motor põe; no computador nada disto aparece ---------- */
 html.toque,html.toque body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #tq-menu{position:fixed;z-index:90;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid var(--l-500);background:rgba(0,3,37,.72);color:var(--lav-1);font:inherit;cursor:pointer}

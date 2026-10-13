@@ -80,6 +80,7 @@ async function main() {
     checar(r('texto de partida fala em toque'), (await evJ('document.querySelector(".jg-t-dica").textContent.trim()')) === 'Toque para começar');
     checar(r('botão de menu visível'), await evJ('(() => { const m = document.getElementById("tq-menu"); if (!m) return false; const b = m.getBoundingClientRect(); return b.width >= 44 && b.height >= 44 && b.right <= innerWidth && b.top >= 0; })()'));
     checar(r('aviso de girar só em pé'), (await evJ('getComputedStyle(document.getElementById("tq-girar")).display')) === (h > w ? 'block' : 'none'));
+    checar(r('botão de tela cheia à vista, ao lado do menu'), await evJ('(() => { const t = document.getElementById("tc"), m = document.getElementById("tq-menu"); if (!t || !m) return false; const a = t.getBoundingClientRect(), b = m.getBoundingClientRect(); return getComputedStyle(t).opacity === "1" && a.width >= 44 && a.height >= 44 && a.left >= 0 && a.top >= 0 && a.right <= b.left; })()'));
     await sleep(700); await foto(`${nome}-1-titulo.png`);
 
     await toque(w * 0.1, h * 0.5);                                       // na tela de título, até o toque à esquerda começa
@@ -111,7 +112,40 @@ async function main() {
     checar(r('o menu leva ao mundo 3'), e.c === 2, e);
     checar(r('o menu fecha depois de escolher'), !(await evJ('document.getElementById("tq-painel").classList.contains("aberto")')));
     await assentar(w, h); await sleep(900); await foto(`${nome}-4-mundo3.png`);
+
+    /* tela cheia pelo botão: entra, o ícone troca, o palco continua cabendo, e o mesmo botão sai */
+    const antes = await estado();
+    const tcb = await evJ('(() => { const b = document.getElementById("tc").getBoundingClientRect(); return { x: b.left + b.width / 2, y: b.top + b.height / 2 }; })()');
+    await toque(tcb.x, tcb.y); await sleep(700);
+    const cheia = await evJ('({ api: !!document.fullscreenElement, classe: document.documentElement.classList.contains("cheia"), rotulo: document.getElementById("tc").getAttribute("aria-label") })');
+    checar(r('o botão entra em tela cheia'), cheia.api && cheia.classe && cheia.rotulo === 'Sair da tela cheia', cheia);
+    e = await estado();
+    checar(r('entrar em tela cheia não muda de passo'), e.c === antes.c && e.p === antes.p, e);
+    const qc = await evJ('(() => { const b = document.getElementById("quadro").getBoundingClientRect(); return { x: b.left, y: b.top, w: b.width, h: b.height, vw: innerWidth, vh: innerHeight }; })()');
+    checar(r('em tela cheia o palco continua cabendo'), qc.x >= -0.5 && qc.y >= -0.5 && qc.x + qc.w <= qc.vw + 0.5 && qc.y + qc.h <= qc.vh + 0.5, qc);
+    await foto(`${nome}-5-tela-cheia.png`);
+    const tcb2 = await evJ('(() => { const b = document.getElementById("tc").getBoundingClientRect(); return { x: b.left + b.width / 2, y: b.top + b.height / 2 }; })()');
+    await toque(tcb2.x, tcb2.y); await sleep(700);
+    checar(r('o mesmo botão sai da tela cheia'), await evJ('!document.fullscreenElement && !document.documentElement.classList.contains("cheia")'));
   }
+
+  /* ---------- aparelho sem tela cheia no navegador (é o caso do iPhone): o botão explica o caminho pela Tela de Início ---------- */
+  const semApi = await send('Page.addScriptToEvaluateOnNewDocument', { source: 'Element.prototype.requestFullscreen = undefined; Element.prototype.webkitRequestFullscreen = undefined;' });
+  await send('Emulation.setDeviceMetricsOverride', { width: 844, height: 390, deviceScaleFactor: 2, mobile: true });
+  await abrir(URL0);
+  {
+    const b = await evJ('(() => { const r = document.getElementById("tc").getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()');
+    await toque(b.x, b.y); await sleep(300);
+    const a = await evJ('(() => { const el = document.getElementById("tc-aviso"), r = el.getBoundingClientRect(); return { visivel: el.classList.contains("visivel"), texto: el.textContent, dentro: r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight, cheia: !!document.fullscreenElement }; })()');
+    checar('sem tela cheia no navegador: o botão mostra o caminho pela Tela de Início', a.visivel && /Tela de Início/.test(a.texto) && a.dentro && !a.cheia, a);
+    const e1 = await estado();
+    checar('sem tela cheia no navegador: tocar no botão não navega', e1.c === 0 && e1.p === 0, e1);
+    await foto('sem-tela-cheia-aviso.png');
+    const c = await evJ('(() => { const r = document.getElementById("tc-aviso").getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()');
+    await toque(c.x, c.y); await sleep(200);
+    checar('sem tela cheia no navegador: tocar no aviso fecha o aviso', !(await evJ('document.getElementById("tc-aviso").classList.contains("visivel")')));
+  }
+  await send('Page.removeScriptToEvaluateOnNewDocument', { identifier: semApi.identifier });
 
   /* ---------- computador: nada muda ---------- */
   await send('Emulation.setTouchEmulationEnabled', { enabled: false });
@@ -128,6 +162,24 @@ async function main() {
   for (const type of ['keyDown', 'keyUp']) await send('Input.dispatchKeyEvent', { type, key: ' ', code: 'Space', windowsVirtualKeyCode: 32, nativeVirtualKeyCode: 32, text: type === 'keyDown' ? ' ' : undefined });
   await sleep(250); e = await estado();
   checar('computador: Espaço continua avançando', e.p === 1, e);
+  /* tela cheia no computador: o botão fica escondido, aparece quando o mouse se mexe, e a tecla F continua valendo */
+  await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 720, deviceScaleFactor: 1, mobile: false });
+  await abrir(URL0);
+  checar('computador: botão de tela cheia escondido com o mouse parado', (await evJ('getComputedStyle(document.getElementById("tc")).opacity')) === '0');
+  await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 600, y: 300 }); await sleep(450);
+  const bt = await evJ('(() => { const t = document.getElementById("tc"), b = t.getBoundingClientRect(); return { opacidade: getComputedStyle(t).opacity, x: b.left + b.width / 2, y: b.top + b.height / 2 }; })()');
+  checar('computador: o botão aparece quando o mouse se mexe', bt.opacidade === '1', bt);
+  await foto('computador-botao-tela-cheia.png');
+  for (const type of ['mousePressed', 'mouseReleased']) await send('Input.dispatchMouseEvent', { type, x: bt.x, y: bt.y, button: 'left', clickCount: 1 });
+  await sleep(700);
+  checar('computador: o clique no botão entra em tela cheia', await evJ('!!document.fullscreenElement && document.documentElement.classList.contains("cheia")'));
+  e = await estado();
+  checar('computador: clicar no botão não navega', e.c === 0 && e.p === 0, e);
+  for (const type of ['keyDown', 'keyUp']) await send('Input.dispatchKeyEvent', { type, key: 'f', code: 'KeyF', windowsVirtualKeyCode: 70, nativeVirtualKeyCode: 70, text: type === 'keyDown' ? 'f' : undefined });
+  await sleep(700);
+  checar('computador: a tecla F sai da tela cheia', await evJ('!document.fullscreenElement'));
+  await sleep(2800);
+  checar('computador: o botão some de novo com o mouse parado', (await evJ('getComputedStyle(document.getElementById("tc")).opacity')) === '0');
 
   checar('nenhum erro de JavaScript', rel.erros.length === 0, rel.erros);
   ws.close();

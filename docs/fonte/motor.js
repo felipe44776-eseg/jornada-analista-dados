@@ -172,6 +172,7 @@ const Deck = (() => {
     if (notas.classList.contains('aberto')) preencherNotas();
     if (tq) {
       tq.som.textContent = Som.mudo ? 'Ligar o som' : 'Tirar o som';
+      if (tq.cheia) tq.cheia.textContent = emTelaCheia() ? 'Sair da tela cheia' : 'Tela cheia';
       tq.mundos.forEach((b, i) => b.setAttribute('aria-current', i === est.c ? 'true' : 'false'));
     }
   }
@@ -188,9 +189,47 @@ const Deck = (() => {
         : `<p class="teclas">→ ou Espaço: avança (ou pula a animação) · ←: volta · R: reinicia a cena · M: som · F: tela cheia · N: notas</p>`);
   }
   function alternarNotas() { if (notas.classList.toggle('aberto')) preencherNotas(); }
+  /* ---------- tela cheia: tecla F, botão do canto (computador e toque) e item do menu ----------
+     Funciona em computador, Android e iPad. O iPhone não tem a função no navegador: lá o botão explica o caminho
+     pela Tela de Início. Aberto pela Tela de Início o deck já vem sem as barras, e o botão nem aparece. */
+  const raiz = document.documentElement;
+  const tcPedir = raiz.requestFullscreen || raiz.webkitRequestFullscreen;
+  const tcSair = document.exitFullscreen || document.webkitExitFullscreen;
+  const emTelaCheia = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
+  const emAppInstalado = () => navigator.standalone === true || !!(window.matchMedia && (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches));
+  let tc = null, tcAviso = null, tcSome = 0, tcAvisoSome = 0;
   function telaCheia() {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+    if (emTelaCheia()) { try { const r = tcSair.call(document); if (r && r.catch) r.catch(() => {}); } catch (e) {} return; }
+    if (!tcPedir) { avisarTelaCheia(); return; }
+    /* no celular, a tela cheia já pede o aparelho deitado, onde o palco fica maior (nem todo navegador deixa travar) */
+    const deitar = () => { try { if (est.toque && screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(() => {}); } catch (e) {} };
+    try { const r = tcPedir.call(raiz); if (r && r.then) r.then(deitar).catch(() => {}); else deitar(); } catch (e) {}
+  }
+  function avisarTelaCheia() {
+    if (!tcAviso) return;
+    tcAviso.classList.add('visivel'); clearTimeout(tcAvisoSome);
+    tcAvisoSome = setTimeout(() => tcAviso.classList.remove('visivel'), 9000);
+  }
+  function aoMudarTelaCheia() {
+    const cheia = emTelaCheia();
+    raiz.classList.toggle('cheia', cheia);
+    if (tc) { const t = cheia ? 'Sair da tela cheia' : 'Tela cheia'; tc.setAttribute('aria-label', t); tc.title = t + ' (F)'; }
+    if (!cheia) { try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (e) {} }
+    ajustar(); if (est.montada) atualizarUI();
+  }
+  function criarTelaCheia() {
+    if (emAppInstalado()) return;
+    tc = util.html('<button id="tc" class="no-print" type="button" aria-label="Tela cheia" title="Tela cheia (F)"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="entra" d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/><path class="sai" d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg></button>');
+    tcAviso = util.html('<div id="tc-aviso" class="no-print" role="status">Neste aparelho o navegador não tem tela cheia. Para ver sem as barras, toque em <b>Compartilhar</b> e em <b>Adicionar à Tela de Início</b>, e abra por lá.</div>');
+    document.body.append(tc, tcAviso);
+    tc.addEventListener('click', () => { if (performance.now() - toqueUI > 700) telaCheia(); });     // o toque é atendido em aoSoltar()
+    /* no computador o botão só aparece enquanto o mouse se mexe, como em player de vídeo */
+    addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      raiz.classList.add('mexeu'); clearTimeout(tcSome);
+      tcSome = setTimeout(() => raiz.classList.remove('mexeu'), 2500);
+    });
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(t => document.addEventListener(t, aoMudarTelaCheia));
   }
   let escalaAnt = 0;
   function ajustar() {
@@ -239,11 +278,11 @@ const Deck = (() => {
       <div class="tq-r">Mundos</div>
       <div class="tq-l">${cenas.map((c, i) => `<button type="button" data-c="${i}" aria-label="Mundo ${numDaCena(i)}">${numDaCena(i)}</button>`).join('')}</div>
       <div class="tq-l"><button type="button" data-a="som"></button><button type="button" data-a="reiniciar">Reiniciar cena</button></div>
-      <div class="tq-l"><button type="button" data-a="notas">Notas</button>${document.documentElement.requestFullscreen ? '<button type="button" data-a="cheia">Tela cheia</button>' : ''}<button type="button" data-a="fechar">Fechar</button></div></div>`);
+      <div class="tq-l"><button type="button" data-a="notas">Notas</button>${emAppInstalado() ? '' : '<button type="button" data-a="cheia">Tela cheia</button>'}<button type="button" data-a="fechar">Fechar</button></div></div>`);
     const dica = h('<div id="tq-dica" class="no-print">Toque à direita para avançar · na borda esquerda para voltar</div>');
     const girar = h('<div id="tq-girar" class="no-print">Gire o aparelho para ver maior</div>');
     document.body.append(menu, painel, dica, girar);
-    tq = { menu, painel, dica, som: painel.querySelector('[data-a="som"]'), mundos: Array.from(painel.querySelectorAll('[data-c]')) };
+    tq = { menu, painel, dica, som: painel.querySelector('[data-a="som"]'), cheia: painel.querySelector('[data-a="cheia"]'), mundos: Array.from(painel.querySelectorAll('[data-c]')) };
     /* o toque nos controles é resolvido em aoSoltar(), sem depender do clique que o navegador sintetiza (ele some depois
        de um arrastar rápido). O clique fica para teclado e mouse, e é ignorado logo depois de um toque já atendido */
     const semToqueRecente = () => performance.now() - toqueUI > 700;
@@ -277,8 +316,8 @@ const Deck = (() => {
     const alvo = e.target && e.target.closest ? e.target : null;
     toqueIni = dedos === 1 ? {
       id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(),
-      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#notas') : null,                       // começou nos controles ou nas notas: não navega
-      botao: alvo ? alvo.closest('#tq-menu,#tq-painel button') : null
+      ui: alvo ? alvo.closest('#tq-menu,#tq-painel,#tc,#tc-aviso,#notas') : null,         // começou nos controles ou nas notas: não navega
+      botao: alvo ? alvo.closest('#tq-menu,#tc,#tq-painel button') : null
     } : null;
   }
   function aoSoltar(e) {
@@ -290,7 +329,13 @@ const Deck = (() => {
     const dx = e.clientX - i.x, dy = e.clientY - i.y;
     const batida = Math.abs(dx) < 14 && Math.abs(dy) < 14 && performance.now() - i.t < 700;
     if (i.ui) {
-      if (i.botao && batida) { toqueUI = performance.now(); if (i.botao.id === 'tq-menu') abrirPainel(!tq.painel.classList.contains('aberto')); else acaoDoPainel(i.botao); }
+      if (tcAviso && tcAviso.contains(i.ui)) tcAviso.classList.remove('visivel');          // tocar no aviso fecha o aviso
+      if (i.botao && batida) {
+        toqueUI = performance.now();
+        if (i.botao.id === 'tq-menu') abrirPainel(!tq.painel.classList.contains('aberto'));
+        else if (i.botao.id === 'tc') { abrirPainel(false); telaCheia(); }
+        else acaoDoPainel(i.botao);
+      }
       return;
     }
     if (tq.painel.classList.contains('aberto')) { abrirPainel(false); return; }           // toque fora do menu só fecha o menu
@@ -344,6 +389,7 @@ const Deck = (() => {
     addEventListener('keydown', tecla);
     addEventListener('pointerdown', aoBaixar); addEventListener('pointerup', aoSoltar); addEventListener('pointercancel', aoCancelar);
     ['touchend', 'click'].forEach(t => addEventListener(t, () => Som.destravar()));       // no iOS o áudio só destrava ao soltar o dedo
+    if (!est.parado) criarTelaCheia();
     if (window.matchMedia && matchMedia('(hover: none) and (pointer: coarse)').matches) modoToque();
     addEventListener('beforeprint', prepararImpressao);
     addEventListener('afterprint', desfazerImpressao);
